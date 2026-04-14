@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Goal Crusher</title>
+<meta name="description" content="Track, prioritize, and crush your goals — savings, milestones, and everything in between.">
+<meta name="theme-color" content="#1e293b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-512.png">
+<style>
+/* ============================================
+   CSS RESET & VARIABLES
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-sidebar: #1e293b;
+  --bg-sidebar-hover: #334155;
+  --bg-sidebar-active: #f97316;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-sidebar: #cbd5e1;
+  --text-sidebar-active: #ffffff;
+  --accent: #f97316;
+  --accent-hover: #ea580c;
+  --accent-light: #fff7ed;
+  --success: #22c55e;
+  --success-light: #f0fdf4;
+  --warning: #eab308;
+  --danger: #ef4444;
+  --border: #e2e8f0;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --sidebar-width: 240px;
+  --header-height: 56px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-sidebar: #0f172a;
+  --bg-sidebar-hover: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent-light: #431407;
+  --success-light: #052e16;
+  --border: #334155;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 50;
+  transition: transform 0.25s ease;
+}
+
+.sidebar-header {
+  padding: 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-brand svg {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.sidebar-brand h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.sidebar-brand small {
+  font-size: 11px;
+  color: var(--text-sidebar);
+  font-weight: 400;
+  display: block;
+}
+
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 8px;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  padding: 16px 12px 6px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-sidebar);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.nav-item:hover {
+  background: var(--bg-sidebar-hover);
+  color: #ffffff;
+}
+
+.nav-item.active {
+  background: var(--bg-sidebar-active);
+  color: var(--text-sidebar-active);
+}
+
+.nav-item svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.nav-item.active svg {
+  opacity: 1;
+}
+
+.sidebar-footer {
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-footer-row {
+  display: flex;
+  gap: 6px;
+}
+
+.sidebar-footer-row .btn {
+  flex: 1;
+}
+
+.dark-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-sidebar);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s ease;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.dark-toggle:hover {
+  background: var(--bg-sidebar-hover);
+  color: #ffffff;
+}
+
+.dark-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================
+   MOBILE HEADER & OVERLAY
+   ============================================ */
+.mobile-header {
+  display: none;
+  height: var(--header-height);
+  background: var(--bg-sidebar);
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  flex-shrink: 0;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.hamburger svg {
+  width: 24px;
+  height: 24px;
+}
+
+.mobile-header h2 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 45;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+  font-family: var(--font);
+  white-space: nowrap;
+}
+
+.btn svg { width: 16px; height: 16px; }
+
+.btn-primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover { background: var(--accent-hover); }
+
+.btn-secondary {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover { background: var(--border); }
+
+.btn-danger {
+  background: var(--danger);
+  color: #ffffff;
+}
+
+.btn-danger:hover { background: #dc2626; }
+
+.btn-sm {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ============================================
+   FORMS
+   ============================================ */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: border-color 0.15s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+}
+
+select.form-control {
+  cursor: pointer;
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+.progress-bar-container {
+  width: 100%;
+  height: 12px;
+  background: var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--accent), #fb923c);
+  transition: width 0.5s ease;
+}
+
+.progress-bar-fill.complete {
+  background: linear-gradient(90deg, var(--success), #4ade80);
+}
+
+/* ============================================
+   GOAL CARDS
+   ============================================ */
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.goal-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.goal-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.goal-card-priority {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+
+.priority-high { background: #fef2f2; color: #dc2626; }
+.priority-medium { background: #fffbeb; color: #d97706; }
+.priority-low { background: #f0fdf4; color: #16a34a; }
+.dark .priority-high { background: #450a0a; }
+.dark .priority-medium { background: #451a03; }
+.dark .priority-low { background: #052e16; }
+
+.goal-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.goal-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.goal-card-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.goal-card-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.goal-stat {
+  text-align: center;
+}
+
+.goal-stat-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.goal-stat-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ============================================
+   STATS ROW
+   ============================================ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat-card-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.stat-card-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-top: 2px;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state svg {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.empty-state h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-backdrop.active {
+  display: flex;
+}
+
+.modal {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 4px;
+  display: flex;
+}
+
+.modal-close:hover { color: var(--text-primary); }
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* ============================================
+   ICON PICKER
+   ============================================ */
+.icon-picker {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+}
+
+.icon-option {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background: var(--bg-primary);
+}
+
+.icon-option:hover { border-color: var(--accent); }
+.icon-option.selected { border-color: var(--accent); background: var(--accent-light); }
+
+/* ============================================
+   COLOR PICKER
+   ============================================ */
+.color-picker {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.color-option {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.color-option:hover { transform: scale(1.1); }
+.color-option.selected { border-color: var(--text-primary); }
+
+/* ============================================
+   PAGE HEADER
+   ============================================ */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.page-header-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   TOAST
+   ============================================ */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  background: var(--bg-sidebar);
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: slideIn 0.25s ease;
+  max-width: 320px;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 0 0 8px;
+  line-height: 1;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ============================================
+   SECTION PAGES (hidden by default)
+   ============================================ */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+
+  .goals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .icon-picker {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     SIDEBAR
+     ============================================ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-brand">
+      <svg viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="14" fill="#f97316"/>
+        <path d="M10 17l4 4 8-10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h1>Goal Crusher</h1>
+        <small>Track &amp; achieve your goals</small>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <div class="nav-item active" data-page="dashboard" onclick="navigateTo('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Dashboard
+    </div>
+    <div class="nav-item" data-page="goals" onclick="navigateTo('goals')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      My Goals
+    </div>
+
+    <div class="nav-section-label">Goal Tools</div>
+    <div class="nav-item" data-page="milestones" onclick="navigateTo('milestones')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+      Milestones
+    </div>
+    <div class="nav-item" data-page="budget" onclick="navigateTo('budget')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Budget &amp; Fund
+    </div>
+    <div class="nav-item" data-page="savings" onclick="navigateTo('savings')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      Savings Tracker
+    </div>
+    <div class="nav-item" data-page="checklist" onclick="navigateTo('checklist')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Checklists
+    </div>
+
+    <div class="nav-section-label">Organize</div>
+    <div class="nav-item" data-page="notes" onclick="navigateTo('notes')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Notes &amp; Journal
+    </div>
+    <div class="nav-item" data-page="documents" onclick="navigateTo('documents')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      Document Vault
+    </div>
+    <div class="nav-item" data-page="photos" onclick="navigateTo('photos')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Photo Log
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-footer-row">
+      <button class="btn btn-secondary btn-sm" onclick="exportData()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
+      <button class="btn btn-secondary btn-sm" onclick="importData()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Import
+      </button>
+    </div>
+    <div style="font-size:11px;color:#64748b;text-align:center;padding:4px 0 0;">
+      Export saves your data as a file. Import loads it back — use to transfer data between devices.
+    </div>
+    <button class="dark-toggle" onclick="toggleDarkMode()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <span id="darkModeLabel">Dark Mode</span>
+    </button>
+  </div>
+</aside>
+
+<!-- OVERLAY for mobile sidebar -->
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ============================================
+     MAIN AREA
+     ============================================ -->
+<div class="main-wrapper">
+  <!-- Mobile header -->
+  <div class="mobile-header">
+    <button class="hamburger" onclick="toggleSidebar()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <h2 id="mobileTitle">Dashboard</h2>
+  </div>
+
+  <div class="main-content">
+
+    <!-- ======== DASHBOARD PAGE ======== -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div>
+          <h2>Dashboard</h2>
+          <div class="page-header-subtitle">Your goals at a glance</div>
+        </div>
+        <button class="btn btn-primary" onclick="openGoalModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Goal
+        </button>
+      </div>
+
+      <div class="stats-row" id="dashboardStats"></div>
+      <div id="dashboardGoals"></div>
+    </div>
+
+    <!-- ======== MY GOALS PAGE ======== -->
+    <div class="page" id="page-goals">
+      <div class="page-header">
+        <div>
+          <h2>My Goals</h2>
+          <div class="page-header-subtitle">Manage and prioritize all your goals</div>
+        </div>
+        <button class="btn btn-primary" onclick="openGoalModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Goal
+        </button>
+      </div>
+      <div id="goalsListContent"></div>
+    </div>
+
+    <!-- ======== PLACEHOLDER PAGES ======== -->
+    <div class="page" id="page-milestones">
+      <div class="page-header"><div><h2>Milestones</h2><div class="page-header-subtitle">Break goals into achievable steps</div></div></div>
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        <h3>Coming Soon</h3>
+        <p>Add a goal first, then break it down into milestones here.</p>
+      </div>
+    </div>
+
+    <div class="page" id="page-budget">
+      <div class="page-header"><div><h2>Budget &amp; Fund</h2><div class="page-header-subtitle">Plan how much to save per paycheck</div></div></div>
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <h3>Coming Soon</h3>
+        <p>Budget planning tools will be available here.</p>
+      </div>
+    </div>
+
+    <div class="page" id="page-savings">
+      <div class="page-header"><div><h2>Savings Tracker</h2><div class="page-header-subtitle">Record deposits and watch your progress</div></div></div>
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        <h3>Coming Soon</h3>
+        <p>Track every deposit toward your goals here.</p>
+      </div>
+    </div>
+
+    <div class="page" id="page-checklist">
+      <div class="page-header"><div><h2>Checklists</h2><div class="page-header-subtitle">Custom to-do lists for each goal</div></div></div>
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <h3>Coming Soon</h3>
+        <p>Build custom checklists for each goal.</p>
+      </div>
+    </div>
+
+    <div class="page" id="page-notes">
+      <div class="page-header"><div><h2>Notes &amp; Journal</h2><div class="page-header-subtitle">Track thoughts, research, and motivation</div></div></div>
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <h3>Coming Soon</h3>
+        <p>Jot down notes and journal entries for any goal.</p>
+      </div>
+    </div>
+
+    <div class="page" id="page-documents">
+      <div class="page-header"><div><h2>Document Vault</h2><div class="page-header-subtitle">Store files related to your goals</div></div></div>
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <h3>Coming Soon</h3>
+        <p>Upload and store documents, receipts, and contracts.</p>
+      </div>
+    </div>
+
+    <div class="page" id="page-photos">
+      <div class="page-header"><div><h2>Photo Log</h2><div class="page-header-subtitle">Capture progress with photos</div></div></div>
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <h3>Coming Soon</h3>
+        <p>Add before/after photos and progress pictures.</p>
+      </div>
+    </div>
+
+  </div><!-- /main-content -->
+</div><!-- /main-wrapper -->
+
+<!-- ============================================
+     GOAL MODAL
+     ============================================ -->
+<div class="modal-backdrop" id="goalModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="goalModalTitle">Add New Goal</h3>
+      <button class="modal-close" onclick="closeGoalModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="goalEditId">
+
+      <div class="form-group">
+        <label>Goal Name *</label>
+        <input type="text" class="form-control" id="goalName" placeholder="e.g., Buy a Home, Start a Business">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Target Amount ($)</label>
+          <input type="number" class="form-control" id="goalAmount" placeholder="0.00" min="0" step="0.01">
+        </div>
+        <div class="form-group">
+          <label>Target Date</label>
+          <input type="date" class="form-control" id="goalDate">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Category</label>
+          <select class="form-control" id="goalCategory">
+            <option value="financial">Financial</option>
+            <option value="health">Health & Fitness</option>
+            <option value="education">Education</option>
+            <option value="career">Career</option>
+            <option value="home">Home & Living</option>
+            <option value="travel">Travel</option>
+            <option value="personal">Personal Growth</option>
+            <option value="family">Family</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select class="form-control" id="goalPriority">
+            <option value="high">High</option>
+            <option value="medium" selected>Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Icon</label>
+        <div class="icon-picker" id="iconPicker"></div>
+      </div>
+
+      <div class="form-group">
+        <label>Color</label>
+        <div class="color-picker" id="colorPicker"></div>
+      </div>
+
+      <div class="form-group">
+        <label>Notes (optional)</label>
+        <textarea class="form-control" id="goalNotes" placeholder="Any details about this goal..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeGoalModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveGoal()">Save Goal</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM MODAL -->
+<div class="modal-backdrop" id="deleteModal">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-header">
+      <h3>Delete Goal</h3>
+      <button class="modal-close" onclick="closeDeleteModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete <strong id="deleteGoalName"></strong>? This action cannot be undone.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- HIDDEN FILE INPUT -->
+<input type="file" id="importInput" accept=".json" style="display:none" onchange="handleImport(event)">
+
+<script>
+// ============================================
+// DATABASE
+// ============================================
+const DB_NAME = 'GoalCrusherDB';
+const DB_VERSION = 1;
+let db;
+
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, DB_VERSION);
+    req.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains('goals')) {
+        const store = db.createObjectStore('goals', { keyPath: 'id' });
+        store.createIndex('priority', 'priority');
+        store.createIndex('category', 'category');
+        store.createIndex('status', 'status');
+      }
+      if (!db.objectStoreNames.contains('deposits')) {
+        const store = db.createObjectStore('deposits', { keyPath: 'id' });
+        store.createIndex('goalId', 'goalId');
+      }
+      if (!db.objectStoreNames.contains('milestones')) {
+        const store = db.createObjectStore('milestones', { keyPath: 'id' });
+        store.createIndex('goalId', 'goalId');
+      }
+      if (!db.objectStoreNames.contains('checklists')) {
+        const store = db.createObjectStore('checklists', { keyPath: 'id' });
+        store.createIndex('goalId', 'goalId');
+      }
+      if (!db.objectStoreNames.contains('notes')) {
+        const store = db.createObjectStore('notes', { keyPath: 'id' });
+        store.createIndex('goalId', 'goalId');
+      }
+      if (!db.objectStoreNames.contains('documents')) {
+        const store = db.createObjectStore('documents', { keyPath: 'id' });
+        store.createIndex('goalId', 'goalId');
+      }
+      if (!db.objectStoreNames.contains('photos')) {
+        const store = db.createObjectStore('photos', { keyPath: 'id' });
+        store.createIndex('goalId', 'goalId');
+      }
+    };
+    req.onsuccess = (e) => { db = e.target.result; resolve(db); };
+    req.onerror = (e) => reject(e.target.error);
+  });
+}
+
+function dbGet(store) {
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(store, 'readonly');
+    const req = tx.objectStore(store).getAll();
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+function dbPut(store, data) {
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(store, 'readwrite');
+    tx.objectStore(store).put(data);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+}
+
+function dbDelete(store, id) {
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(store, 'readwrite');
+    tx.objectStore(store).delete(id);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+}
+
+function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+
+// ============================================
+// ICONS & COLORS
+// ============================================
+const GOAL_ICONS = ['🎯','💰','🏠','✈️','🎓','💪','🚗','💼','❤️','🌟','📚','🏋️','🎵','🍽️','👶','💍','🏥','🛠️','🌱','🏆','🎨','📱','🐾','⛰️'];
+const GOAL_COLORS = ['#f97316','#3b82f6','#22c55e','#a855f7','#ec4899','#14b8a6','#eab308','#ef4444','#6366f1','#06b6d4'];
+
+let selectedIcon = '🎯';
+let selectedColor = '#f97316';
+
+function renderIconPicker() {
+  const el = document.getElementById('iconPicker');
+  el.innerHTML = GOAL_ICONS.map(icon =>
+    `<div class="icon-option${icon === selectedIcon ? ' selected' : ''}" onclick="selectIcon('${icon}', this)">${icon}</div>`
+  ).join('');
+}
+
+function renderColorPicker() {
+  const el = document.getElementById('colorPicker');
+  el.innerHTML = GOAL_COLORS.map(color =>
+    `<div class="color-option${color === selectedColor ? ' selected' : ''}" style="background:${color}" onclick="selectColor('${color}', this)"></div>`
+  ).join('');
+}
+
+function selectIcon(icon, el) {
+  selectedIcon = icon;
+  document.querySelectorAll('.icon-option').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function selectColor(color, el) {
+  selectedColor = color;
+  document.querySelectorAll('.color-option').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// ============================================
+// NAVIGATION
+// ============================================
+const PAGE_TITLES = {
+  dashboard: 'Dashboard',
+  goals: 'My Goals',
+  milestones: 'Milestones',
+  budget: 'Budget & Fund',
+  savings: 'Savings Tracker',
+  checklist: 'Checklists',
+  notes: 'Notes & Journal',
+  documents: 'Document Vault',
+  photos: 'Photo Log'
+};
+
+function navigateTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  const pageEl = document.getElementById('page-' + page);
+  const navEl = document.querySelector(`.nav-item[data-page="${page}"]`);
+
+  if (pageEl) pageEl.classList.add('active');
+  if (navEl) navEl.classList.add('active');
+
+  document.getElementById('mobileTitle').textContent = PAGE_TITLES[page] || page;
+
+  // Close sidebar on mobile
+  if (window.innerWidth <= 768) {
+    closeSidebar();
+  }
+
+  // Refresh content
+  if (page === 'dashboard') renderDashboard();
+  if (page === 'goals') renderGoalsList();
+}
+
+// ============================================
+// SIDEBAR (mobile)
+// ============================================
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('active');
+}
+
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('active');
+}
+
+// ============================================
+// DARK MODE
+// ============================================
+function toggleDarkMode() {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  localStorage.setItem('gc-dark-mode', isDark);
+  document.getElementById('darkModeLabel').textContent = isDark ? 'Light Mode' : 'Dark Mode';
+}
+
+function loadDarkMode() {
+  if (localStorage.getItem('gc-dark-mode') === 'true') {
+    document.body.classList.add('dark');
+    document.getElementById('darkModeLabel').textContent = 'Light Mode';
+  }
+}
+
+// ============================================
+// GOAL MODAL
+// ============================================
+function openGoalModal(goalId) {
+  const modal = document.getElementById('goalModal');
+  modal.classList.add('active');
+
+  if (goalId) {
+    // Edit mode
+    dbGet('goals').then(goals => {
+      const goal = goals.find(g => g.id === goalId);
+      if (!goal) return;
+      document.getElementById('goalModalTitle').textContent = 'Edit Goal';
+      document.getElementById('goalEditId').value = goal.id;
+      document.getElementById('goalName').value = goal.name;
+      document.getElementById('goalAmount').value = goal.targetAmount || '';
+      document.getElementById('goalDate').value = goal.targetDate || '';
+      document.getElementById('goalCategory').value = goal.category || 'financial';
+      document.getElementById('goalPriority').value = goal.priority || 'medium';
+      document.getElementById('goalNotes').value = goal.notes || '';
+      selectedIcon = goal.icon || '🎯';
+      selectedColor = goal.color || '#f97316';
+      renderIconPicker();
+      renderColorPicker();
+    });
+  } else {
+    // Add mode
+    document.getElementById('goalModalTitle').textContent = 'Add New Goal';
+    document.getElementById('goalEditId').value = '';
+    document.getElementById('goalName').value = '';
+    document.getElementById('goalAmount').value = '';
+    document.getElementById('goalDate').value = '';
+    document.getElementById('goalCategory').value = 'financial';
+    document.getElementById('goalPriority').value = 'medium';
+    document.getElementById('goalNotes').value = '';
+    selectedIcon = '🎯';
+    selectedColor = '#f97316';
+    renderIconPicker();
+    renderColorPicker();
+  }
+}
+
+function closeGoalModal() {
+  document.getElementById('goalModal').classList.remove('active');
+}
+
+async function saveGoal() {
+  const name = document.getElementById('goalName').value.trim();
+  if (!name) {
+    showToast('Please enter a goal name.');
+    return;
+  }
+
+  const editId = document.getElementById('goalEditId').value;
+  const now = new Date().toISOString();
+
+  let goal;
+  if (editId) {
+    const goals = await dbGet('goals');
+    goal = goals.find(g => g.id === editId);
+    goal.name = name;
+    goal.updatedAt = now;
+  } else {
+    goal = {
+      id: generateId(),
+      name: name,
+      createdAt: now,
+      updatedAt: now,
+      status: 'active',
+      savedAmount: 0,
+      sortOrder: Date.now()
+    };
+  }
+
+  goal.targetAmount = parseFloat(document.getElementById('goalAmount').value) || 0;
+  goal.targetDate = document.getElementById('goalDate').value || '';
+  goal.category = document.getElementById('goalCategory').value;
+  goal.priority = document.getElementById('goalPriority').value;
+  goal.icon = selectedIcon;
+  goal.color = selectedColor;
+  goal.notes = document.getElementById('goalNotes').value.trim();
+
+  await dbPut('goals', goal);
+  closeGoalModal();
+  showToast(editId ? 'Goal updated!' : 'Goal created!');
+  renderDashboard();
+  renderGoalsList();
+}
+
+// ============================================
+// DELETE GOAL
+// ============================================
+let pendingDeleteId = null;
+
+function openDeleteModal(goalId, goalName) {
+  pendingDeleteId = goalId;
+  document.getElementById('deleteGoalName').textContent = goalName;
+  document.getElementById('deleteModal').classList.add('active');
+}
+
+function closeDeleteModal() {
+  document.getElementById('deleteModal').classList.remove('active');
+  pendingDeleteId = null;
+}
+
+async function confirmDelete() {
+  if (!pendingDeleteId) return;
+  await dbDelete('goals', pendingDeleteId);
+  closeDeleteModal();
+  showToast('Goal deleted.');
+  renderDashboard();
+  renderGoalsList();
+}
+
+// ============================================
+// DASHBOARD RENDERING
+// ============================================
+async function renderDashboard() {
+  const goals = await dbGet('goals');
+  const activeGoals = goals.filter(g => g.status === 'active');
+  const completedGoals = goals.filter(g => g.status === 'completed');
+  const totalSaved = goals.reduce((sum, g) => sum + (g.savedAmount || 0), 0);
+  const totalTarget = activeGoals.reduce((sum, g) => sum + (g.targetAmount || 0), 0);
+
+  // Stats
+  document.getElementById('dashboardStats').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-card-value">${activeGoals.length}</div>
+      <div class="stat-card-label">Active Goals</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-value">${completedGoals.length}</div>
+      <div class="stat-card-label">Completed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-value">$${totalSaved.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+      <div class="stat-card-label">Total Saved</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-value">$${totalTarget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+      <div class="stat-card-label">Total Target</div>
+    </div>
+  `;
+
+  // Goal cards
+  const container = document.getElementById('dashboardGoals');
+  if (goals.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <h3>No Goals Yet</h3>
+        <p>Set your first goal and start crushing it! Whether it's saving for a house, getting fit, or learning a new skill — every big achievement starts with a clear target.</p>
+        <button class="btn btn-primary" onclick="openGoalModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Create Your First Goal
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  // Sort: active first (by priority: high, medium, low), then completed
+  const priorityOrder = { high: 0, medium: 1, low: 2 };
+  const sorted = [...goals].sort((a, b) => {
+    if (a.status !== b.status) return a.status === 'active' ? -1 : 1;
+    return (priorityOrder[a.priority] || 1) - (priorityOrder[b.priority] || 1);
+  });
+
+  container.innerHTML = `
+    <div class="goals-grid">
+      ${sorted.map(goal => renderGoalCard(goal)).join('')}
+    </div>
+  `;
+}
+
+function renderGoalCard(goal) {
+  const progress = goal.targetAmount > 0
+    ? Math.min(100, Math.round((goal.savedAmount / goal.targetAmount) * 100))
+    : 0;
+  const isComplete = goal.status === 'completed' || progress >= 100;
+  const daysLeft = goal.targetDate
+    ? Math.ceil((new Date(goal.targetDate) - new Date()) / (1000 * 60 * 60 * 24))
+    : null;
+
+  return `
+    <div class="goal-card" onclick="openGoalModal('${goal.id}')">
+      <div class="goal-card-priority priority-${goal.priority}">${goal.priority}</div>
+      <div class="goal-card-icon" style="background:${goal.color}20">
+        <span>${goal.icon || '🎯'}</span>
+      </div>
+      <h3>${escapeHtml(goal.name)}</h3>
+      <div class="goal-card-meta">
+        ${goal.category ? capitalize(goal.category) : ''}
+        ${goal.targetDate ? ' · ' + formatDate(goal.targetDate) : ''}
+        ${daysLeft !== null ? (daysLeft > 0 ? ` · ${daysLeft} days left` : daysLeft === 0 ? ' · Due today' : ` · ${Math.abs(daysLeft)} days overdue`) : ''}
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill${isComplete ? ' complete' : ''}" style="width:${progress}%"></div>
+      </div>
+      <div class="goal-card-stats">
+        <div class="goal-stat">
+          <div class="goal-stat-value">${progress}%</div>
+          <div class="goal-stat-label">Progress</div>
+        </div>
+        <div class="goal-stat">
+          <div class="goal-stat-value">$${(goal.savedAmount || 0).toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+          <div class="goal-stat-label">Saved</div>
+        </div>
+        <div class="goal-stat">
+          <div class="goal-stat-value">$${(goal.targetAmount || 0).toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+          <div class="goal-stat-label">Target</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ============================================
+// GOALS LIST PAGE
+// ============================================
+async function renderGoalsList() {
+  const goals = await dbGet('goals');
+  const container = document.getElementById('goalsListContent');
+
+  if (goals.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <h3>No Goals Yet</h3>
+        <p>Add your first goal to get started.</p>
+        <button class="btn btn-primary" onclick="openGoalModal()">Add Goal</button>
+      </div>
+    `;
+    return;
+  }
+
+  const priorityOrder = { high: 0, medium: 1, low: 2 };
+  const sorted = [...goals].sort((a, b) => {
+    if (a.status !== b.status) return a.status === 'active' ? -1 : 1;
+    return (priorityOrder[a.priority] || 1) - (priorityOrder[b.priority] || 1);
+  });
+
+  container.innerHTML = `
+    <div class="goals-grid">
+      ${sorted.map(goal => {
+        const progress = goal.targetAmount > 0 ? Math.min(100, Math.round((goal.savedAmount / goal.targetAmount) * 100)) : 0;
+        return `
+          <div class="card">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div class="goal-card-icon" style="background:${goal.color}20;width:36px;height:36px;border-radius:8px;font-size:18px">${goal.icon || '🎯'}</div>
+                <div>
+                  <h3 style="font-size:15px;font-weight:700">${escapeHtml(goal.name)}</h3>
+                  <div style="font-size:12px;color:var(--text-secondary)">${capitalize(goal.category || 'other')} · ${goal.priority} priority</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:4px">
+                <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openGoalModal('${goal.id}')">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();openDeleteModal('${goal.id}','${escapeHtml(goal.name)}')">Delete</button>
+              </div>
+            </div>
+            <div class="progress-bar-container" style="margin-bottom:8px">
+              <div class="progress-bar-fill${progress >= 100 ? ' complete' : ''}" style="width:${progress}%"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-secondary)">
+              <span>$${(goal.savedAmount || 0).toLocaleString()} of $${(goal.targetAmount || 0).toLocaleString()}</span>
+              <span>${progress}%</span>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+// ============================================
+// EXPORT / IMPORT
+// ============================================
+async function exportData() {
+  const data = {
+    version: 1,
+    app: 'GoalCrusher',
+    exportedAt: new Date().toISOString(),
+    goals: await dbGet('goals'),
+    deposits: await dbGet('deposits'),
+    milestones: await dbGet('milestones'),
+    checklists: await dbGet('checklists'),
+    notes: await dbGet('notes'),
+    documents: await dbGet('documents'),
+    photos: await dbGet('photos')
+  };
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `goal-crusher-backup-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Data exported successfully!');
+}
+
+function importData() {
+  document.getElementById('importInput').click();
+}
+
+async function handleImport(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  try {
+    const text = await file.text();
+    const data = JSON.parse(text);
+    if (data.app !== 'GoalCrusher') {
+      showToast('Invalid file — not a Goal Crusher backup.');
+      return;
+    }
+
+    const stores = ['goals', 'deposits', 'milestones', 'checklists', 'notes', 'documents', 'photos'];
+    for (const store of stores) {
+      if (data[store]) {
+        for (const item of data[store]) {
+          await dbPut(store, item);
+        }
+      }
+    }
+
+    showToast('Data imported successfully!');
+    renderDashboard();
+    renderGoalsList();
+  } catch (err) {
+    showToast('Import failed. Check the file format.');
+  }
+
+  e.target.value = '';
+}
+
+// ============================================
+// TOAST
+// ============================================
+function showToast(msg) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    <span>${escapeHtml(msg)}</span>
+    <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
+  `;
+  container.appendChild(toast);
+  setTimeout(() => { if (toast.parentElement) toast.remove(); }, 3000);
+}
+
+// ============================================
+// UTILITIES
+// ============================================
+function escapeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).replace(/([A-Z])/g, ' $1');
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+// ============================================
+// INIT
+// ============================================
+async function init() {
+  await openDB();
+  loadDarkMode();
+  renderIconPicker();
+  renderColorPicker();
+  renderDashboard();
+}
+
+init();
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+</script>
+
+</body>
+</html>
