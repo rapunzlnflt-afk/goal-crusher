@@ -1493,6 +1493,254 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================
+   CHECKLIST PAGE
+   ============================================ */
+.checklist-goal-selector {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.checklist-goal-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.checklist-goal-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checklist-goal-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.checklist-goal-info p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.checklist-stats-card {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border-radius: var(--radius);
+  padding: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.checklist-stats-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.checklist-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.checklist-stat-item {
+  background: rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+
+.checklist-stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.checklist-stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.checklist-add-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.checklist-add-form input {
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.checklist-add-form input:focus {
+  border-color: var(--accent);
+}
+
+.checklist-add-form button {
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.checklist-add-form button:hover {
+  background: var(--accent-hover);
+}
+
+.checklist-items-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.checklist-section-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  padding: 14px 20px 8px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.checklist-item:last-child {
+  border-bottom: none;
+}
+
+.checklist-item:hover {
+  background: var(--bg-primary);
+}
+
+.checklist-item.completed {
+  opacity: 0.6;
+}
+
+.checklist-checkbox {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--bg-secondary);
+}
+
+.checklist-checkbox:hover {
+  border-color: var(--accent);
+}
+
+.checklist-checkbox.checked {
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.checklist-checkbox.checked svg {
+  display: block;
+}
+
+.checklist-checkbox svg {
+  display: none;
+  width: 14px;
+  height: 14px;
+}
+
+.checklist-item-text {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.checklist-item.completed .checklist-item-text {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.checklist-item-delete {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.checklist-item:hover .checklist-item-delete {
+  opacity: 1;
+}
+
+.checklist-item-delete:hover {
+  color: var(--danger);
+  background: rgba(239,68,68,0.1);
+}
+
+.checklist-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.checklist-empty svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+.checklist-empty p {
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .checklist-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .checklist-item-delete {
+    opacity: 1;
+  }
+}
 </style>
 </head>
 <body>
@@ -1650,11 +1898,7 @@ textarea.form-control {
 
     <div class="page" id="page-checklist">
       <div class="page-header"><div><h2>Checklists</h2><div class="page-header-subtitle">Custom to-do lists for each goal</div></div></div>
-      <div class="empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        <h3>Coming Soon</h3>
-        <p>Build custom checklists for each goal.</p>
-      </div>
+      <div id="checklistContent"></div>
     </div>
 
     <div class="page" id="page-notes">
@@ -2023,6 +2267,7 @@ function navigateTo(page) {
   if (page === 'goals') renderGoalsList();
   if (page === 'budget') renderBudgetPage();
   if (page === 'savings') renderSavingsPage();
+  if (page === 'checklist') renderChecklistPage();
 }
 
 // ============================================
@@ -3078,6 +3323,185 @@ async function deleteSavingsDeposit(depositId) {
 
   renderSavingsPage();
   showToast('Deposit removed.');
+}
+
+// ============================================
+// CHECKLISTS PAGE
+// ============================================
+let checklistSelectedGoalId = null;
+
+async function renderChecklistPage() {
+  const container = document.getElementById('checklistContent');
+  const goals = await dbGet('goals');
+  const activeGoals = goals.filter(g => g.status === 'active');
+
+  if (activeGoals.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <h3>Create a Goal First</h3>
+        <p>You need at least one active goal to start building checklists. Add a goal to get started.</p>
+        <button class="btn btn-primary" onclick="navigateTo('goals')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Go to Goals
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  if (!checklistSelectedGoalId || !activeGoals.find(g => g.id === checklistSelectedGoalId)) {
+    checklistSelectedGoalId = activeGoals[0].id;
+  }
+
+  const goal = activeGoals.find(g => g.id === checklistSelectedGoalId);
+  const allItems = await dbGet('checklists');
+  const items = allItems.filter(i => i.goalId === checklistSelectedGoalId);
+
+  const totalItems = items.length;
+  const completedItems = items.filter(i => i.completed).length;
+  const remainingItems = totalItems - completedItems;
+  const completionRate = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+
+  const incomplete = items.filter(i => !i.completed).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  const completed = items.filter(i => i.completed).sort((a, b) => (a.completedAt || a.createdAt || 0) - (b.completedAt || b.createdAt || 0));
+
+  const goalOptions = activeGoals.map(g =>
+    `<option value="${g.id}" ${g.id === checklistSelectedGoalId ? 'selected' : ''}>${escapeHtml(g.name)}</option>`
+  ).join('');
+
+  const goalIconHtml = goal.icon ? makeIconSvg(goal.icon, 24) : '';
+  const goalColor = goal.color || '#f97316';
+
+  const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  let itemsHtml = '';
+  if (totalItems === 0) {
+    itemsHtml = `
+      <div class="checklist-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <p>No items yet. Add your first checklist item above!</p>
+      </div>
+    `;
+  } else {
+    if (incomplete.length > 0) {
+      itemsHtml += `<div class="checklist-section-label">To Do (${incomplete.length})</div>`;
+      itemsHtml += incomplete.map(item => `
+        <div class="checklist-item">
+          <div class="checklist-checkbox" onclick="toggleChecklistItem('${item.id}')">${checkSvg}</div>
+          <span class="checklist-item-text">${escapeHtml(item.text)}</span>
+          <button class="checklist-item-delete" onclick="deleteChecklistItem('${item.id}')" title="Delete item">✕</button>
+        </div>
+      `).join('');
+    }
+    if (completed.length > 0) {
+      itemsHtml += `<div class="checklist-section-label">Completed (${completed.length})</div>`;
+      itemsHtml += completed.map(item => `
+        <div class="checklist-item completed">
+          <div class="checklist-checkbox checked" onclick="toggleChecklistItem('${item.id}')">${checkSvg}</div>
+          <span class="checklist-item-text">${escapeHtml(item.text)}</span>
+          <button class="checklist-item-delete" onclick="deleteChecklistItem('${item.id}')" title="Delete item">✕</button>
+        </div>
+      `).join('');
+    }
+  }
+
+  container.innerHTML = `
+    <!-- Goal Selector -->
+    <div class="checklist-goal-selector card">
+      <div class="form-group" style="margin-bottom:0">
+        <label for="checklistGoalSelect" style="font-size:15px;">Select a Goal</label>
+        <select id="checklistGoalSelect" class="form-control" onchange="checklistSelectGoal(this.value)" style="font-size:16px;padding:12px 14px;">
+          ${goalOptions}
+        </select>
+      </div>
+      <div class="checklist-goal-summary">
+        <div class="checklist-goal-icon" style="background:${goalColor}20; color:${goalColor};">
+          ${goalIconHtml}
+        </div>
+        <div class="checklist-goal-info">
+          <h3>${escapeHtml(goal.name)}</h3>
+          <p>${totalItems} item${totalItems !== 1 ? 's' : ''} &bull; ${completionRate}% complete</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Header -->
+    <div class="checklist-stats-card">
+      <h3>Checklist Overview</h3>
+      <div class="checklist-stats-grid">
+        <div class="checklist-stat-item">
+          <div class="checklist-stat-value">${totalItems}</div>
+          <div class="checklist-stat-label">Total Items</div>
+        </div>
+        <div class="checklist-stat-item">
+          <div class="checklist-stat-value">${completedItems}</div>
+          <div class="checklist-stat-label">Completed</div>
+        </div>
+        <div class="checklist-stat-item">
+          <div class="checklist-stat-value">${remainingItems}</div>
+          <div class="checklist-stat-label">Remaining</div>
+        </div>
+        <div class="checklist-stat-item">
+          <div class="checklist-stat-value">${completionRate}%</div>
+          <div class="checklist-stat-label">Completion</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Item Form -->
+    <div class="checklist-add-form">
+      <input type="text" id="checklistNewItem" placeholder="Add a new item..." onkeydown="if(event.key==='Enter')addChecklistItem()">
+      <button onclick="addChecklistItem()">Add</button>
+    </div>
+
+    <!-- Checklist Items -->
+    <div class="checklist-items-card">
+      ${itemsHtml}
+    </div>
+  `;
+}
+
+function checklistSelectGoal(goalId) {
+  checklistSelectedGoalId = goalId;
+  renderChecklistPage();
+}
+
+async function addChecklistItem() {
+  const input = document.getElementById('checklistNewItem');
+  const text = (input.value || '').trim();
+  if (!text) return;
+
+  const item = {
+    id: generateId(),
+    goalId: checklistSelectedGoalId,
+    text: text,
+    completed: false,
+    completedAt: null,
+    createdAt: Date.now()
+  };
+
+  await dbPut('checklists', item);
+  input.value = '';
+  renderChecklistPage();
+  showToast('Item added!');
+}
+
+async function toggleChecklistItem(itemId) {
+  const allItems = await dbGet('checklists');
+  const item = allItems.find(i => i.id === itemId);
+  if (!item) return;
+
+  item.completed = !item.completed;
+  item.completedAt = item.completed ? Date.now() : null;
+  await dbPut('checklists', item);
+  renderChecklistPage();
+}
+
+async function deleteChecklistItem(itemId) {
+  await dbDelete('checklists', itemId);
+  renderChecklistPage();
+  showToast('Item removed.');
 }
 
 // ============================================
