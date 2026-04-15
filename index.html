@@ -1202,6 +1202,297 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================
+   SAVINGS TRACKER PAGE
+   ============================================ */
+.savings-goal-selector {
+  margin-bottom: 20px;
+}
+
+.savings-goal-selector select {
+  font-size: 16px;
+  padding: 12px 14px;
+}
+
+.savings-goal-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 14px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.savings-goal-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 6px;
+}
+.savings-goal-icon svg { width: 100%; height: 100%; }
+
+.savings-goal-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.savings-goal-info h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.savings-goal-info p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.savings-stats-card {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border-radius: var(--radius);
+  padding: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.savings-stats-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.savings-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.savings-stat-item {
+  background: rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+
+.savings-stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.savings-stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.savings-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.savings-section-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.savings-section-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.savings-deposit-form .form-group {
+  margin-bottom: 14px;
+}
+
+.savings-deposit-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.savings-deposit-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: border-color 0.15s ease;
+}
+
+.savings-deposit-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+}
+
+.savings-deposit-form .btn-add-deposit {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 4px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: background 0.15s ease;
+}
+
+.savings-deposit-form .btn-add-deposit:hover {
+  background: var(--accent-hover);
+}
+
+.savings-history-list {
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.savings-history-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+
+.savings-history-item:last-child {
+  border-bottom: none;
+}
+
+.savings-history-date {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+.savings-history-amount {
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.savings-history-notes {
+  flex: 1;
+  font-size: 13px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.savings-history-remove {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+}
+
+.savings-history-remove:hover {
+  background: #fef2f2;
+}
+
+.dark .savings-history-remove:hover {
+  background: #450a0a;
+}
+
+.savings-history-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 0;
+  margin-top: 8px;
+  border-top: 2px solid var(--border);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.savings-history-total .total-amount {
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.savings-tips-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.savings-tip-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.savings-tip-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.savings-tip-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.savings-tip-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .savings-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .savings-two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .savings-tips-row {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 <body>
@@ -1354,11 +1645,7 @@ textarea.form-control {
 
     <div class="page" id="page-savings">
       <div class="page-header"><div><h2>Savings Tracker</h2><div class="page-header-subtitle">Record deposits and watch your progress</div></div></div>
-      <div class="empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        <h3>Coming Soon</h3>
-        <p>Track every deposit toward your goals here.</p>
-      </div>
+      <div id="savingsContent"></div>
     </div>
 
     <div class="page" id="page-checklist">
@@ -1735,6 +2022,7 @@ function navigateTo(page) {
   if (page === 'dashboard') renderDashboard();
   if (page === 'goals') renderGoalsList();
   if (page === 'budget') renderBudgetPage();
+  if (page === 'savings') renderSavingsPage();
 }
 
 // ============================================
@@ -2519,6 +2807,277 @@ async function removeBudgetExpense(idx) {
   await dbPut('goals', goal);
   renderBudgetPage();
   showToast('Expense removed.');
+}
+
+// ============================================
+// SAVINGS TRACKER PAGE
+// ============================================
+let savingsSelectedGoalId = null;
+
+async function renderSavingsPage() {
+  const container = document.getElementById('savingsContent');
+  const goals = await dbGet('goals');
+  const activeGoals = goals.filter(g => g.status === 'active');
+
+  if (activeGoals.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <h3>Create a Goal First</h3>
+        <p>You need at least one active goal to start tracking savings. Add a goal to get started.</p>
+        <button class="btn btn-primary" onclick="navigateTo('goals')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Go to Goals
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  // Auto-select first goal if none selected or selected goal no longer exists
+  if (!savingsSelectedGoalId || !activeGoals.find(g => g.id === savingsSelectedGoalId)) {
+    savingsSelectedGoalId = activeGoals[0].id;
+  }
+
+  const goal = activeGoals.find(g => g.id === savingsSelectedGoalId);
+  const allDeposits = await dbGet('deposits');
+  const deposits = allDeposits
+    .filter(d => d.goalId === savingsSelectedGoalId)
+    .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+  const totalSaved = deposits.reduce((s, d) => s + (d.amount || 0), 0);
+  const depositCount = deposits.length;
+  const avgDeposit = depositCount > 0 ? totalSaved / depositCount : 0;
+
+  // Streak: consecutive weeks with at least one deposit, counting back from current week
+  const streak = calcWeekStreak(deposits);
+
+  const pct = goal.targetAmount > 0 ? Math.min(100, ((goal.savedAmount || 0) / goal.targetAmount) * 100) : 0;
+  const remaining = Math.max(0, (goal.targetAmount || 0) - (goal.savedAmount || 0));
+  const fmtMoney = (v) => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  // Goal selector options
+  const goalOptions = activeGoals.map(g =>
+    `<option value="${g.id}" ${g.id === savingsSelectedGoalId ? 'selected' : ''}>${escapeHtml(g.name)}</option>`
+  ).join('');
+
+  // Goal icon
+  const goalIconHtml = goal.icon ? makeIconSvg(goal.icon, 24) : '';
+  const goalColor = goal.color || '#f97316';
+
+  // Today's date for default
+  const today = new Date();
+  const todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+
+  // Deposit history HTML
+  const historyHtml = deposits.length > 0 ? deposits.map(d => `
+    <div class="savings-history-item">
+      <span class="savings-history-date">${formatDate(d.date)}</span>
+      <span class="savings-history-amount">${fmtMoney(d.amount)}</span>
+      <span class="savings-history-notes">${d.notes ? escapeHtml(d.notes) : ''}</span>
+      <button class="savings-history-remove" onclick="deleteSavingsDeposit('${d.id}')" title="Delete deposit">✕</button>
+    </div>
+  `).join('') : '<p style="color:var(--text-secondary);font-size:15px;padding:16px 0;text-align:center;">No deposits yet. Add your first deposit!</p>';
+
+  container.innerHTML = `
+    <!-- Goal Selector -->
+    <div class="savings-goal-selector card">
+      <div class="form-group" style="margin-bottom:0">
+        <label for="savingsGoalSelect" style="font-size:15px;">Select a Goal</label>
+        <select id="savingsGoalSelect" class="form-control" onchange="savingsSelectGoal(this.value)" style="font-size:16px;padding:12px 14px;">
+          ${goalOptions}
+        </select>
+      </div>
+      <div class="savings-goal-summary">
+        <div class="savings-goal-icon" style="background:${goalColor}20; color:${goalColor};">
+          ${goalIconHtml}
+        </div>
+        <div class="savings-goal-info">
+          <h3>${escapeHtml(goal.name)}</h3>
+          <p>Target: ${fmtMoney(goal.targetAmount || 0)} &bull; Saved: ${fmtMoney(goal.savedAmount || 0)} &bull; ${goal.targetDate ? formatDate(goal.targetDate) : 'No date set'}</p>
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill${pct >= 100 ? ' complete' : ''}" style="width:${pct.toFixed(1)}%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-top:4px;">
+          <span>${pct.toFixed(1)}% complete</span>
+          <span>${fmtMoney(remaining)} remaining</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Header -->
+    <div class="savings-stats-card">
+      <h3>Savings Overview</h3>
+      <div class="savings-stats-grid">
+        <div class="savings-stat-item">
+          <div class="savings-stat-value">${fmtMoney(totalSaved)}</div>
+          <div class="savings-stat-label">Total Saved</div>
+        </div>
+        <div class="savings-stat-item">
+          <div class="savings-stat-value">${depositCount}</div>
+          <div class="savings-stat-label">Deposits</div>
+        </div>
+        <div class="savings-stat-item">
+          <div class="savings-stat-value">${fmtMoney(avgDeposit)}</div>
+          <div class="savings-stat-label">Avg. Deposit</div>
+        </div>
+        <div class="savings-stat-item">
+          <div class="savings-stat-value">${streak} wk${streak !== 1 ? 's' : ''}</div>
+          <div class="savings-stat-label">Streak</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deposit Form + History -->
+    <div class="savings-two-col">
+      <!-- Record a Deposit -->
+      <div class="savings-section-card">
+        <h4>Record a Deposit</h4>
+        <div class="savings-deposit-form">
+          <div class="form-group">
+            <label for="savingsAmount">Amount ($)</label>
+            <input type="number" id="savingsAmount" placeholder="0.00" min="0.01" step="0.01" style="font-size:20px;font-weight:700;padding:14px;">
+          </div>
+          <div class="form-group">
+            <label for="savingsDate">Date</label>
+            <input type="date" id="savingsDate" value="${todayStr}">
+          </div>
+          <div class="form-group">
+            <label for="savingsNotes">Notes (optional)</label>
+            <input type="text" id="savingsNotes" placeholder="e.g. birthday money, paycheck savings" maxlength="100">
+          </div>
+          <button class="btn-add-deposit" onclick="addSavingsDeposit()">+ Add Deposit</button>
+        </div>
+      </div>
+
+      <!-- Savings History -->
+      <div class="savings-section-card">
+        <h4>Savings History</h4>
+        <div class="savings-history-list">
+          ${historyHtml}
+        </div>
+        ${deposits.length > 0 ? `
+        <div class="savings-history-total">
+          <span>Total Saved</span>
+          <span class="total-amount">${fmtMoney(totalSaved)}</span>
+        </div>
+        ` : ''}
+      </div>
+    </div>
+
+    <!-- Smart Savings Tips -->
+    <div class="savings-tips-row">
+      <div class="savings-tip-card">
+        <div class="savings-tip-icon">&#9881;&#65039;</div>
+        <h4>Automate It</h4>
+        <p>Set up auto-transfers on payday so you save before you spend.</p>
+      </div>
+      <div class="savings-tip-card">
+        <div class="savings-tip-icon">&#128200;</div>
+        <h4>Round Up</h4>
+        <p>Round up everyday purchases and save the difference.</p>
+      </div>
+      <div class="savings-tip-card">
+        <div class="savings-tip-icon">&#9986;&#65039;</div>
+        <h4>Cut One Expense</h4>
+        <p>Cancel one subscription and redirect that money to your goal.</p>
+      </div>
+    </div>
+  `;
+}
+
+function calcWeekStreak(deposits) {
+  if (deposits.length === 0) return 0;
+
+  // Get the start of the current week (Monday)
+  const now = new Date();
+  const dayOfWeek = now.getDay();
+  const mondayOffset = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  const currentWeekStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() - mondayOffset);
+  currentWeekStart.setHours(0, 0, 0, 0);
+
+  // Build a set of week-start timestamps that have deposits
+  const weekSet = new Set();
+  deposits.forEach(d => {
+    const date = new Date(d.date + 'T00:00:00');
+    const dow = date.getDay();
+    const mOff = dow === 0 ? 6 : dow - 1;
+    const weekStart = new Date(date.getFullYear(), date.getMonth(), date.getDate() - mOff);
+    weekSet.add(weekStart.getTime());
+  });
+
+  // Count consecutive weeks going backward from current week
+  let streak = 0;
+  let checkWeek = new Date(currentWeekStart);
+  while (weekSet.has(checkWeek.getTime())) {
+    streak++;
+    checkWeek.setDate(checkWeek.getDate() - 7);
+  }
+  return streak;
+}
+
+function savingsSelectGoal(goalId) {
+  savingsSelectedGoalId = goalId;
+  renderSavingsPage();
+}
+
+async function addSavingsDeposit() {
+  const amountEl = document.getElementById('savingsAmount');
+  const dateEl = document.getElementById('savingsDate');
+  const notesEl = document.getElementById('savingsNotes');
+
+  const amount = parseFloat(amountEl.value);
+  const date = dateEl.value;
+  const notes = (notesEl.value || '').trim();
+
+  if (!amount || amount <= 0) { showToast('Please enter a valid amount.'); return; }
+  if (!date) { showToast('Please select a date.'); return; }
+
+  const deposit = {
+    id: generateId(),
+    goalId: savingsSelectedGoalId,
+    amount: amount,
+    date: date,
+    notes: notes,
+    createdAt: Date.now()
+  };
+
+  await dbPut('deposits', deposit);
+
+  // Update goal.savedAmount
+  const goals = await dbGet('goals');
+  const goal = goals.find(g => g.id === savingsSelectedGoalId);
+  if (goal) {
+    goal.savedAmount = (goal.savedAmount || 0) + amount;
+    await dbPut('goals', goal);
+  }
+
+  amountEl.value = '';
+  notesEl.value = '';
+  renderSavingsPage();
+  showToast('Deposit added!');
+}
+
+async function deleteSavingsDeposit(depositId) {
+  const allDeposits = await dbGet('deposits');
+  const deposit = allDeposits.find(d => d.id === depositId);
+  if (!deposit) return;
+
+  await dbDelete('deposits', depositId);
+
+  // Update goal.savedAmount
+  const goals = await dbGet('goals');
+  const goal = goals.find(g => g.id === deposit.goalId);
+  if (goal) {
+    goal.savedAmount = Math.max(0, (goal.savedAmount || 0) - deposit.amount);
+    await dbPut('goals', goal);
+  }
+
+  renderSavingsPage();
+  showToast('Deposit removed.');
 }
 
 // ============================================
