@@ -3749,6 +3749,25 @@ async function renderChecklistPage() {
     <div class="checklist-items-card">
       ${itemsHtml}
     </div>
+
+    <!-- Checklist Tips -->
+    <div class="savings-tips-row">
+      <div class="savings-tip-card">
+        <div class="savings-tip-icon">&#9989;</div>
+        <h4>Start Small</h4>
+        <p>Break big tasks into tiny, specific steps. "Call Dr. Smith" is better than "Research doctors."</p>
+      </div>
+      <div class="savings-tip-card">
+        <div class="savings-tip-icon">&#127919;</div>
+        <h4>One at a Time</h4>
+        <p>Focus on finishing your top item before moving on. Checking things off builds momentum.</p>
+      </div>
+      <div class="savings-tip-card">
+        <div class="savings-tip-icon">&#128197;</div>
+        <h4>Weekly Review</h4>
+        <p>Set aside 5 minutes each week to update your list. Remove what's done, add what's next.</p>
+      </div>
+    </div>
   `;
 }
 
@@ -3942,6 +3961,25 @@ async function renderMilestonesPage() {
       <div class="milestones-section-title" style="margin-top:20px;">Completed (${completed.length})</div>
       ${completedHtml}
     ` : ''}
+
+    <!-- Milestone Tips -->
+    <div class="savings-tips-row">
+      <div class="savings-tip-card">
+        <div class="savings-tip-icon">&#127947;&#65039;</div>
+        <h4>Think in Phases</h4>
+        <p>Group your milestones into phases — research, planning, action. It makes big goals feel manageable.</p>
+      </div>
+      <div class="savings-tip-card">
+        <div class="savings-tip-icon">&#128198;</div>
+        <h4>Set Real Dates</h4>
+        <p>A milestone without a deadline is just a wish. Pick a date, even if it's a rough estimate.</p>
+      </div>
+      <div class="savings-tip-card">
+        <div class="savings-tip-icon">&#127881;</div>
+        <h4>Celebrate Wins</h4>
+        <p>Every completed milestone is progress. Take a moment to appreciate how far you've come.</p>
+      </div>
+    </div>
   `;
 }
 
