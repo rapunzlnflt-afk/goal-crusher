@@ -2034,6 +2034,321 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================
+   GOAL TEMPLATES PAGE
+   ============================================ */
+.templates-filter {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.templates-filter-pill {
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+  font-family: var(--font);
+}
+
+.templates-filter-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.templates-filter-pill.active {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.template-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.template-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.template-card-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.template-card-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.template-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.template-card-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.template-card-counts {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.template-card-counts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.template-card-counts svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+}
+
+/* Template Preview Modal */
+.template-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.template-modal-backdrop.active {
+  display: flex;
+}
+
+.template-modal {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.template-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.template-modal-header-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.template-modal-header-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.template-modal-header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.template-modal-header-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.template-modal-header-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.template-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 4px;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.template-modal-close:hover {
+  color: var(--text-primary);
+}
+
+.template-modal-body {
+  padding: 20px;
+}
+
+.template-modal-section {
+  margin-bottom: 20px;
+}
+
+.template-modal-section h4 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.template-modal-list {
+  list-style: none;
+}
+
+.template-modal-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.template-modal-list li:last-child {
+  border-bottom: none;
+}
+
+.template-modal-list .tm-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.template-modal-list .tm-check {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  margin-top: 2px;
+}
+
+.template-modal-name-group {
+  margin-bottom: 20px;
+}
+
+.template-modal-name-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.template-modal-name-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-family: var(--font);
+  font-weight: 600;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: border-color 0.15s ease;
+}
+
+.template-modal-name-group input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+}
+
+.template-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.template-modal-footer .btn-use-template {
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: background 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.template-modal-footer .btn-use-template:hover {
+  background: var(--accent-hover);
+}
+
+.template-modal-footer .btn-use-template svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 768px) {
+  .templates-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .template-modal-backdrop {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .template-modal {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    height: 100%;
+  }
+}
 </style>
 </head>
 <body>
@@ -2082,6 +2397,10 @@ textarea.form-control {
     <div class="nav-item" data-page="checklist" onclick="navigateTo('checklist')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
       Checklists
+    </div>
+    <div class="nav-item" data-page="templates" onclick="navigateTo('templates')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      Goal Templates
     </div>
 
     <div class="nav-section-label">Organize</div>
@@ -2217,6 +2536,18 @@ textarea.form-control {
       </div>
     </div>
 
+    <!-- ======== GOAL TEMPLATES PAGE ======== -->
+    <div class="page" id="page-templates">
+      <div class="page-header">
+        <div>
+          <h2>Goal Templates</h2>
+          <div class="page-header-subtitle">Pre-built goals with milestones and checklists — pick one and start crushing</div>
+        </div>
+      </div>
+      <div class="templates-filter" id="templatesFilter"></div>
+      <div class="templates-grid" id="templatesGrid"></div>
+    </div>
+
   </div><!-- /main-content -->
 </div><!-- /main-wrapper -->
 
@@ -2312,6 +2643,43 @@ textarea.form-control {
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
       <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- TEMPLATE PREVIEW MODAL -->
+<div class="template-modal-backdrop" id="templateModal">
+  <div class="template-modal">
+    <div class="template-modal-header">
+      <div class="template-modal-header-icon" id="templateModalIcon"></div>
+      <div class="template-modal-header-info">
+        <h3 id="templateModalName"></h3>
+        <p id="templateModalDesc"></p>
+      </div>
+      <button class="template-modal-close" onclick="closeTemplateModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="template-modal-body">
+      <div class="template-modal-name-group">
+        <label>Goal Name (customize it!)</label>
+        <input type="text" id="templateGoalName" placeholder="Enter your goal name">
+      </div>
+      <div class="template-modal-section">
+        <h4>Milestones</h4>
+        <ul class="template-modal-list" id="templateModalMilestones"></ul>
+      </div>
+      <div class="template-modal-section">
+        <h4>Checklist Items</h4>
+        <ul class="template-modal-list" id="templateModalChecklist"></ul>
+      </div>
+    </div>
+    <div class="template-modal-footer">
+      <button class="btn btn-secondary" onclick="closeTemplateModal()">Cancel</button>
+      <button class="btn-use-template" onclick="applyTemplate()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Use This Template
+      </button>
     </div>
   </div>
 </div>
@@ -2529,6 +2897,7 @@ const PAGE_TITLES = {
   budget: 'Budget & Fund',
   savings: 'Savings Tracker',
   checklist: 'Checklists',
+  templates: 'Goal Templates',
   notes: 'Notes & Journal',
   documents: 'Document Vault',
   photos: 'Photo Log'
@@ -2558,6 +2927,7 @@ function navigateTo(page) {
   if (page === 'budget') renderBudgetPage();
   if (page === 'savings') renderSavingsPage();
   if (page === 'checklist') renderChecklistPage();
+  if (page === 'templates') renderTemplatesPage();
 }
 
 // ============================================
@@ -4033,6 +4403,399 @@ async function deleteMilestone(milestoneId) {
   await dbDelete('milestones', milestoneId);
   renderMilestonesPage();
   showToast('Milestone deleted.');
+}
+
+// ============================================
+// GOAL TEMPLATES
+// ============================================
+const TEMPLATE_CATEGORY_ICONS = {
+  Financial: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><g filter="url(#tmb-a)"><path fill="url(#tmb-b)" d="M4.442 20.883c0-6.351 5.149-11.5 11.5-11.5h.563c6.35 0 11.5 5.149 11.5 11.5v.286a8.8 8.8 0 0 1-8.8 8.8h-5.963a8.8 8.8 0 0 1-8.8-8.8z"/></g><g filter="url(#tmb-c)"><path fill="url(#tmb-d)" d="M12.161 4.695c.47.801 1.155 1.829 2.035 2.672h4.055c.88-.843 1.564-1.87 2.035-2.672a.83.83 0 0 0-.353-1.157c-.32-.164-.696-.086-1.007.095-.702.409-1.107-.073-1.726-1.02-.311-.476-.786-.501-.977-.504-.19.003-.665.028-.976.504-.62.947-1.024 1.429-1.726 1.02-.311-.181-.687-.259-1.008-.095a.83.83 0 0 0-.352 1.157"/></g><g filter="url(#tmb-e)"><path fill="url(#tmb-f)" d="M17 14.156a.8.8 0 0 0-1.6 0v.755a.46.46 0 0 1-.287.398 3.4 3.4 0 0 0-.808.443 2.83 2.83 0 0 0-1.156 2.326c0 1.06.477 1.828 1.126 2.32.618.47 1.364.673 1.96.727.242.022.603.086.902.274.258.163.515.442.57 1.04.052.573-.181.913-.485 1.144-.35.267-.756.351-.86.351-.24 0-.653-.032-1.003-.221-.294-.16-.61-.462-.676-1.198a.8.8 0 1 0-1.594.142c.114 1.28.75 2.051 1.507 2.462q.252.135.501.217c.175.06.303.218.303.403v.683a.8.8 0 1 0 1.6 0v-.676a.46.46 0 0 1 .292-.4c.3-.11.614-.272.9-.49.665-.507 1.218-1.351 1.108-2.561-.102-1.121-.664-1.795-1.32-2.21a3.9 3.9 0 0 0-1.625-.546c-.909-.047-1.607-.549-1.607-1.46 0-.502.2-.87.494-1.09.609-.516 1.644-.446 2.133.202.216.287.313.603.335.887.034.44.415.792.856.758.44-.034.769-.379.735-.82a3.36 3.36 0 0 0-.653-1.75c-.304-.403-.879-.79-1.35-.984a.46.46 0 0 1-.298-.414z"/></g><rect width="5.734" height="2.109" x="13.333" y="7.367" fill="url(#tmb-g)" rx="1.051"/><defs><radialGradient id="tmb-b" cx="0" cy="0" r="1" gradientTransform="rotate(100.07 4.98 13.803)scale(18.4086 19.2809)" gradientUnits="userSpaceOnUse"><stop stop-color="#f6c93b"/><stop offset="1" stop-color="#e88340"/></radialGradient><linearGradient id="tmb-d" x1="17.477" x2="16.223" y1="3.891" y2="7.367" gradientUnits="userSpaceOnUse"><stop stop-color="#f3c048"/><stop offset="1" stop-color="#e67a41"/></linearGradient><linearGradient id="tmb-f" x1="19.661" x2="13.086" y1="21.875" y2="21.875" gradientUnits="userSpaceOnUse"><stop stop-color="#9d6360"/><stop offset="1" stop-color="#724a4d"/></linearGradient><linearGradient id="tmb-g" x1="14.13" x2="19.067" y1="8.422" y2="8.422" gradientUnits="userSpaceOnUse"><stop stop-color="#834b41"/><stop offset="1" stop-color="#735854"/></linearGradient><filter id="tmb-a" width="24.563" height="22.086" x="4.442" y="7.883" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx="1" dy="-1.5"/><feGaussianBlur stdDeviation="1.75"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.714 0 0 0 0 0.322 0 0 0 0 0.212 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter><filter id="tmb-c" width="8.648" height="5.708" x="11.849" y="1.859" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx="-.2" dy=".2"/><feGaussianBlur stdDeviation=".15"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 0.925 0 0 0 0 0.404 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter><filter id="tmb-e" width="6.478" height="14.216" x="12.986" y="13.156" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx=".15" dy="-.2"/><feGaussianBlur stdDeviation=".15"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.353 0 0 0 0 0.169 0 0 0 0 0.188 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter></defs></svg>`,
+  'Health & Fitness': `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><g filter="url(#fb-a)"><path fill="#ffb336" d="M7.968 7.844h-1.64L2.577 19.03C.843 24.938 3.977 29 8.797 29h12.827a8.391 8.391 0 1 0-8.01-11.221.24.24 0 0 1-.223.159.23.23 0 0 1-.207-.126z"/></g><path fill="url(#fb-b)" d="M7.968 7.844h-1.64L2.577 19.03C.843 24.938 3.977 29 8.797 29h12.827a8.391 8.391 0 1 0-8.01-11.221.24.24 0 0 1-.223.159.23.23 0 0 1-.207-.126z"/><circle cx="21.515" cy="20.609" r="8.391" fill="url(#fb-c)"/><path fill="url(#fb-d)" d="M7.32 5.039 6.296 7.934l.499.962a2.04 2.04 0 0 0 1.817 1.12h4.941a2.5 2.5 0 0 0 2.315-1.557l.087-.213a3.5 3.5 0 0 0-1.814-4.517l-1.774-.752c-2.172-.805-4.283.047-5.047 2.062"/><rect width="8.914" height="4.07" x="6.281" y="6.898" fill="url(#fb-e)" rx="2.035"/><defs><radialGradient id="fb-c" cx="0" cy="0" r="1" gradientTransform="rotate(140.981 10.078 13.894)scale(9.33157)" gradientUnits="userSpaceOnUse"><stop stop-color="#ffed59"/><stop offset="1" stop-color="#ffed59" stop-opacity="0"/></radialGradient><linearGradient id="fb-b" x1="16" x2="16" y1="29.969" y2="27.031" gradientUnits="userSpaceOnUse"><stop stop-color="#d27a7f"/><stop offset="1" stop-color="#d27a7f" stop-opacity="0"/></linearGradient><linearGradient id="fb-d" x1="8.406" x2="16.843" y1="8.781" y2="6.781" gradientUnits="userSpaceOnUse"><stop stop-color="#e9a73e"/><stop offset="1" stop-color="#ffcc30"/></linearGradient><linearGradient id="fb-e" x1="8.687" x2="14.437" y1="9.406" y2="9.406" gradientUnits="userSpaceOnUse"><stop stop-color="#e9a73e"/><stop offset="1" stop-color="#ffc524"/></linearGradient><filter id="fb-a" width="28.811" height="22.656" x="2.094" y="6.344" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx="1" dy="-1.5"/><feGaussianBlur stdDeviation="1.5"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.839 0 0 0 0 0.541 0 0 0 0 0.294 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter></defs></svg>`,
+  'Education & Career': `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><g filter="url(#gc-a)"><path fill="url(#gc-b)" d="M4.716 14.013h22.328v1.652a7.5 7.5 0 0 1-7.5 7.5h-7.328a7.5 7.5 0 0 1-7.5-7.5z"/></g><g filter="url(#gc-c)"><path fill="url(#gc-d)" d="m15.289 20.399-12.69-6.482a1.1 1.1 0 0 1 .003-1.96L15.29 5.512a1.3 1.3 0 0 1 1.179 0l12.69 6.46a1.1 1.1 0 0 1 0 1.96L16.47 20.399a1.3 1.3 0 0 1-1.182 0"/></g><path fill="url(#gc-e)" fill-rule="evenodd" d="M15.414 11.168a.725.725 0 0 1 .975-.316l5.714 2.913c1.08.551 1.76 1.661 1.76 2.873v5.844a.725.725 0 0 1-1.45 0v-5.844c0-.667-.375-1.278-.97-1.58l-5.713-2.915a.725.725 0 0 1-.316-.975" clip-rule="evenodd"/><path fill="url(#gc-f)" d="M22.419 22.474c-.649.266-.95.823-.95 1.43a1.668 1.668 0 0 0 3.336 0c0-.607-.355-1.149-.941-1.43z"/><path fill="#ff9d4e" d="m21.226 27.647.638-2.65h2.527l.652 2.627a1.994 1.994 0 0 1-1.905 2.577 1.992 1.992 0 0 1-1.912-2.554"/><defs><linearGradient id="gc-b" x1="25.95" x2="5.95" y1="18.589" y2="18.589" gradientUnits="userSpaceOnUse"><stop stop-color="#68518b"/><stop offset=".444" stop-color="#503678"/><stop offset=".909" stop-color="#35254e"/></linearGradient><linearGradient id="gc-d" x1="28.192" x2="7.262" y1="12.956" y2="12.956" gradientUnits="userSpaceOnUse"><stop stop-color="#655676"/><stop offset="1" stop-color="#2d2635"/></linearGradient><linearGradient id="gc-e" x1="17.262" x2="23.387" y1="11.263" y2="23.207" gradientUnits="userSpaceOnUse"><stop stop-color="#d3a543"/><stop offset="1" stop-color="#ffba62"/></linearGradient><radialGradient id="gc-f" cx="0" cy="0" r="1" gradientTransform="rotate(137.337 7.51 16.412)scale(2.076 2.235)" gradientUnits="userSpaceOnUse"><stop stop-color="#ffcc6c"/><stop offset="1" stop-color="#f49041"/></radialGradient><filter id="gc-a" width="22.578" height="9.402" x="4.466" y="13.763" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx="-.25" dy="-.25"/><feGaussianBlur stdDeviation=".25"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.471 0 0 0 0 0.373 0 0 0 0 0.659 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter><filter id="gc-c" width="28.759" height="15.92" x="1" y="4.621" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="-1.25"/><feGaussianBlur stdDeviation=".375"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.133 0 0 0 0 0.098 0 0 0 0 0.176 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter></defs></svg>`,
+  'Home & Lifestyle': `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><path fill="url(#hl-a)" d="M27.656 29.16H4.641V15.717L16.148 4.965l11.508 10.753z"/><path fill="url(#hl-b)" d="M15.066 29.16H8.123V18.151c0-.838.533-1.527 1.18-1.527h4.583c.648 0 1.18.689 1.18 1.527z"/><path fill="url(#hl-c)" d="M23.65 21.864H19.46a.837.837 0 0 1-.838-.838v-4.188c0-.47.382-.838.838-.838h4.188c.47 0 .838.382.838.838v4.188c0 .47-.367.838-.838.838"/><path fill="url(#hl-d)" d="M29.738 15.847 16.998 3.295a1.214 1.214 0 0 0-1.714 0l-.014.014L2.503 15.874a1.18 1.18 0 0 0 0 1.687 1.226 1.226 0 0 0 1.714 0L15.958 5.99a.25.25 0 0 1 .351 0l11.702 11.53a1.214 1.214 0 0 0 1.714 0c.472-.473.486-1.216.013-1.674"/><g filter="url(#hl-e)"><path fill="url(#hl-f)" d="M2.148 29.932c0-1.117.906-2.022 2.022-2.022h23.894c1.116 0 2.022.905 2.022 2.022z"/></g><defs><linearGradient id="hl-a" x1="5.478" x2="27.021" y1="20.777" y2="20.777" gradientUnits="userSpaceOnUse"><stop stop-color="#d7905f"/><stop offset="1" stop-color="#e8bc97"/></linearGradient><linearGradient id="hl-b" x1="11.595" x2="11.595" y1="16.625" y2="29.159" gradientUnits="userSpaceOnUse"><stop stop-color="#805139"/><stop offset="1" stop-color="#6d4d2f"/></linearGradient><linearGradient id="hl-c" x1="18.623" x2="24.951" y1="22.308" y2="16" gradientUnits="userSpaceOnUse"><stop stop-color="#4cccff"/><stop offset="1" stop-color="#3a9ee6"/></linearGradient><linearGradient id="hl-d" x1="16.117" x2="16.117" y1="2.941" y2="17.91" gradientUnits="userSpaceOnUse"><stop stop-color="#ea6d2e"/><stop offset="1" stop-color="#ca222b"/></linearGradient><linearGradient id="hl-f" x1="29.313" x2="1.438" y1="29.932" y2="29.932" gradientUnits="userSpaceOnUse"><stop stop-color="#3fd47b"/><stop offset="1" stop-color="#40dc7f"/></linearGradient><filter id="hl-e" width="28.438" height="2.022" x="2.148" y="27.91" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx=".5"/><feGaussianBlur stdDeviation=".5"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.251 0 0 0 0 0.545 0 0 0 0 0.353 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter></defs></svg>`,
+  'Personal Growth': `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><path fill="url(#sg-a)" d="M14.031 8.438h2.906v14.016h-2.906z"/><path fill="url(#sg-b)" d="M15 13.592c0-3.606 3.328-6.295 7.89-6.53h6.64c.225 0 .407.183.407.409-.408 3.873-2.562 6.217-7.656 6.529h-6.873a.41.41 0 0 1-.408-.408"/><path fill="url(#sg-c)" d="M16.938 8.53c0-3.607-3.329-6.296-7.891-6.53H2.408A.41.41 0 0 0 2 2.408c.408 3.873 2.563 6.217 7.656 6.53h6.873a.41.41 0 0 0 .409-.409"/><g filter="url(#sg-d)"><path fill="url(#sg-e)" d="M15.515 20.938c-5.06 0-9.193 3.785-9.465 8.552-.016.276.21.5.486.5h17.968a.48.48 0 0 0 .486-.5c-.272-4.767-4.406-8.552-9.475-8.552"/></g><defs><linearGradient id="sg-a" x1="15.484" x2="15.484" y1="7.684" y2="19.238" gradientUnits="userSpaceOnUse"><stop stop-color="#82bb30"/><stop offset="1" stop-color="#94d22f"/></linearGradient><linearGradient id="sg-b" x1="19.92" x2="29.03" y1="14" y2="6.325" gradientUnits="userSpaceOnUse"><stop stop-color="#8db746"/><stop offset="1" stop-color="#abee48"/></linearGradient><linearGradient id="sg-c" x1="17.945" x2="3.007" y1="8.438" y2="1.375" gradientUnits="userSpaceOnUse"><stop stop-color="#97da22"/><stop offset="1" stop-color="#90cd2f"/></linearGradient><radialGradient id="sg-e" cx="0" cy="0" r="1" gradientTransform="rotate(224.393 16.24 11.305)scale(11.2194 10.7143)" gradientUnits="userSpaceOnUse"><stop stop-color="#bf8b88"/><stop offset="1" stop-color="#835146"/></radialGradient><filter id="sg-d" width="19.092" height="9.202" x="6.049" y="20.938" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx=".15" dy=".15"/><feGaussianBlur stdDeviation=".25"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.557 0 0 0 0 0.49 0 0 0 0 0.486 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter></defs></svg>`,
+  'Travel & Adventure': `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><g filter="url(#cp-a)"><path fill="url(#cp-b)" d="M15.5 27.998c6.35 0 11.497-5.148 11.497-11.498S21.85 5.002 15.5 5.002 4.002 10.15 4.002 16.5 9.15 27.997 15.5 27.997"/></g><path fill="url(#cp-c)" fill-rule="evenodd" d="M29 16.5C29 23.956 22.956 30 15.5 30S2 23.956 2 16.5 8.044 3 15.5 3 29 9.044 29 16.5m-2.46 0c0 6.097-4.943 11.04-11.04 11.04S4.46 22.597 4.46 16.5 9.403 5.46 15.5 5.46s11.04 4.943 11.04 11.04" clip-rule="evenodd"/><path fill="url(#cp-d)" d="m15.5 18.08 8.25-1.29c.33-.05.33-.53 0-.58l-8.25-1.29-8.25 1.29c-.33.05-.33.53 0 .58z"/><path fill="url(#cp-e)" d="m17.08 16.5-1.29-8.25c-.05-.33-.53-.33-.58 0l-1.29 8.25 1.29 8.25c.05.33.53.33.58 0z"/><g filter="url(#cp-f)"><path fill="url(#cp-g)" d="m13.78 18.21-3.73-6.52c-.23-.41.22-.86.63-.63l6.53 3.72z"/></g><g filter="url(#cp-h)"><path fill="url(#cp-i)" d="M15.5 18.93a2.43 2.43 0 1 0 0-4.86 2.43 2.43 0 0 0 0 4.86"/></g><defs><radialGradient id="cp-b" cx="0" cy="0" r="1" gradientTransform="rotate(20.763 -29.316 20.06)scale(18.333 24.9855)" gradientUnits="userSpaceOnUse"><stop stop-color="#b5a7b0"/><stop offset="1" stop-color="#dfd2e2"/></radialGradient><linearGradient id="cp-c" x1="5.59" x2="24.215" y1="25.813" y2="7.187" gradientUnits="userSpaceOnUse"><stop stop-color="#de8d39"/><stop offset="1" stop-color="#edc14b"/></linearGradient><linearGradient id="cp-d" x1="21.148" x2="8.243" y1="15.93" y2="15.93" gradientUnits="userSpaceOnUse"><stop stop-color="#b6abb8"/><stop offset="1" stop-color="#988e9a"/></linearGradient><linearGradient id="cp-e" x1="15.5" x2="15.5" y1="8.002" y2="24.997" gradientUnits="userSpaceOnUse"><stop stop-color="#b6acb7"/><stop offset="1" stop-color="#968c98"/></linearGradient><linearGradient id="cp-g" x1="10.454" x2="14.521" y1="11.802" y2="16.548" gradientUnits="userSpaceOnUse"><stop stop-color="#e43465"/><stop offset="1" stop-color="#e6386a"/></linearGradient><radialGradient id="cp-i" cx="0" cy="0" r="1" gradientTransform="rotate(137.291 5.672 11.058)scale(4.649 4.847)" gradientUnits="userSpaceOnUse"><stop stop-color="#c0bcbf"/><stop offset="1" stop-color="#856f79"/></radialGradient><filter id="cp-a" width="23.995" height="23.995" x="3.002" y="5.002" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx="-1" dy="1"/><feGaussianBlur stdDeviation="1.5"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.624 0 0 0 0 0.482 0 0 0 0 0.537 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter><filter id="cp-f" width="7.322" height="7.462" x="9.888" y="10.748" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx="-.5"/><feGaussianBlur stdDeviation=".05"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.953 0 0 0 0 0.239 0 0 0 0 0.435 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter><filter id="cp-h" width="5.01" height="5.01" x="13.07" y="13.92" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dx=".15" dy="-.15"/><feGaussianBlur stdDeviation=".075"/><feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/><feColorMatrix values="0 0 0 0 0.447 0 0 0 0 0.369 0 0 0 0 0.416 0 0 0 1 0"/><feBlend in2="shape" result="e"/></filter></defs></svg>`
+};
+
+const GOAL_TEMPLATES = [
+  // === Financial ===
+  {
+    id: 'tpl-emergency-fund', category: 'Financial', name: 'Build an Emergency Fund',
+    description: 'Save 3-6 months of expenses for financial security.',
+    milestones: [
+      { name: 'Calculate target amount', description: 'Determine how much you need based on monthly expenses' },
+      { name: 'Open dedicated savings account', description: 'Set up a separate high-yield savings account' },
+      { name: 'Save first $500', description: 'Build initial momentum with your first milestone' },
+      { name: 'Reach 1 month of expenses', description: 'Cover one full month of living costs' },
+      { name: 'Reach 3 months of expenses', description: 'Hit the minimum recommended emergency fund' },
+      { name: 'Reach 6 months of expenses', description: 'Achieve full financial safety net' }
+    ],
+    checklist: ['Review monthly expenses','Determine target amount','Research high-yield savings accounts','Set up automatic transfers','Cut one unnecessary subscription','Track progress monthly']
+  },
+  {
+    id: 'tpl-pay-off-debt', category: 'Financial', name: 'Pay Off Debt',
+    description: 'Systematically eliminate debt using snowball or avalanche method.',
+    milestones: [
+      { name: 'List all debts and balances', description: 'Get a complete picture of what you owe' },
+      { name: 'Choose payoff strategy (snowball/avalanche)', description: 'Pick the method that works best for you' },
+      { name: 'Pay off smallest debt', description: 'Score your first win' },
+      { name: 'Pay off 50% of total', description: 'Reach the halfway point' },
+      { name: 'Become debt-free', description: 'Celebrate your freedom from debt' }
+    ],
+    checklist: ['List every debt with balance and interest rate','Calculate minimum monthly payments','Pick snowball or avalanche method','Set up autopay for minimums','Allocate extra payment to target debt','Call creditors to negotiate rates','Celebrate each paid-off account']
+  },
+  {
+    id: 'tpl-big-purchase', category: 'Financial', name: 'Save for a Big Purchase',
+    description: 'Methodically save for something you really want.',
+    milestones: [
+      { name: 'Define what you\'re saving for and total cost', description: 'Set a clear target' },
+      { name: 'Set a target date', description: 'Create urgency with a deadline' },
+      { name: 'Save 25%', description: 'First quarter milestone' },
+      { name: 'Save 50%', description: 'Halfway there' },
+      { name: 'Save 75%', description: 'Almost there' },
+      { name: 'Purchase', description: 'Pull the trigger and enjoy' }
+    ],
+    checklist: ['Research the item/experience','Set a realistic total cost','Open a dedicated savings account','Set up automatic weekly transfers','Find ways to earn extra income','Compare prices and deals','Pull the trigger when ready']
+  },
+  // === Health & Fitness ===
+  {
+    id: 'tpl-run-5k', category: 'Health & Fitness', name: 'Run a 5K',
+    description: 'Go from couch to crossing the finish line.',
+    milestones: [
+      { name: 'Get proper running shoes', description: 'Visit a running store for a fitting' },
+      { name: 'Run 1 mile without stopping', description: 'Build your base endurance' },
+      { name: 'Run 2 miles comfortably', description: 'Increase distance steadily' },
+      { name: 'Complete a practice 5K', description: 'Do a solo 3.1 mile run' },
+      { name: 'Register for a race', description: 'Commit by signing up' },
+      { name: 'Race day', description: 'Cross that finish line' }
+    ],
+    checklist: ['Visit a running store for shoes','Download a Couch-to-5K app','Schedule 3 runs per week','Do a warm-up routine before each run','Stretch after every run','Find a running buddy','Register for a local 5K','Plan race day outfit and logistics']
+  },
+  {
+    id: 'tpl-workout-habit', category: 'Health & Fitness', name: 'Build a Consistent Workout Habit',
+    description: 'Make exercise a non-negotiable part of your routine.',
+    milestones: [
+      { name: 'Work out 3x/week for 2 weeks', description: 'Build initial consistency' },
+      { name: 'Complete 1 full month', description: 'Solidify the habit' },
+      { name: 'Try a new type of workout', description: 'Keep things fresh and interesting' },
+      { name: 'Complete 3 consecutive months', description: 'Prove long-term commitment' },
+      { name: 'Reassess and level up routine', description: 'Graduate to the next level' }
+    ],
+    checklist: ['Choose a workout style you enjoy','Set specific days and times','Lay out workout clothes the night before','Start with 20-minute sessions','Track every workout','Find an accountability partner','Increase intensity every 2 weeks','Rest at least 1 day per week']
+  },
+  {
+    id: 'tpl-improve-diet', category: 'Health & Fitness', name: 'Improve Your Diet',
+    description: 'Build sustainable healthy eating habits step by step.',
+    milestones: [
+      { name: 'Track current eating habits for 1 week', description: 'Understand your baseline' },
+      { name: 'Meal prep for 1 full week', description: 'Plan and prepare ahead' },
+      { name: 'Go 30 days with no fast food', description: 'Break the convenience habit' },
+      { name: 'Cook 80% of meals at home for a month', description: 'Master home cooking' },
+      { name: 'Sustain healthy habits for 3 months', description: 'Make it a lifestyle' }
+    ],
+    checklist: ['Download a food tracking app','Plan weekly meals on Sundays','Create a grocery list and stick to it','Prep lunches for the work week','Replace soda with water','Add a vegetable to every meal','Learn 5 new healthy recipes','Limit eating out to once a week']
+  },
+  // === Education & Career ===
+  {
+    id: 'tpl-learn-skill', category: 'Education & Career', name: 'Learn a New Skill',
+    description: 'Go from zero to confident in a new skill area.',
+    milestones: [
+      { name: 'Choose the skill and find resources', description: 'Research and pick your learning path' },
+      { name: 'Complete introductory course/tutorial', description: 'Get the basics down' },
+      { name: 'Build a small practice project', description: 'Apply what you learned' },
+      { name: 'Get feedback from someone experienced', description: 'Identify blind spots' },
+      { name: 'Complete an intermediate project', description: 'Level up your abilities' },
+      { name: 'Share or showcase your work', description: 'Put yourself out there' }
+    ],
+    checklist: ['Research free and paid learning resources','Set aside 30 minutes daily for practice','Take notes as you learn','Join an online community for the skill','Complete exercises and assignments','Build a portfolio piece','Ask for feedback','Teach someone else what you learned']
+  },
+  {
+    id: 'tpl-promotion-job', category: 'Education & Career', name: 'Get a Promotion or New Job',
+    description: 'Level up your career with a strategic job search.',
+    milestones: [
+      { name: 'Define target role and requirements', description: 'Know exactly what you want' },
+      { name: 'Update resume and LinkedIn', description: 'Polish your professional brand' },
+      { name: 'Apply to 10 positions / talk to manager', description: 'Put yourself in the running' },
+      { name: 'Get first interview', description: 'Break through the initial barrier' },
+      { name: 'Receive an offer', description: 'Get the yes' },
+      { name: 'Start new role', description: 'Begin your next chapter' }
+    ],
+    checklist: ['Research salary ranges for target role','Identify skill gaps and address them','Update resume with quantified achievements','Refresh LinkedIn profile and photo','Network with people in target roles','Practice common interview questions','Prepare a portfolio of your best work','Write tailored cover letters','Follow up after every interview']
+  },
+  {
+    id: 'tpl-read-12-books', category: 'Education & Career', name: 'Read 12 Books This Year',
+    description: 'Build a reading habit one book at a time.',
+    milestones: [
+      { name: 'Finish book 1', description: 'Get started and build momentum' },
+      { name: 'Finish book 3', description: 'Establish a reading rhythm' },
+      { name: 'Finish book 6 (halfway!)', description: 'Hit the halfway mark' },
+      { name: 'Finish book 9', description: 'Three-quarters of the way' },
+      { name: 'Finish book 12', description: 'Complete the challenge' }
+    ],
+    checklist: ['Make a reading list of 15+ books','Set a daily reading time (even 15 min)','Keep a book with you at all times','Join a book club or reading group','Track books in a reading journal','Try different genres','Listen to audiobooks during commutes','Share reviews or recommendations']
+  },
+  // === Home & Lifestyle ===
+  {
+    id: 'tpl-declutter', category: 'Home & Lifestyle', name: 'Declutter and Organize Your Home',
+    description: 'Transform your space room by room.',
+    milestones: [
+      { name: 'Declutter one room completely', description: 'Start with the biggest pain point' },
+      { name: 'Organize storage and closets', description: 'Create systems for keeping things tidy' },
+      { name: 'Set up a system for incoming items', description: 'Prevent future clutter buildup' },
+      { name: 'Maintain for 30 days', description: 'Prove the systems work' },
+      { name: 'Complete whole-home reset', description: 'Every room organized' }
+    ],
+    checklist: ['Pick the worst room to start','Use the "keep/donate/trash" method','Tackle one drawer or shelf at a time','Donate items you haven\'t used in a year','Buy storage bins only after decluttering','Label everything','Do a 10-minute daily tidy-up','Schedule seasonal declutter sessions']
+  },
+  {
+    id: 'tpl-move-city', category: 'Home & Lifestyle', name: 'Move to a New City or Apartment',
+    description: 'Plan a smooth move from start to settled.',
+    milestones: [
+      { name: 'Research neighborhoods and budget', description: 'Know what you want and can afford' },
+      { name: 'Tour and apply to places', description: 'Visit your top options' },
+      { name: 'Get approved and sign lease', description: 'Lock in your new home' },
+      { name: 'Pack and hire movers', description: 'Get everything ready to go' },
+      { name: 'Moving day', description: 'Make the big move' },
+      { name: 'Settle in and update address everywhere', description: 'Make it officially home' }
+    ],
+    checklist: ['Set a moving budget','Research neighborhoods online','Visit top 3 choices in person','Review lease terms carefully','Get renter\'s insurance','Create a packing timeline','Label all boxes by room','Set up utilities before move-in','Update address with USPS and subscriptions','Explore your new neighborhood']
+  },
+  {
+    id: 'tpl-plan-vacation', category: 'Home & Lifestyle', name: 'Plan a Vacation',
+    description: 'Organize the perfect trip from booking to memories.',
+    milestones: [
+      { name: 'Choose destination and dates', description: 'Decide where and when to go' },
+      { name: 'Book flights and accommodation', description: 'Lock in the essentials' },
+      { name: 'Plan itinerary', description: 'Map out activities and must-sees' },
+      { name: 'Pack and prepare', description: 'Get everything ready' },
+      { name: 'Trip day', description: 'Time to go' },
+      { name: 'Share memories', description: 'Document and relive the trip' }
+    ],
+    checklist: ['Set a travel budget','Research destinations','Book flights early for best price','Reserve accommodation','Make a day-by-day itinerary','Check passport/visa requirements','Arrange pet or house sitter','Download offline maps','Pack 2 days before departure','Notify your bank about travel']
+  },
+  // === Personal Growth ===
+  {
+    id: 'tpl-morning-routine', category: 'Personal Growth', name: 'Build a Morning Routine',
+    description: 'Win the morning to win the day.',
+    milestones: [
+      { name: 'Design your ideal morning', description: 'Decide what your perfect morning looks like' },
+      { name: 'Wake up on time for 7 days', description: 'Build the first habit' },
+      { name: 'Maintain routine for 30 days', description: 'Make it stick' },
+      { name: 'Adjust and optimize', description: 'Fine-tune based on what works' },
+      { name: 'Sustain for 90 days', description: 'Lock it in for good' }
+    ],
+    checklist: ['Decide on a consistent wake-up time','Set a bedtime that gives you 7-8 hours','Lay out clothes the night before','Start with 3 morning activities','No phone for the first 30 minutes','Include movement or stretching','Eat a real breakfast','Review your day\'s priorities each morning']
+  },
+  {
+    id: 'tpl-side-project', category: 'Personal Growth', name: 'Start a Side Project or Business',
+    description: 'Turn your idea into something real.',
+    milestones: [
+      { name: 'Validate your idea', description: 'Confirm people actually want this' },
+      { name: 'Create a basic plan', description: 'Map out what you need to build' },
+      { name: 'Build version 1 (MVP)', description: 'Ship the simplest useful version' },
+      { name: 'Get your first customer or user', description: 'Real people using your thing' },
+      { name: 'Earn your first dollar', description: 'Generate actual revenue' },
+      { name: 'Scale or iterate', description: 'Grow based on what you learned' }
+    ],
+    checklist: ['Write down your idea clearly','Research if people actually need it','Talk to 5 potential customers','Set a weekly time commitment','Build the simplest version first','Create a basic landing page','Share with friends for feedback','Set up a way to accept payment','Track expenses from day one','Iterate based on real feedback']
+  },
+  {
+    id: 'tpl-reduce-screen', category: 'Personal Growth', name: 'Reduce Screen Time',
+    description: 'Reclaim hours by cutting mindless scrolling.',
+    milestones: [
+      { name: 'Track current screen time for a week', description: 'See where your time actually goes' },
+      { name: 'Set daily limits on top 3 apps', description: 'Put guardrails in place' },
+      { name: 'Reduce by 1 hour/day', description: 'Make a meaningful cut' },
+      { name: 'Find 2 offline hobbies', description: 'Replace screen time with real activities' },
+      { name: 'Maintain reduced usage for 30 days', description: 'Prove the new habit' }
+    ],
+    checklist: ['Check your phone\'s screen time report','Identify your biggest time-wasting apps','Set app timers','Turn off non-essential notifications','Charge your phone outside the bedroom','Replace scrolling with reading or walking','Schedule phone-free meals','Use a real alarm clock instead of your phone']
+  },
+  // === Travel & Adventure ===
+  {
+    id: 'tpl-learn-language', category: 'Travel & Adventure', name: 'Learn a New Language',
+    description: 'Go from beginner to conversational.',
+    milestones: [
+      { name: 'Learn 100 basic words', description: 'Build your foundational vocabulary' },
+      { name: 'Hold a simple conversation', description: 'Use what you know in real dialogue' },
+      { name: 'Complete beginner level', description: 'Finish structured coursework' },
+      { name: 'Watch a show without subtitles', description: 'Understand native speech' },
+      { name: 'Have a 10-minute conversation with a native speaker', description: 'True conversational ability' }
+    ],
+    checklist: ['Choose your language and motivation','Download a language app (Duolingo, Babbel)','Practice 15 minutes daily','Learn 5 new words per day','Listen to podcasts in the language','Watch shows with subtitles in that language','Find a language exchange partner','Label household items in the new language']
+  },
+  {
+    id: 'tpl-fitness-challenge', category: 'Travel & Adventure', name: 'Complete a Fitness Challenge',
+    description: 'Push your limits with a structured fitness challenge.',
+    milestones: [
+      { name: 'Choose your challenge', description: 'Pick a specific challenge with clear rules' },
+      { name: 'Complete week 1', description: 'Get through the hardest part - starting' },
+      { name: 'Reach the halfway point', description: 'Prove your commitment' },
+      { name: 'Push through the hardest week', description: 'Dig deep when it gets tough' },
+      { name: 'Finish the challenge', description: 'Cross the finish line' },
+      { name: 'Set your next goal', description: 'Keep the momentum going' }
+    ],
+    checklist: ['Pick a specific challenge with a clear end date','Tell someone about your commitment','Prepare meals that support your training','Schedule workouts like appointments','Take a progress photo each week','Rest when your body needs it','Adjust if something isn\'t working','Reward yourself at the finish line']
+  },
+  {
+    id: 'tpl-volunteer', category: 'Travel & Adventure', name: 'Volunteer or Give Back',
+    description: 'Make an impact in your community.',
+    milestones: [
+      { name: 'Research local organizations', description: 'Find causes that match your values' },
+      { name: 'Attend first volunteer session', description: 'Show up and get started' },
+      { name: 'Complete 10 hours', description: 'Build a track record' },
+      { name: 'Take on a leadership role or recurring commitment', description: 'Go deeper' },
+      { name: 'Reach 50 hours', description: 'Make a real impact' }
+    ],
+    checklist: ['Identify causes you care about','Search VolunteerMatch or local nonprofits','Attend an orientation','Commit to a regular schedule','Invite a friend to join','Track your volunteer hours','Share your experience on social media','Explore different types of volunteering']
+  }
+];
+
+const TEMPLATE_CATEGORIES = ['All', 'Financial', 'Health & Fitness', 'Education & Career', 'Home & Lifestyle', 'Personal Growth', 'Travel & Adventure'];
+
+let templateActiveFilter = 'All';
+let templateSelectedId = null;
+
+function renderTemplatesPage() {
+  // Render filter pills
+  const filterEl = document.getElementById('templatesFilter');
+  filterEl.innerHTML = TEMPLATE_CATEGORIES.map(cat =>
+    `<button class="templates-filter-pill${templateActiveFilter === cat ? ' active' : ''}" onclick="filterTemplates('${cat}')">${cat}</button>`
+  ).join('');
+
+  // Render template cards
+  const gridEl = document.getElementById('templatesGrid');
+  const filtered = templateActiveFilter === 'All'
+    ? GOAL_TEMPLATES
+    : GOAL_TEMPLATES.filter(t => t.category === templateActiveFilter);
+
+  if (filtered.length === 0) {
+    gridEl.innerHTML = `<div class="empty-state"><h3>No templates in this category</h3></div>`;
+    return;
+  }
+
+  gridEl.innerHTML = filtered.map(t => `
+    <div class="template-card" onclick="openTemplatePreview('${t.id}')">
+      <div class="template-card-icon">${TEMPLATE_CATEGORY_ICONS[t.category] || ''}</div>
+      <h3>${escapeHtml(t.name)}</h3>
+      <div class="template-card-desc">${escapeHtml(t.description)}</div>
+      <div class="template-card-counts">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          ${t.milestones.length} milestones
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          ${t.checklist.length} checklist items
+        </span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterTemplates(category) {
+  templateActiveFilter = category;
+  renderTemplatesPage();
+}
+
+function openTemplatePreview(templateId) {
+  const template = GOAL_TEMPLATES.find(t => t.id === templateId);
+  if (!template) return;
+
+  templateSelectedId = templateId;
+
+  document.getElementById('templateModalIcon').innerHTML = TEMPLATE_CATEGORY_ICONS[template.category] || '';
+  document.getElementById('templateModalName').textContent = template.name;
+  document.getElementById('templateModalDesc').textContent = template.description;
+  document.getElementById('templateGoalName').value = template.name;
+
+  // Milestones
+  document.getElementById('templateModalMilestones').innerHTML = template.milestones.map((m, i) =>
+    `<li><span class="tm-num">${i + 1}</span><div><strong>${escapeHtml(m.name)}</strong><div style="font-size:12px;color:var(--text-secondary);margin-top:2px">${escapeHtml(m.description)}</div></div></li>`
+  ).join('');
+
+  // Checklist
+  document.getElementById('templateModalChecklist').innerHTML = template.checklist.map(c =>
+    `<li><span class="tm-check"></span>${escapeHtml(c)}</li>`
+  ).join('');
+
+  document.getElementById('templateModal').classList.add('active');
+}
+
+function closeTemplateModal() {
+  document.getElementById('templateModal').classList.remove('active');
+  templateSelectedId = null;
+}
+
+async function applyTemplate() {
+  const template = GOAL_TEMPLATES.find(t => t.id === templateSelectedId);
+  if (!template) return;
+
+  const goalName = document.getElementById('templateGoalName').value.trim() || template.name;
+  const now = new Date().toISOString();
+  const goalId = generateId();
+
+  // Map category to a goal category value
+  const categoryMap = {
+    'Financial': 'financial',
+    'Health & Fitness': 'health',
+    'Education & Career': 'education',
+    'Home & Lifestyle': 'home',
+    'Personal Growth': 'personal',
+    'Travel & Adventure': 'travel'
+  };
+
+  // Create goal
+  const goal = {
+    id: goalId,
+    name: goalName,
+    createdAt: now,
+    updatedAt: now,
+    status: 'active',
+    savedAmount: 0,
+    targetAmount: 0,
+    targetDate: '',
+    category: categoryMap[template.category] || 'other',
+    priority: 'medium',
+    icon: Object.keys(GOAL_ICONS)[0],
+    color: GOAL_COLORS[0],
+    notes: 'Created from template: ' + template.name,
+    sortOrder: Date.now()
+  };
+
+  await dbPut('goals', goal);
+
+  // Create milestones
+  for (const m of template.milestones) {
+    const milestone = {
+      id: generateId(),
+      goalId: goalId,
+      name: m.name,
+      description: m.description,
+      targetDate: '',
+      completed: false,
+      completedAt: null,
+      createdAt: Date.now()
+    };
+    await dbPut('milestones', milestone);
+  }
+
+  // Create checklist items
+  for (const text of template.checklist) {
+    const item = {
+      id: generateId(),
+      goalId: goalId,
+      text: text,
+      completed: false,
+      completedAt: null,
+      createdAt: Date.now()
+    };
+    await dbPut('checklists', item);
+  }
+
+  closeTemplateModal();
+  showToast('Template applied! "' + goalName + '" is ready to crush.');
+  navigateTo('goals');
 }
 
 // ============================================
