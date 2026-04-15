@@ -795,6 +795,412 @@ textarea.form-control {
   .icon-picker {
     grid-template-columns: repeat(6, 1fr);
   }
+
+  .budget-savings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-breakdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .budget-income-expense-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   BUDGET & FUND PAGE
+   ============================================ */
+.budget-goal-selector {
+  margin-bottom: 20px;
+}
+
+.budget-goal-selector select {
+  font-size: 16px;
+  padding: 12px 14px;
+}
+
+.budget-goal-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 14px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.budget-goal-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 6px;
+}
+.budget-goal-icon svg { width: 100%; height: 100%; }
+
+.budget-goal-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.budget-goal-info h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.budget-goal-info p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.budget-savings-plan {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border-radius: var(--radius);
+  padding: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.budget-savings-plan h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.budget-savings-plan .budget-plan-subtitle {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 16px;
+}
+
+.budget-pay-freq {
+  margin-bottom: 16px;
+}
+
+.budget-pay-freq label {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(255,255,255,0.9);
+}
+
+.budget-pay-freq select {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 2px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+  font-size: 16px;
+  font-family: var(--font);
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  max-width: 260px;
+}
+
+.budget-pay-freq select option {
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+.budget-savings-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.budget-savings-card {
+  background: rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+
+.budget-savings-card.primary {
+  background: rgba(255,255,255,0.25);
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+.budget-savings-amount {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.budget-savings-card.primary .budget-savings-amount {
+  font-size: 32px;
+}
+
+.budget-savings-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.budget-breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.budget-breakdown-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 18px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.budget-breakdown-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.budget-breakdown-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-top: 4px;
+}
+
+.budget-income-expense-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.budget-section-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.budget-section-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.budget-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+
+.budget-list-item:last-child {
+  border-bottom: none;
+}
+
+.budget-list-item .budget-item-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.budget-list-item .budget-item-amount {
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.budget-list-item .budget-item-due {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.budget-list-remove {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+}
+
+.budget-list-remove:hover {
+  background: #fef2f2;
+}
+
+.dark .budget-list-remove:hover {
+  background: #450a0a;
+}
+
+.budget-add-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.budget-add-row input,
+.budget-add-row select {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.budget-add-row input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+}
+
+.budget-add-row .budget-input-name {
+  flex: 1;
+  min-width: 120px;
+}
+
+.budget-add-row .budget-input-amount {
+  width: 110px;
+}
+
+.budget-add-row .budget-input-due {
+  width: 80px;
+}
+
+.budget-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 0;
+  margin-top: 8px;
+  border-top: 2px solid var(--border);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.budget-total-row .budget-total-amount {
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.budget-disposable-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.budget-disposable-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.budget-disposable-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.budget-disposable-item {
+  text-align: center;
+  padding: 14px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+}
+
+.budget-disposable-item .bdi-value {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.budget-disposable-item .bdi-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-top: 2px;
+}
+
+.budget-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.budget-status-badge.on-track {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.budget-status-badge.stretch {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.budget-status-badge.unrealistic {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.dark .budget-status-badge.on-track {
+  background: #052e16;
+}
+
+.dark .budget-status-badge.stretch {
+  background: #451a03;
+}
+
+.dark .budget-status-badge.unrealistic {
+  background: #450a0a;
+}
+
+@media (max-width: 768px) {
+  .budget-savings-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .budget-breakdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .budget-income-expense-row {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-disposable-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -943,11 +1349,7 @@ textarea.form-control {
 
     <div class="page" id="page-budget">
       <div class="page-header"><div><h2>Budget &amp; Fund</h2><div class="page-header-subtitle">Plan how much to save per paycheck</div></div></div>
-      <div class="empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <h3>Coming Soon</h3>
-        <p>Budget planning tools will be available here.</p>
-      </div>
+      <div id="budgetContent"></div>
     </div>
 
     <div class="page" id="page-savings">
@@ -1332,6 +1734,7 @@ function navigateTo(page) {
   // Refresh content
   if (page === 'dashboard') renderDashboard();
   if (page === 'goals') renderGoalsList();
+  if (page === 'budget') renderBudgetPage();
 }
 
 // ============================================
@@ -1732,6 +2135,390 @@ function capitalize(str) {
 function formatDate(dateStr) {
   const d = new Date(dateStr + 'T00:00:00');
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+// ============================================
+// BUDGET & FUND PAGE
+// ============================================
+let budgetSelectedGoalId = null;
+
+async function renderBudgetPage() {
+  const container = document.getElementById('budgetContent');
+  const goals = await dbGet('goals');
+  const activeGoals = goals.filter(g => g.status === 'active');
+
+  if (activeGoals.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <h3>Create a Goal First</h3>
+        <p>You need at least one active goal to start budgeting. Add a goal with a target amount and date to get started.</p>
+        <button class="btn btn-primary" onclick="navigateTo('goals')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Go to Goals
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  // Auto-select first goal if none selected or selected goal no longer exists
+  if (!budgetSelectedGoalId || !activeGoals.find(g => g.id === budgetSelectedGoalId)) {
+    budgetSelectedGoalId = activeGoals[0].id;
+  }
+
+  const goal = activeGoals.find(g => g.id === budgetSelectedGoalId);
+  const payFrequency = goal.payFrequency || 'biweekly';
+  const remaining = Math.max(0, (goal.targetAmount || 0) - (goal.savedAmount || 0));
+  const pct = goal.targetAmount > 0 ? Math.min(100, ((goal.savedAmount || 0) / goal.targetAmount) * 100) : 0;
+
+  // Time calculations
+  const today = new Date();
+  const targetDate = goal.targetDate ? new Date(goal.targetDate + 'T00:00:00') : null;
+  let daysLeft = 0;
+  let monthsLeft = 0;
+  let timeText = 'No target date set';
+
+  if (targetDate && targetDate > today) {
+    daysLeft = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24));
+    monthsLeft = daysLeft / 30.44;
+    if (daysLeft > 60) {
+      timeText = Math.round(monthsLeft) + ' months';
+    } else {
+      timeText = daysLeft + ' days';
+    }
+  } else if (targetDate) {
+    timeText = 'Past due';
+  }
+
+  // Pay period calculations
+  let payPeriodsLeft = 0;
+  let payPeriodLabel = 'paycheck';
+  if (targetDate && targetDate > today) {
+    const weeksLeft = daysLeft / 7;
+    switch (payFrequency) {
+      case 'weekly':
+        payPeriodsLeft = weeksLeft;
+        payPeriodLabel = 'paycheck';
+        break;
+      case 'biweekly':
+        payPeriodsLeft = weeksLeft / 2;
+        payPeriodLabel = 'paycheck';
+        break;
+      case 'semimonthly':
+        payPeriodsLeft = monthsLeft * 2;
+        payPeriodLabel = 'paycheck';
+        break;
+      case 'monthly':
+        payPeriodsLeft = monthsLeft;
+        payPeriodLabel = 'paycheck';
+        break;
+    }
+    payPeriodsLeft = Math.max(1, Math.ceil(payPeriodsLeft));
+  }
+
+  const perPaycheck = payPeriodsLeft > 0 ? remaining / payPeriodsLeft : 0;
+  const perMonth = monthsLeft > 0 ? remaining / monthsLeft : 0;
+  const perWeek = daysLeft > 0 ? remaining / (daysLeft / 7) : 0;
+  const perDay = daysLeft > 0 ? remaining / daysLeft : 0;
+
+  const fmtMoney = (v) => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  // Income & expenses
+  const incomeItems = goal.budgetIncome || [];
+  const expenseItems = goal.budgetExpenses || [];
+  const totalIncome = incomeItems.reduce((s, i) => s + (parseFloat(i.amount) || 0), 0);
+  const totalExpenses = expenseItems.reduce((s, i) => s + (parseFloat(i.amount) || 0), 0);
+  const disposable = totalIncome - totalExpenses;
+
+  // Status
+  let statusClass = '';
+  let statusText = '';
+  if (totalIncome > 0) {
+    if (disposable >= perMonth) {
+      statusClass = 'on-track';
+      statusText = 'On Track';
+    } else if (disposable >= perMonth * 0.5) {
+      statusClass = 'stretch';
+      statusText = 'Stretch';
+    } else {
+      statusClass = 'unrealistic';
+      statusText = 'Unrealistic';
+    }
+  }
+
+  // Goal selector options
+  const goalOptions = activeGoals.map(g =>
+    `<option value="${g.id}" ${g.id === budgetSelectedGoalId ? 'selected' : ''}>${escapeHtml(g.name)}</option>`
+  ).join('');
+
+  // Pay frequency options
+  const freqOptions = [
+    ['weekly', 'Weekly'],
+    ['biweekly', 'Bi-weekly (every 2 weeks)'],
+    ['semimonthly', 'Semi-monthly (twice a month)'],
+    ['monthly', 'Monthly']
+  ].map(([val, label]) =>
+    `<option value="${val}" ${payFrequency === val ? 'selected' : ''}>${label}</option>`
+  ).join('');
+
+  // Income list HTML
+  const incomeListHtml = incomeItems.map((item, idx) => `
+    <div class="budget-list-item">
+      <span class="budget-item-name">${escapeHtml(item.name)}</span>
+      <span class="budget-item-amount">${fmtMoney(parseFloat(item.amount) || 0)}</span>
+      <button class="budget-list-remove" onclick="removeBudgetIncome(${idx})" title="Remove">✕</button>
+    </div>
+  `).join('');
+
+  // Expense list HTML
+  const expenseListHtml = expenseItems.map((item, idx) => `
+    <div class="budget-list-item">
+      <span class="budget-item-name">${escapeHtml(item.name)}</span>
+      <span class="budget-item-amount">${fmtMoney(parseFloat(item.amount) || 0)}</span>
+      <span class="budget-item-due">${item.dueDate ? 'Due: ' + item.dueDate : ''}</span>
+      <button class="budget-list-remove" onclick="removeBudgetExpense(${idx})" title="Remove">✕</button>
+    </div>
+  `).join('');
+
+  // Goal icon
+  const goalIconHtml = goal.icon ? makeIconSvg(goal.icon, 24) : '';
+  const goalColor = goal.color || '#f97316';
+
+  container.innerHTML = `
+    <!-- Goal Selector -->
+    <div class="budget-goal-selector card">
+      <div class="form-group" style="margin-bottom:0">
+        <label for="budgetGoalSelect" style="font-size:15px;">Select a Goal</label>
+        <select id="budgetGoalSelect" class="form-control" onchange="budgetSelectGoal(this.value)" style="font-size:16px;padding:12px 14px;">
+          ${goalOptions}
+        </select>
+      </div>
+      <div class="budget-goal-summary">
+        <div class="budget-goal-icon" style="background:${goalColor}20; color:${goalColor};">
+          ${goalIconHtml}
+        </div>
+        <div class="budget-goal-info">
+          <h3>${escapeHtml(goal.name)}</h3>
+          <p>Target: ${fmtMoney(goal.targetAmount || 0)} &bull; Saved: ${fmtMoney(goal.savedAmount || 0)} &bull; ${goal.targetDate ? formatDate(goal.targetDate) : 'No date set'}</p>
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill${pct >= 100 ? ' complete' : ''}" style="width:${pct.toFixed(1)}%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-top:4px;">
+          <span>${pct.toFixed(1)}% complete</span>
+          <span>${fmtMoney(remaining)} remaining</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Savings Plan -->
+    <div class="budget-savings-plan">
+      <h3>Your Savings Plan</h3>
+      <p class="budget-plan-subtitle">${remaining <= 0 ? 'Goal fully funded!' : (targetDate && targetDate > today ? 'How much to save to reach your goal on time' : 'Set a target date on your goal to see savings calculations')}</p>
+      ${targetDate && targetDate > today && remaining > 0 ? `
+      <div class="budget-pay-freq">
+        <label for="budgetPayFreq">How often do you get paid?</label>
+        <select id="budgetPayFreq" onchange="budgetChangePayFreq(this.value)">
+          ${freqOptions}
+        </select>
+      </div>
+      <div class="budget-savings-grid">
+        <div class="budget-savings-card primary">
+          <div class="budget-savings-amount">${fmtMoney(perPaycheck)}</div>
+          <div class="budget-savings-label">Per ${payPeriodLabel}</div>
+        </div>
+        <div class="budget-savings-card">
+          <div class="budget-savings-amount">${fmtMoney(perMonth)}</div>
+          <div class="budget-savings-label">Monthly</div>
+        </div>
+        <div class="budget-savings-card">
+          <div class="budget-savings-amount">${fmtMoney(perWeek)}</div>
+          <div class="budget-savings-label">Weekly</div>
+        </div>
+        <div class="budget-savings-card">
+          <div class="budget-savings-amount">${fmtMoney(perDay)}</div>
+          <div class="budget-savings-label">Daily</div>
+        </div>
+      </div>
+      ` : (remaining <= 0 ? '<p style="font-size:18px;font-weight:700;text-align:center;padding:20px 0;">Congratulations! You have saved enough to reach this goal.</p>' : '')}
+    </div>
+
+    <!-- Savings Breakdown -->
+    <div class="budget-breakdown-grid">
+      <div class="budget-breakdown-card">
+        <div class="budget-breakdown-value">${fmtMoney(goal.targetAmount || 0)}</div>
+        <div class="budget-breakdown-label">Total Goal</div>
+      </div>
+      <div class="budget-breakdown-card">
+        <div class="budget-breakdown-value">${fmtMoney(goal.savedAmount || 0)}</div>
+        <div class="budget-breakdown-label">Current Savings</div>
+      </div>
+      <div class="budget-breakdown-card">
+        <div class="budget-breakdown-value">${fmtMoney(remaining)}</div>
+        <div class="budget-breakdown-label">Still Needed</div>
+      </div>
+      <div class="budget-breakdown-card">
+        <div class="budget-breakdown-value">${timeText}</div>
+        <div class="budget-breakdown-label">Time Until Goal</div>
+      </div>
+    </div>
+
+    <!-- Income & Expenses Side by Side -->
+    <div class="budget-income-expense-row">
+      <!-- Monthly Income -->
+      <div class="budget-section-card">
+        <h4>Monthly Income</h4>
+        <div id="budgetIncomeList">
+          ${incomeListHtml || '<p style="color:var(--text-secondary);font-size:14px;padding:8px 0;">No income sources added yet.</p>'}
+        </div>
+        <div class="budget-total-row">
+          <span>Total Income</span>
+          <span class="budget-total-amount">${fmtMoney(totalIncome)}</span>
+        </div>
+        <div class="budget-add-row">
+          <input type="text" id="budgetIncomeName" class="budget-input-name" placeholder="Source name" maxlength="50">
+          <input type="number" id="budgetIncomeAmount" class="budget-input-amount" placeholder="Amount" min="0" step="0.01">
+          <button class="btn btn-primary btn-sm" onclick="addBudgetIncome()">Add</button>
+        </div>
+      </div>
+
+      <!-- Fixed Bills & Expenses -->
+      <div class="budget-section-card">
+        <h4>Fixed Bills &amp; Expenses</h4>
+        <div id="budgetExpenseList">
+          ${expenseListHtml || '<p style="color:var(--text-secondary);font-size:14px;padding:8px 0;">No expenses added yet.</p>'}
+        </div>
+        <div class="budget-total-row">
+          <span>Total Expenses</span>
+          <span class="budget-total-amount">${fmtMoney(totalExpenses)}</span>
+        </div>
+        <div class="budget-add-row">
+          <input type="text" id="budgetExpenseName" class="budget-input-name" placeholder="Expense name" maxlength="50">
+          <input type="number" id="budgetExpenseAmount" class="budget-input-amount" placeholder="Amount" min="0" step="0.01">
+          <input type="number" id="budgetExpenseDue" class="budget-input-due" placeholder="Due day" min="1" max="31" step="1">
+          <button class="btn btn-primary btn-sm" onclick="addBudgetExpense()">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disposable Income Summary -->
+    ${totalIncome > 0 ? `
+    <div class="budget-disposable-card">
+      <h4>Disposable Income Summary</h4>
+      <div class="budget-disposable-grid">
+        <div class="budget-disposable-item">
+          <div class="bdi-value" style="color:var(--success);">${fmtMoney(totalIncome)}</div>
+          <div class="bdi-label">Monthly Income</div>
+        </div>
+        <div class="budget-disposable-item">
+          <div class="bdi-value" style="color:var(--danger);">${fmtMoney(totalExpenses)}</div>
+          <div class="bdi-label">Fixed Expenses</div>
+        </div>
+        <div class="budget-disposable-item">
+          <div class="bdi-value" style="color:${disposable >= 0 ? 'var(--success)' : 'var(--danger)'};">${fmtMoney(disposable)}</div>
+          <div class="bdi-label">Disposable Income</div>
+        </div>
+      </div>
+      ${targetDate && targetDate > today && remaining > 0 ? `
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div style="font-size:15px;color:var(--text-secondary);">
+          Required monthly savings: <strong style="color:var(--text-primary);">${fmtMoney(perMonth)}</strong>
+        </div>
+        <span class="budget-status-badge ${statusClass}">${statusText === 'On Track' ? '&#10003;' : statusText === 'Stretch' ? '&#9888;' : '&#10007;'} ${statusText}</span>
+      </div>
+      ` : ''}
+    </div>
+    ` : ''}
+  `;
+}
+
+function budgetSelectGoal(goalId) {
+  budgetSelectedGoalId = goalId;
+  renderBudgetPage();
+}
+
+async function budgetChangePayFreq(freq) {
+  const goals = await dbGet('goals');
+  const goal = goals.find(g => g.id === budgetSelectedGoalId);
+  if (!goal) return;
+  goal.payFrequency = freq;
+  await dbPut('goals', goal);
+  renderBudgetPage();
+}
+
+async function addBudgetIncome() {
+  const nameEl = document.getElementById('budgetIncomeName');
+  const amountEl = document.getElementById('budgetIncomeAmount');
+  const name = nameEl.value.trim();
+  const amount = parseFloat(amountEl.value);
+
+  if (!name) { showToast('Please enter an income source name.'); return; }
+  if (!amount || amount <= 0) { showToast('Please enter a valid amount.'); return; }
+
+  const goals = await dbGet('goals');
+  const goal = goals.find(g => g.id === budgetSelectedGoalId);
+  if (!goal) return;
+
+  if (!goal.budgetIncome) goal.budgetIncome = [];
+  goal.budgetIncome.push({ name, amount });
+  await dbPut('goals', goal);
+
+  nameEl.value = '';
+  amountEl.value = '';
+  renderBudgetPage();
+  showToast('Income source added!');
+}
+
+async function removeBudgetIncome(idx) {
+  const goals = await dbGet('goals');
+  const goal = goals.find(g => g.id === budgetSelectedGoalId);
+  if (!goal || !goal.budgetIncome) return;
+
+  goal.budgetIncome.splice(idx, 1);
+  await dbPut('goals', goal);
+  renderBudgetPage();
+  showToast('Income source removed.');
+}
+
+async function addBudgetExpense() {
+  const nameEl = document.getElementById('budgetExpenseName');
+  const amountEl = document.getElementById('budgetExpenseAmount');
+  const dueEl = document.getElementById('budgetExpenseDue');
+  const name = nameEl.value.trim();
+  const amount = parseFloat(amountEl.value);
+  const dueDate = dueEl.value ? parseInt(dueEl.value) : null;
+
+  if (!name) { showToast('Please enter an expense name.'); return; }
+  if (!amount || amount <= 0) { showToast('Please enter a valid amount.'); return; }
+  if (dueDate && (dueDate < 1 || dueDate > 31)) { showToast('Due day must be 1-31.'); return; }
+
+  const goals = await dbGet('goals');
+  const goal = goals.find(g => g.id === budgetSelectedGoalId);
+  if (!goal) return;
+
+  if (!goal.budgetExpenses) goal.budgetExpenses = [];
+  goal.budgetExpenses.push({ name, amount, dueDate: dueDate ? String(dueDate) : '' });
+  await dbPut('goals', goal);
+
+  nameEl.value = '';
+  amountEl.value = '';
+  dueEl.value = '';
+  renderBudgetPage();
+  showToast('Expense added!');
+}
+
+async function removeBudgetExpense(idx) {
+  const goals = await dbGet('goals');
+  const goal = goals.find(g => g.id === budgetSelectedGoalId);
+  if (!goal || !goal.budgetExpenses) return;
+
+  goal.budgetExpenses.splice(idx, 1);
+  await dbPut('goals', goal);
+  renderBudgetPage();
+  showToast('Expense removed.');
 }
 
 // ============================================
