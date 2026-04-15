@@ -1741,6 +1741,299 @@ textarea.form-control {
     opacity: 1;
   }
 }
+
+/* ============================================
+   MILESTONES PAGE
+   ============================================ */
+.milestones-goal-selector {
+  margin-bottom: 20px;
+}
+
+.milestones-goal-selector select {
+  font-size: 16px;
+  padding: 12px 14px;
+}
+
+.milestones-goal-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 14px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.milestones-goal-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 6px;
+}
+.milestones-goal-icon svg { width: 100%; height: 100%; }
+
+.milestones-goal-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.milestones-goal-info h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.milestones-goal-info p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.milestones-progress-card {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border-radius: var(--radius);
+  padding: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.milestones-progress-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.milestones-progress-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.milestones-progress-stat {
+  background: rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+
+.milestones-progress-stat .stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.milestones-progress-stat .stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.milestones-progress-bar {
+  width: 100%;
+  height: 14px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.milestones-progress-bar-fill {
+  height: 100%;
+  background: #fff;
+  border-radius: 7px;
+  transition: width 0.4s ease;
+}
+
+.milestones-progress-pct {
+  text-align: right;
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 6px;
+}
+
+.milestones-form-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.milestones-form-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.milestones-form-card .form-group {
+  margin-bottom: 14px;
+}
+
+.milestones-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.btn-add-milestone {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 4px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: background 0.15s ease;
+}
+
+.btn-add-milestone:hover {
+  background: var(--accent-hover);
+}
+
+.milestones-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  margin-top: 8px;
+}
+
+.milestone-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+  transition: opacity 0.2s ease;
+}
+
+.milestone-card.completed {
+  opacity: 0.7;
+}
+
+.milestone-checkbox {
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  transition: all 0.15s ease;
+  margin-top: 1px;
+}
+
+.milestone-checkbox:hover {
+  border-color: var(--accent);
+}
+
+.milestone-checkbox.checked {
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.milestone-checkbox.checked svg {
+  display: block;
+}
+
+.milestone-checkbox svg {
+  display: none;
+  width: 16px;
+  height: 16px;
+}
+
+.milestone-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.milestone-name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.milestone-card.completed .milestone-name {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.milestone-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.milestone-date {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.milestone-date.overdue {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.milestone-delete {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.milestone-delete:hover {
+  background: rgba(239,68,68,0.1);
+  color: var(--danger);
+}
+
+.milestones-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .milestones-progress-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .milestones-form-row {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 <body>
@@ -1879,11 +2172,7 @@ textarea.form-control {
     <!-- ======== PLACEHOLDER PAGES ======== -->
     <div class="page" id="page-milestones">
       <div class="page-header"><div><h2>Milestones</h2><div class="page-header-subtitle">Break goals into achievable steps</div></div></div>
-      <div class="empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-        <h3>Coming Soon</h3>
-        <p>Add a goal first, then break it down into milestones here.</p>
-      </div>
+      <div id="milestonesContent"></div>
     </div>
 
     <div class="page" id="page-budget">
@@ -2265,6 +2554,7 @@ function navigateTo(page) {
   // Refresh content
   if (page === 'dashboard') renderDashboard();
   if (page === 'goals') renderGoalsList();
+  if (page === 'milestones') renderMilestonesPage();
   if (page === 'budget') renderBudgetPage();
   if (page === 'savings') renderSavingsPage();
   if (page === 'checklist') renderChecklistPage();
@@ -3502,6 +3792,209 @@ async function deleteChecklistItem(itemId) {
   await dbDelete('checklists', itemId);
   renderChecklistPage();
   showToast('Item removed.');
+}
+
+// ============================================
+// MILESTONES PAGE
+// ============================================
+let milestonesSelectedGoalId = null;
+
+async function renderMilestonesPage() {
+  const container = document.getElementById('milestonesContent');
+  const goals = await dbGet('goals');
+  const activeGoals = goals.filter(g => g.status === 'active');
+
+  if (activeGoals.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        <h3>Create a Goal First</h3>
+        <p>You need at least one active goal to start adding milestones. Add a goal to get started.</p>
+        <button class="btn btn-primary" onclick="navigateTo('goals')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Go to Goals
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  if (!milestonesSelectedGoalId || !activeGoals.find(g => g.id === milestonesSelectedGoalId)) {
+    milestonesSelectedGoalId = activeGoals[0].id;
+  }
+
+  const goal = activeGoals.find(g => g.id === milestonesSelectedGoalId);
+  const allMilestones = await dbGet('milestones');
+  const milestones = allMilestones.filter(m => m.goalId === milestonesSelectedGoalId);
+
+  const totalCount = milestones.length;
+  const completedCount = milestones.filter(m => m.completed).length;
+  const pctComplete = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+
+  // Sort: by targetDate (soonest first, empty dates last), then by createdAt
+  const sortMilestones = (arr) => arr.sort((a, b) => {
+    if (a.targetDate && b.targetDate) return a.targetDate.localeCompare(b.targetDate);
+    if (a.targetDate && !b.targetDate) return -1;
+    if (!a.targetDate && b.targetDate) return 1;
+    return (a.createdAt || 0) - (b.createdAt || 0);
+  });
+
+  const inProgress = sortMilestones(milestones.filter(m => !m.completed));
+  const completed = sortMilestones(milestones.filter(m => m.completed));
+
+  const goalOptions = activeGoals.map(g =>
+    `<option value="${g.id}" ${g.id === milestonesSelectedGoalId ? 'selected' : ''}>${escapeHtml(g.name)}</option>`
+  ).join('');
+
+  const goalIconHtml = goal.icon ? makeIconSvg(goal.icon, 24) : '';
+  const goalColor = goal.color || '#f97316';
+
+  const today = new Date();
+  const todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+
+  const renderMilestoneCard = (m) => {
+    const isOverdue = !m.completed && m.targetDate && m.targetDate < todayStr;
+    return `
+    <div class="milestone-card${m.completed ? ' completed' : ''}">
+      <div class="milestone-checkbox${m.completed ? ' checked' : ''}" onclick="toggleMilestone('${m.id}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="milestone-content">
+        <div class="milestone-name">${escapeHtml(m.name)}</div>
+        ${m.description ? `<div class="milestone-desc">${escapeHtml(m.description)}</div>` : ''}
+        ${m.targetDate ? `<div class="milestone-date${isOverdue ? ' overdue' : ''}">${isOverdue ? 'Overdue — ' : 'Due: '}${formatDate(m.targetDate)}</div>` : ''}
+      </div>
+      <button class="milestone-delete" onclick="deleteMilestone('${m.id}')" title="Delete milestone">&times;</button>
+    </div>`;
+  };
+
+  const inProgressHtml = inProgress.length > 0
+    ? inProgress.map(renderMilestoneCard).join('')
+    : '<div class="milestones-empty">No milestones in progress. Add one below!</div>';
+
+  const completedHtml = completed.length > 0
+    ? completed.map(renderMilestoneCard).join('')
+    : '';
+
+  container.innerHTML = `
+    <!-- Goal Selector -->
+    <div class="milestones-goal-selector card">
+      <div class="form-group" style="margin-bottom:0">
+        <label for="milestonesGoalSelect" style="font-size:15px;">Select a Goal</label>
+        <select id="milestonesGoalSelect" class="form-control" onchange="milestonesSelectGoal(this.value)" style="font-size:16px;padding:12px 14px;">
+          ${goalOptions}
+        </select>
+      </div>
+      <div class="milestones-goal-summary">
+        <div class="milestones-goal-icon" style="background:${goalColor}20; color:${goalColor};">
+          ${goalIconHtml}
+        </div>
+        <div class="milestones-goal-info">
+          <h3>${escapeHtml(goal.name)}</h3>
+          <p>Target: $${(goal.targetAmount || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} &bull; ${goal.targetDate ? formatDate(goal.targetDate) : 'No date set'}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Overview -->
+    <div class="milestones-progress-card">
+      <h3>Milestone Progress</h3>
+      <div class="milestones-progress-stats">
+        <div class="milestones-progress-stat">
+          <div class="stat-value">${completedCount} / ${totalCount}</div>
+          <div class="stat-label">Completed</div>
+        </div>
+        <div class="milestones-progress-stat">
+          <div class="stat-value">${pctComplete}%</div>
+          <div class="stat-label">Progress</div>
+        </div>
+      </div>
+      <div class="milestones-progress-bar">
+        <div class="milestones-progress-bar-fill" style="width:${pctComplete}%"></div>
+      </div>
+      <div class="milestones-progress-pct">${completedCount} of ${totalCount} milestones completed</div>
+    </div>
+
+    <!-- Add Milestone Form -->
+    <div class="milestones-form-card">
+      <h4>Add Milestone</h4>
+      <div class="form-group">
+        <label for="milestoneName">Milestone Name</label>
+        <input type="text" id="milestoneName" class="form-control" placeholder="e.g. Save first $500" maxlength="100" style="font-size:16px;padding:12px 14px;">
+      </div>
+      <div class="milestones-form-row">
+        <div class="form-group">
+          <label for="milestoneDate">Target Date (optional)</label>
+          <input type="date" id="milestoneDate" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="milestoneDesc">Description (optional)</label>
+          <input type="text" id="milestoneDesc" class="form-control" placeholder="Short description" maxlength="200">
+        </div>
+      </div>
+      <button class="btn-add-milestone" onclick="addMilestone()">+ Add Milestone</button>
+    </div>
+
+    <!-- Milestones List -->
+    <div class="milestones-section-title">In Progress (${inProgress.length})</div>
+    ${inProgressHtml}
+    ${completed.length > 0 ? `
+      <div class="milestones-section-title" style="margin-top:20px;">Completed (${completed.length})</div>
+      ${completedHtml}
+    ` : ''}
+  `;
+}
+
+function milestonesSelectGoal(goalId) {
+  milestonesSelectedGoalId = goalId;
+  renderMilestonesPage();
+}
+
+async function addMilestone() {
+  const nameEl = document.getElementById('milestoneName');
+  const dateEl = document.getElementById('milestoneDate');
+  const descEl = document.getElementById('milestoneDesc');
+
+  const name = nameEl.value.trim();
+  if (!name) {
+    showToast('Please enter a milestone name.');
+    nameEl.focus();
+    return;
+  }
+
+  const milestone = {
+    id: generateId(),
+    goalId: milestonesSelectedGoalId,
+    name: name,
+    description: descEl.value.trim(),
+    targetDate: dateEl.value || '',
+    completed: false,
+    completedAt: null,
+    createdAt: Date.now()
+  };
+
+  await dbPut('milestones', milestone);
+  renderMilestonesPage();
+  showToast('Milestone added!');
+}
+
+async function toggleMilestone(milestoneId) {
+  const allMilestones = await dbGet('milestones');
+  const milestone = allMilestones.find(m => m.id === milestoneId);
+  if (!milestone) return;
+
+  milestone.completed = !milestone.completed;
+  milestone.completedAt = milestone.completed ? Date.now() : null;
+
+  await dbPut('milestones', milestone);
+  renderMilestonesPage();
+  showToast(milestone.completed ? 'Milestone completed!' : 'Milestone reopened.');
+}
+
+async function deleteMilestone(milestoneId) {
+  await dbDelete('milestones', milestoneId);
+  renderMilestonesPage();
+  showToast('Milestone deleted.');
 }
 
 // ============================================
