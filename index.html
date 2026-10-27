@@ -159,6 +159,11 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
 .verse{text-align:center;margin:28px auto 8px;max-width:340px;padding-top:18px;border-top:1px solid var(--border)}
 .verse p{font-family:var(--font-display);font-size:16px;line-height:1.4;color:var(--text);font-style:italic}
 .verse cite{display:block;margin-top:4px;font-size:12px;font-style:normal;letter-spacing:.04em;color:var(--muted)}
+.verse{cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.verse.swap p,.verse.swap cite{animation:vfade .45s ease}
+@keyframes vfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.verse .vhint{display:block;margin-top:6px;font-size:11px;color:var(--faint)}
+.niv-note{font-size:11.5px;color:var(--faint);line-height:1.45;margin-top:4px}
 
 .grid-card{margin-top:14px}
 .grid-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
@@ -195,6 +200,44 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
 @keyframes rumble{0%,100%{transform:none}10%{transform:translate(-2px,1px)}20%{transform:translate(2px,-1px)}30%{transform:translate(-2px,-1px)}40%{transform:translate(2px,1px)}50%{transform:translate(-1px,2px)}60%{transform:translate(1px,-2px)}70%{transform:translate(-2px,0)}80%{transform:translate(2px,1px)}90%{transform:translate(-1px,-1px)}}
 .boxes.compact{grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:5px}
 .boxes.compact .box{font-size:11px;border-radius:8px}
+/* picture grids */
+.boxes.shape{gap:3px;margin:0 auto}
+.boxes.shape .box{border-radius:5px;font-size:10px;border-width:1px;padding:0}
+.boxes.shape.tiny .box .amt{display:none}
+.boxes.shape .box.on::after{background-size:62%}
+.mini-grid.shape{display:grid;gap:2px;max-width:150px}
+.mini-grid.shape i{width:auto;height:auto;aspect-ratio:1;border-radius:1.5px}
+.look-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.look{border:1.5px solid var(--border);border-radius:12px;padding:8px 2px 6px;background:var(--surface);font-size:11.5px;font-weight:600;color:var(--muted);display:grid;justify-items:center;gap:4px}
+.look svg{width:34px;height:34px;display:block}
+.look[aria-pressed='true']{border-color:var(--sage);background:var(--sage-soft);color:var(--sage-ink)}
+/* goal photo */
+.cover{margin:-18px -18px 16px;height:160px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;overflow:hidden;background:var(--surface-2)}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.gc-icon.ph{background-size:cover;background-position:center}
+.photo-pick{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ph-prev{width:64px;height:64px;border-radius:12px;background:var(--surface-2) center/cover no-repeat;border:1.5px dashed var(--border-strong);flex-shrink:0}
+.ph-prev.has{border-style:solid;border-color:var(--border)}
+/* rewards */
+details.rewards{margin:0 0 14px;border:1px solid var(--border);border-radius:14px;padding:0 12px}
+details.rewards>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:12px 0;font-weight:600;font-size:14px;color:var(--muted)}
+details.rewards>summary::-webkit-details-marker{display:none}
+details.rewards[open]>summary .chev{transform:rotate(180deg)}
+details.rewards .help{font-size:12.5px;color:var(--faint);margin:-4px 0 10px}
+.reward-pill{margin-top:12px;display:flex;gap:10px;align-items:flex-start;font-size:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:11px 14px;color:var(--text)}
+.reward-pill b{font-weight:600}
+.reward-list{display:grid;gap:8px;margin:14px 0 4px;text-align:left}
+/* checklist goals */
+.tasks{display:grid}
+.task{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;text-align:left;width:100%;padding:10px 0;border-top:1px solid var(--border)}
+.task:first-child{border-top:0}
+.task .box{width:44px;font-size:13px}
+.task .tt{font-weight:600;font-size:15px;line-height:1.3;color:var(--text)}
+.task .th{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.4}
+.task.done .tt{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--sage);text-decoration-thickness:2px}
+.task .fx-amt{display:none}
+.note{margin-top:12px;font-size:13px;line-height:1.5;color:var(--muted);background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
+.note b{color:var(--text)}
 
 .hist{margin-top:14px}
 .hist-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--border)}
@@ -256,7 +299,7 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
 .money.bigm::before{font-size:22px}
 .money.bigm .input{padding-left:34px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .choice{border:1.5px solid var(--border);border-radius:14px;padding:10px 8px;text-align:center;background:var(--surface);font-size:13px;font-weight:600;color:var(--muted)}
 .choice small{display:block;font-weight:500;font-size:11.5px;color:var(--faint);margin-top:2px}
 .choice[aria-pressed='true']{border-color:var(--sage);background:var(--sage-soft);color:var(--sage-ink)}
@@ -309,6 +352,12 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
   .p-foot{margin-top:6px;font-size:10px;color:#777;text-align:center}
   .p-verse{margin-top:14px;font-size:12px;font-style:italic;text-align:center;color:#444}
   .p-verse span{font-style:normal;color:#777;font-size:10px}
+  .p-verse small{display:block;font-style:normal;color:#999;font-size:8px;margin-top:4px}
+  .p-tasks{display:grid;gap:8px;margin-top:6px}
+  .p-task{display:flex;gap:10px;align-items:flex-start;font-size:13px;break-inside:avoid}
+  .p-task i{width:16px;height:16px;border:1.5px solid #9aa6a2;border-radius:4px;flex-shrink:0;margin-top:1px}
+  .p-task i.on{background:#5e7c73!important;border-color:#5e7c73;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .p-task small{display:block;color:#666;font-size:11px}
 }
 @media (max-width:420px){
   .summary{grid-template-columns:1fr 1fr}
@@ -382,6 +431,8 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
           <div class="seg" role="group" aria-label="Appearance" id="theme-seg"><button data-theme-set="light">Light</button><button data-theme-set="dark">Dark</button><button data-theme-set="auto">Auto</button></div></div>
         <div class="set-row"><div><div class="t">Crush animation</div><div class="s">Boxes slam, shatter, and stamp when you crush them</div></div>
           <div class="seg" role="group" aria-label="Crush animation" id="anim-seg"><button data-anim-set="on">On</button><button data-anim-set="off">Off</button></div></div>
+        <div class="set-row"><div><div class="t">Daily verse</div><div class="s">A new verse about saving and stewardship each day. Tap it for another.</div></div>
+          <div class="seg" role="group" aria-label="Daily verse" id="verse-seg"><button data-verse-set="on">On</button><button data-verse-set="off">Off</button></div></div>
       </div>
       <div class="section-h"><h2>Backup</h2></div>
       <div class="card">
@@ -398,6 +449,7 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
         <div class="set-row"><div><div class="t">Private by design</div><div class="s">No account, no ads, no bank login. Nothing you enter leaves your device.</div></div></div>
         <div class="set-row"><div><div class="t">Install on your phone</div><div class="s">iPhone: Safari › Share › Add to Home Screen. Android: Chrome menu › Install app.</div></div></div>
         <div class="set-row"><div><div class="t">Help</div><div class="s"><a href="mailto:cleartrackapps@gmail.com" style="color:var(--sage)">cleartrackapps@gmail.com</a></div></div></div>
+        <div class="set-row"><div><div class="t">Scripture</div><div class="niv-note">Scripture quotations taken from The Holy Bible, New International Version® NIV® Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.™ Used by permission. All rights reserved worldwide.</div></div></div>
         <div class="set-row"><div><div class="t">Version</div><div class="s num" id="ver"></div></div><button class="btn btn-ghost btn-sm" id="refresh-btn">Check for update</button></div>
       </div>
       <div class="section-h"><h2>Start over</h2></div>
@@ -407,7 +459,7 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
       </div>
     </section>
   </main>
-  <footer class="verse"><p>“Whoever gathers money little by little makes it grow.”</p><cite>Proverbs 13:11b (NIV)</cite></footer>
+  <footer class="verse" id="verse" role="button" tabindex="0" aria-label="Verse of the day. Tap for another verse."><p>“Whoever gathers money little by little makes it grow.”</p><cite>Proverbs 13:11b (NIV)</cite></footer>
 </div>
 
 <nav class="nav" aria-label="Main">
@@ -429,7 +481,7 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
 <script>
 (function(){
 'use strict';
-var APP_VERSION='1.2.0';
+var APP_VERSION='1.3.0';
 var DEMO=!!window.GC_DEMO;
 var KEY='goalCrusher_v1';
 var BACKUP_NAME='goal-crusher-backup.json';
@@ -462,8 +514,8 @@ function load(){
   state.settings=state.settings||{theme:'auto'};
 }
 function save(){
-  if(DEMO)return;
-  try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){toast('Could not save. Your browser storage may be full.')}
+  if(DEMO)return true;
+  try{localStorage.setItem(KEY,JSON.stringify(state));return true}catch(e){toast('Could not save. Your browser storage may be full.');return false}
 }
 
 /* ---------- grid math ---------- */
@@ -485,11 +537,12 @@ function totalSaved(g){return g.deposits.reduce(function(s,d){return s+d.amount}
 function crushedValue(g){var s=0;for(var k in g.crushed)s+=g.boxes[k]||0;return s}
 /* even goals fill boxes in order from the running total */
 function evenFill(g){var t=totalSaved(g),run=0,filled=0;for(var i=0;i<g.boxes.length;i++){if(run+g.boxes[i]<=t){run+=g.boxes[i];filled++}else break}return {filled:filled,leftover:t-run}}
+function isTask(g){return g.kind==='tasks'}
 function boxesCrushed(g){return g.mode==='even'?evenFill(g).filled:Object.keys(g.crushed).length}
 function isOn(g,i){if(g.mode==='even')return i<evenFill(g).filled;return !!g.crushed[i]}
 function extraAvail(g){return g.mode==='even'?0:totalSaved(g)-crushedValue(g)}
 function pctLabel(p){return p>0&&p<1?'<1%':Math.floor(p)+'%'}
-function pctOf(g){return g.target>0?Math.min(100,totalSaved(g)/g.target*100):0}
+function pctOf(g){if(isTask(g))return g.boxes.length?boxesCrushed(g)/g.boxes.length*100:0;return g.target>0?Math.min(100,totalSaved(g)/g.target*100):0}
 function rebalanceExtra(g){
   // if freeform money dropped below what "extra"-crushed boxes need, un-crush the newest extra boxes
   if(g.mode==='even')return;
@@ -546,6 +599,124 @@ function previewText(g,amt){
   return money(r.extra)+' goes to extra savings until it covers a box.';
 }
 
+
+/* ---------- picture grids ---------- */
+function inPoly(x,y,pts){var c=false;for(var i=0,j=pts.length-1;i<pts.length;j=i++){var a=pts[i],b=pts[j];if(((a[1]>y)!==(b[1]>y))&&(x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0]))c=!c}return c}
+function inCirc(x,y,cx,cy,r){return (x-cx)*(x-cx)+(y-cy)*(y-cy)<=r*r}
+var STAR_PTS=(function(){var p=[];for(var k=0;k<10;k++){var a=-Math.PI/2+k*Math.PI/5,r=k%2?.2:.5;p.push([.5+r*Math.cos(a),.52+r*Math.sin(a)])}return p})();
+/* shapes use x 0..1 and y 0..a (a = height / width) */
+var SHAPES={
+  heart:{name:'Heart',a:.9,f:function(x,y){return inCirc(x,y,.28,.27,.26)||inCirc(x,y,.72,.27,.26)||inPoly(x,y,[[.035,.36],[.965,.36],[.5,.89]])}},
+  star:{name:'Star',a:.96,f:function(x,y){return inPoly(x,y,STAR_PTS)}},
+  house:{name:'House',a:1,f:function(x,y){if(x>.41&&x<.59&&y>.7)return false;if(x>.7&&x<.82&&y>.06&&y<.3)return true;return inPoly(x,y,[[.5,.02],[1,.47],[.88,.47],[.88,1],[.12,1],[.12,.47],[0,.47]])}},
+  tree:{name:'Tree',a:1.22,f:function(x,y){var Y=y/1.22;if(Y>.86)return x>.39&&x<.61;function tier(t,b,tw,bw){return Y>=t&&Y<=b&&Math.abs(x-.5)<=(tw+(Y-t)/(b-t)*(bw-tw))/2}return tier(0,.33,.06,.52)||tier(.3,.6,.26,.76)||tier(.56,.87,.4,1)}},
+  car:{name:'Car',a:.56,f:function(x,y){if(inCirc(x,y,.25,.44,.105)||inCirc(x,y,.75,.44,.105))return true;if(x>=.02&&x<=.98&&y>=.22&&y<=.45)return true;return inPoly(x,y,[[.3,.04],[.66,.04],[.8,.23],[.17,.23]])}},
+  gift:{name:'Gift',a:1,f:function(x,y){if(x>=.09&&x<=.91&&y>=.36&&y<=1)return true;if(x>=.02&&x<=.98&&y>=.23&&y<=.37)return true;return inCirc(x,y,.37,.14,.11)||inCirc(x,y,.63,.14,.11)}}
+};
+var SHAPE_KEYS=['heart','star','house','tree','car','gift'];
+var shapeCache={};
+function shapeLayout(key,n){
+  var S=SHAPES[key];if(!S||n<1)return null;var id=key+':'+n;if(shapeCache[id])return shapeCache[id];
+  function grid(cols,sc){
+    var rows=Math.max(2,Math.round(cols*S.a)),cells=[];
+    for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){
+      var cov=0;for(var sy=0;sy<3;sy++)for(var sx=0;sx<3;sx++){var px=((c+(sx+.5)/3)/cols-.5)/sc+.5,py=(((r+(sy+.5)/3)/rows)-.5)/sc+.5;if(px>=0&&px<=1&&py>=0&&py<=1&&S.f(px,py*S.a))cov++}
+      if(cov>=5)cells.push({r:r,c:c,cov:cov});
+    }
+    return {cols:cols,rows:rows,cells:cells};
+  }
+  var best=null,first=0;
+  for(var cols=3;cols<=90&&!first;cols++)if(grid(cols,1).cells.length>=n)first=cols;
+  if(!first)return null;
+  var tol=Math.max(1,Math.round(n*.03)),pick=null;
+  outer:for(var cc=first;cc<=first+2;cc++)for(var sc=1;sc>=.87;sc-=.015){var gr=grid(cc,sc),ex=gr.cells.length-n;if(ex<0)continue;if(ex<=tol){pick=gr;break outer}if(!best||ex<best.cells.length-n)best=gr}
+  if(pick)best=pick;
+  if(!best)return null;
+  var extra=best.cells.length-n;
+  if(extra>0){
+    var mid=(best.cols-1)/2,map={},drop=new Set();best.cells.forEach(function(x){map[x.r+','+x.c]=x});
+    var order=best.cells.filter(function(x){return x.c<mid}).sort(function(a,b){return a.cov-b.cov||Math.abs(b.c-mid)-Math.abs(a.c-mid)||a.r-b.r});
+    for(var i=0;i<order.length&&extra-drop.size>=2;i++){var m=map[order[i].r+','+(best.cols-1-order[i].c)];if(m){drop.add(order[i]);drop.add(m)}}
+    if(drop.size<extra){var rest=best.cells.filter(function(x){return !drop.has(x)}).sort(function(a,b){return (a.c===mid?0:1)-(b.c===mid?0:1)||a.cov-b.cov||b.r-a.r});for(var j=0;drop.size<extra;j++)drop.add(rest[j])}
+    best.cells=best.cells.filter(function(x){return !drop.has(x)});
+  }
+  best.cells.sort(function(a,b){return b.r-a.r||a.c-b.c}); // fill from the bottom up, like a jar
+  var r0=1e9,r1=-1,c0=1e9,c1=-1;best.cells.forEach(function(x){r0=Math.min(r0,x.r);r1=Math.max(r1,x.r);c0=Math.min(c0,x.c);c1=Math.max(c1,x.c)});
+  var out={cols:c1-c0+1,rows:r1-r0+1,cells:best.cells.map(function(x){return {r:x.r-r0,c:x.c-c0}})};
+  return shapeCache[id]=out;
+}
+function shapeOf(g){return !isTask(g)&&g.shape&&SHAPES[g.shape]&&g.boxes.length>=30?shapeLayout(g.shape,g.boxes.length):null}
+function lookSvg(key){
+  var col='currentColor';
+  if(!key){var o='';for(var r=0;r<5;r++)for(var c=0;c<5;c++)o+='<rect x="'+(c*7+1)+'" y="'+(r*7+1)+'" width="5.6" height="5.6" rx="1.2" fill="'+col+'" opacity="'+(r>2?1:.35)+'"/>';return '<svg viewBox="0 0 36 36" aria-hidden="true">'+o+'</svg>'}
+  var L=shapeLayout(key,110),m=Math.max(L.cols,L.rows),u=34/m,ox=(36-L.cols*u)/2,oy=(36-L.rows*u)/2,o2='';
+  L.cells.forEach(function(x,i){o2+='<rect x="'+(ox+x.c*u+.3).toFixed(2)+'" y="'+(oy+x.r*u+.3).toFixed(2)+'" width="'+(u-.6).toFixed(2)+'" height="'+(u-.6).toFixed(2)+'" rx=".6" fill="'+col+'" opacity="'+(i<44?1:.35)+'"/>'});
+  return '<svg viewBox="0 0 36 36" aria-hidden="true">'+o2+'</svg>';
+}
+
+/* ---------- verse of the day ---------- */
+var VERSES=[
+  ['Whoever gathers money little by little makes it grow.','Proverbs 13:11b'],
+  ['The wise store up choice food and olive oil, but fools gulp theirs down.','Proverbs 21:20'],
+  ['The plans of the diligent lead to profit as surely as haste leads to poverty.','Proverbs 21:5'],
+  ['Suppose one of you wants to build a tower. Won’t you first sit down and estimate the cost to see if you have enough money to complete it?','Luke 14:28'],
+  ['Whoever can be trusted with very little can also be trusted with much.','Luke 16:10a'],
+  ['On the first day of every week, each one of you should set aside a sum of money in keeping with your income, saving it up.','1 Corinthians 16:2a'],
+  ['Ants are creatures of little strength, yet they store up their food in the summer.','Proverbs 30:25'],
+  ['The rich rule over the poor, and the borrower is slave to the lender.','Proverbs 22:7'],
+  ['Be sure you know the condition of your flocks, give careful attention to your herds.','Proverbs 27:23'],
+  ['For where your treasure is, there your heart will be also.','Matthew 6:21'],
+  ['Keep your lives free from the love of money and be content with what you have.','Hebrews 13:5a'],
+  ['Commit to the Lord whatever you do, and he will establish your plans.','Proverbs 16:3'],
+  ['Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.','2 Corinthians 9:7'],
+  ['Honor the Lord with your wealth, with the firstfruits of all your crops.','Proverbs 3:9']
+];
+var verseShift=0;
+function verseToday(){var d=new Date(),day=Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000);return VERSES[((day+verseShift)%VERSES.length+VERSES.length)%VERSES.length]}
+function verseOn(){return state.settings.verse!==false}
+function renderVerse(anim){
+  var el=$('#verse');if(!el)return;el.hidden=!verseOn();var v=verseToday();
+  el.innerHTML='<p>“'+v[0]+'”</p><cite>'+v[1]+' (NIV)</cite><span class="vhint">Tap for another verse · NIV® © Biblica, Inc. Used by permission.</span>';
+  if(anim){el.classList.remove('swap');void el.offsetWidth;el.classList.add('swap')}
+}
+
+/* ---------- goal photo ---------- */
+function readPhoto(file,cb){
+  var rd=new FileReader();
+  rd.onload=function(){var img=new Image();img.onload=function(){var m=720,s=Math.min(1,m/Math.max(img.width,img.height)),cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(img.width*s));cv.height=Math.max(1,Math.round(img.height*s));cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);try{cb(cv.toDataURL('image/jpeg',.72))}catch(e){cb(null)}};img.onerror=function(){cb(null)};img.src=rd.result};
+  rd.onerror=function(){cb(null)};rd.readAsDataURL(file);
+}
+function safePhoto(p){return typeof p==='string'&&/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+\/=]+$/.test(p)?p:null}
+
+/* ---------- milestone rewards ---------- */
+function rewardFor(g,m){return g.rewards&&g.rewards[m]?String(g.rewards[m]):''}
+function nextReward(g){var p=pctOf(g),ms=[25,50,75,100];for(var i=0;i<ms.length;i++){if(p<ms[i]&&rewardFor(g,ms[i]))return [ms[i],rewardFor(g,ms[i])]}return null}
+
+/* ---------- countdown ---------- */
+function splitDays(tC,days){var base=Math.floor(tC/100/days)*100,rem=tC-base*days,ups=Math.floor(rem/100),out=[];for(var i=0;i<days;i++)out.push(base+(i<ups?100:0));out[days-1]+=rem-ups*100;return out}
+function nextDate(m,d,minDays){var t=new Date(),y=t.getFullYear(),s=function(yy){return yy+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0')};if(daysBetween(parseDay(todayStr()),parseDay(s(y)))<(minDays||0))y++;return s(y)}
+
+/* ---------- tax refund checklist ---------- */
+var TAX_STEPS=[
+  ['Find last year’s return','It shows what you filed last time, and your software may ask for numbers from it.'],
+  ['Collect your W-2s','Employers have until January 31 to send them.'],
+  ['Collect your 1099s','Side gigs, contract work, bank interest, unemployment, or retirement payouts.'],
+  ['Gather your 1098s','Mortgage interest, student loan interest, or tuition (1098-T).'],
+  ['Childcare and education costs','Provider names, tax ID numbers, and what you paid.'],
+  ['Confirm Social Security numbers','For you, your spouse, and each dependent, exactly as they appear on the cards.'],
+  ['Get your bank numbers','Routing and account numbers for direct deposit, the fastest way to get your refund.'],
+  ['Choose how you’ll file','Free filing software, paid software, or a tax preparer.'],
+  ['Enter everything and review','Typos in names, Social Security numbers, or bank numbers can hold up a refund.'],
+  ['E-file with direct deposit','The IRS issues most of these refunds in less than 21 days.'],
+  ['Get the acceptance notice','Your software or preparer lets you know once the IRS accepts your return.'],
+  ['Track it with Where’s My Refund?','Status shows up about 24 hours after you e‑file, at IRS.gov/refunds.'],
+  ['Refund received','Check your bank account. You got it done early.'],
+  ['Make a plan for your refund','Crush a goal with it, build your emergency fund, or pay down a bill.']
+];
+function makeTaxGoal(){
+  return {id:uid(),kind:'tasks',name:'Tax refund fast track',icon:'🧾',mode:'tasks',tasks:TAX_STEPS.map(function(t){return t.slice()}),boxes:TAX_STEPS.map(function(){return 0}),target:0,step:null,crushed:{},deposits:[],targetDate:nextDate(4,15,0),payFreq:'biweekly',createdAt:Date.now(),completedAt:null,milestones:{},rewards:{}};
+}
+
 /* plan: per paycheck + pace */
 var FREQ={weekly:{d:7,l:'paycheck',name:'Weekly'},biweekly:{d:14,l:'paycheck',name:'Every 2 weeks'},semimonthly:{d:365/24,l:'paycheck',name:'Twice a month'},monthly:{d:365/12,l:'month',name:'Monthly'}};
 function planFor(g){
@@ -579,6 +750,7 @@ function applyTheme(){
   document.documentElement.setAttribute('data-theme',dark?'dark':'light');
   $$('#theme-seg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.themeSet===t))});
   $$('#anim-seg button').forEach(function(b){b.setAttribute('aria-pressed',String((b.dataset.animSet==='on')===animOn()))});
+  $$('#verse-seg button').forEach(function(b){b.setAttribute('aria-pressed',String((b.dataset.verseSet==='on')===verseOn()))});
 }
 
 /* ---------- views ---------- */
@@ -601,11 +773,11 @@ function activeGoals(){return state.goals.filter(function(g){return !g.completed
 function doneGoals(){return state.goals.filter(function(g){return g.completedAt}).sort(function(a,b){return b.completedAt-a.completedAt})}
 
 function renderGoals(){
-  var act=activeGoals(),done=doneGoals();
-  var saved=act.reduce(function(s,g){return s+totalSaved(g)},0);
+  var act=activeGoals(),done=doneGoals(),money_act=act.filter(function(g){return !isTask(g)});
+  var saved=money_act.reduce(function(s,g){return s+totalSaved(g)},0);
   var st=streak();
   $('#summary').innerHTML=
-    '<div class="card"><div class="eyebrow">Saved so far</div><div class="big num">'+money(saved)+'</div><div class="lbl">across '+plural(act.length,'active goal')+'</div></div>'+
+    '<div class="card"><div class="eyebrow">Saved so far</div><div class="big num">'+money(saved)+'</div><div class="lbl">across '+plural(money_act.length,'savings goal')+'</div></div>'+
     '<div class="card"><div class="eyebrow">Streak</div><div class="mid num flame">'+st+'</div><div class="lbl">'+(st===1?'week':'weeks')+' in a row</div></div>'+
     '<div class="card"><div class="eyebrow">Crushed</div><div class="mid num">'+done.length+'</div><div class="lbl">'+(done.length===1?'goal':'goals')+' done</div></div>';
   $('#goal-count').textContent=act.length?plural(act.length,'goal'):'';
@@ -620,39 +792,72 @@ function renderGoals(){
   $('#crushed-list').innerHTML=done.map(goalCard).join('');
 }
 function goalCard(g){
-  var s=totalSaved(g),p=pctOf(g),pl=planFor(g),line;
+  var s=totalSaved(g),p=pctOf(g),pl=planFor(g),line,task=isTask(g);
   if(g.completedAt)line='Crushed '+new Date(g.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  else if(task)line=(g.boxes.length-boxesCrushed(g))+' steps left'+(pl.daysLeft>0?' · <b>'+plural(pl.daysLeft,'day')+'</b> until '+niceDate(g.targetDate,true):'');
+  else if(g.countdown&&pl.daysLeft>0&&pl.left>0)line='<b>'+plural(pl.daysLeft,'day')+'</b> to go · crush one box a day';
+  else if(g.completedAt)line='Crushed '+new Date(g.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   else if(pl.per)line='Save <b>'+money(pl.per)+'</b> per '+pl.perLabel+' to finish by '+niceDate(g.targetDate);
   else if(pl.daysLeft!==null&&pl.daysLeft<=0&&pl.left>0)line='Target date passed · <b>'+money(pl.left)+'</b> to go';
   else if(pl.pace)line='On pace to finish around <b>'+pl.pace.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+'</b>';
   else line='<b>'+money(pl.left)+'</b> to go';
-  var n=g.boxes.length,on=boxesCrushed(g),mini='';
-  if(n<=120){for(var i=0;i<n;i++)mini+='<i class="'+(isOn(g,i)?'on':'')+'"></i>'}
+  var n=g.boxes.length,on=boxesCrushed(g),mini='',L=shapeOf(g);
+  if(L){for(var i=0;i<n;i++)mini+='<i class="'+(isOn(g,i)?'on':'')+'" style="grid-row:'+(L.cells[i].r+1)+';grid-column:'+(L.cells[i].c+1)+'"></i>'}
+  else if(n<=120){for(var i2=0;i2<n;i2++)mini+='<i class="'+(isOn(g,i2)?'on':'')+'"></i>'}
+  var ph=safePhoto(g.photo);
   return '<button class="goal-card" data-open="'+g.id+'">'+
-    '<div class="gc-top"><div class="gc-icon" aria-hidden="true">'+esc(g.icon)+'</div><div style="min-width:0"><div class="gc-name">'+esc(g.name)+'</div><div class="gc-sub num">'+money(s)+' of '+money(g.target)+' · '+on+'/'+n+' boxes</div></div><div class="gc-pct num">'+pctLabel(p)+'</div></div>'+
+    '<div class="gc-top">'+(ph?'<div class="gc-icon ph" aria-hidden="true" style="background-image:url('+ph+')"></div>':'<div class="gc-icon" aria-hidden="true">'+esc(g.icon)+'</div>')+'<div style="min-width:0"><div class="gc-name">'+esc(g.name)+'</div><div class="gc-sub num">'+(task?on+' of '+n+' steps done':money(s)+' of '+money(g.target)+' · '+on+'/'+n+' boxes')+'</div></div><div class="gc-pct num">'+pctLabel(p)+'</div></div>'+
     '<div class="bar" role="progressbar" aria-valuenow="'+Math.floor(p)+'" aria-valuemin="0" aria-valuemax="100" aria-label="'+esc(g.name)+' progress"><i style="width:'+p+'%"></i></div>'+
-    '<div class="gc-plan">'+line+'</div>'+(mini?'<div class="mini-grid" aria-hidden="true">'+mini+'</div>':'')+'</button>';
+    '<div class="gc-plan">'+line+'</div>'+(mini?'<div class="mini-grid'+(L?' shape':'')+'" aria-hidden="true"'+(L?' style="grid-template-columns:repeat('+L.cols+',1fr);max-width:'+Math.min(200,L.cols*11)+'px"':'')+'>'+mini+'</div>':'')+'</button>';
 }
 
 function ring(p){var r=48,c=2*Math.PI*r;return '<svg width="112" height="112" viewBox="0 0 112 112" aria-hidden="true"><circle cx="56" cy="56" r="'+r+'" fill="none" stroke="var(--surface-2)" stroke-width="12"/><circle cx="56" cy="56" r="'+r+'" fill="none" stroke="var(--sage)" stroke-width="12" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+(c*(1-p/100))+'" style="transition:stroke-dashoffset .6s var(--ease)"/></svg>'}
 
 function getGoal(id){return state.goals.find(function(g){return g.id===id})}
 var lastPopped=[];
+function rewardPill(g){if(g.completedAt)return '';var nr=nextReward(g);return nr?'<div class="reward-pill"><span aria-hidden="true">🎁</span><div>Next reward at <b>'+nr[0]+'%</b>: '+esc(nr[1])+'</div></div>':''}
+function coverHtml(g){var ph=safePhoto(g.photo);return ph?'<div class="cover"><img src="'+ph+'" alt="Photo for '+esc(g.name)+'"></div>':''}
+function renderTaskDetail(g){
+  var p=pctOf(g),pl=planFor(g),n=g.boxes.length,on=boxesCrushed(g),popOrder=lastPopped.slice();lastPopped=[];
+  var rows=g.tasks.map(function(t,i){var o=isOn(g,i),pk=popOrder.indexOf(i)>-1,cls='box'+(o?' on':'')+(pk?(animOn()?' crush':' pop'):'');
+    return '<button class="task'+(o?' done':'')+'" data-box="'+i+'" aria-pressed="'+o+'"><span class="'+cls+'" aria-hidden="true"><span class="amt">'+(i+1)+'</span>'+(pk&&animOn()?'<span class="fx-ring"></span>':'')+'</span><span><span class="tt">'+esc(t[0])+'</span><span class="th" style="display:block">'+esc(t[1])+'</span></span></button>'}).join('');
+  var days=g.completedAt?'—':(pl.daysLeft===null?'No date':pl.daysLeft>0?plural(pl.daysLeft,'day'):pl.daysLeft===0?'Today':'Passed');
+  $('#view-detail').innerHTML=
+    '<button class="back" data-act="home"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>All goals</button>'+
+    '<div class="card">'+coverHtml(g)+
+      '<div class="hero"><div class="ring">'+ring(p)+'<div class="pct num">'+esc(pctLabel(p))+'<small>'+on+' of '+n+' steps</small></div></div>'+
+      '<div><div style="font-size:28px;line-height:1" aria-hidden="true">'+esc(g.icon)+'</div><h2>'+esc(g.name)+'</h2><div class="amt">'+(g.targetDate?'Filing deadline <b>'+niceDate(g.targetDate,true)+'</b>':'Check off each step as you go')+'</div></div></div>'+
+      '<div class="stats"><div class="stat"><div class="v num">'+(n-on)+'</div><div class="k">steps left</div></div><div class="stat"><div class="v num">'+days+'</div><div class="k">until deadline</div></div><div class="stat"><div class="v num">&lt; 21 days</div><div class="k">typical e-file refund</div></div></div>'+
+      (g.completedAt?'<div class="plan flame"><span aria-hidden="true">🏆</span><div><b>Checklist crushed.</b> Every step is done.</div></div>':'<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><div><b>Fastest refund:</b> file electronically and choose direct deposit. Filing early, as soon as your forms arrive, gets you in line sooner.</div></div>')+
+      rewardPill(g)+
+    '</div>'+
+    '<div class="card grid-card"><div class="grid-head"><h3>Your steps</h3><span class="eyebrow">Checklist</span></div>'+
+      (g.completedAt?'':'<p class="grid-hint">Tap a step when it is done. Tap again to undo.</p>')+
+      '<div class="tasks">'+rows+'</div>'+
+      '<div class="note">If you claim the Earned Income Tax Credit or the Additional Child Tax Credit, the law holds those refunds until mid-February, even if you file early. This checklist is a helpful guide, not tax advice.</div></div>'+
+    '<div class="row2" style="margin-top:14px"><button class="btn btn-ghost" data-act="edit" data-goal="'+g.id+'">Edit</button><button class="btn btn-ghost" data-act="more" data-goal="'+g.id+'">More…</button></div>';
+  if(popOrder.length&&animOn()){try{if(navigator.vibrate)navigator.vibrate([300,25])}catch(e){}}
+}
 function renderDetail(){
   var g=getGoal(current.goalId);if(!g){show('goals');return}
+  if(isTask(g)){renderTaskDetail(g);return}
   var s=totalSaved(g),p=pctOf(g),pl=planFor(g),n=g.boxes.length,on=boxesCrushed(g);
   var planHtml='';
   if(g.completedAt)planHtml='<div class="plan flame"><span aria-hidden="true">🏆</span><div><b>Goal crushed.</b> You saved '+money(s)+' for '+esc(g.name)+'.</div></div>';
+  else if(g.countdown&&pl.daysLeft>0){var bl=n-on,behind=bl-pl.daysLeft;planHtml='<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div>Crush one box a day. <b>'+plural(bl,'box')+'</b> left and <b>'+plural(pl.daysLeft,'day')+'</b> until '+niceDate(g.targetDate,true)+'.'+(behind>0?' Crush '+plural(behind+1,'box')+' today to catch up.':behind<0?' You are '+plural(-behind,'day')+' ahead.':' You are right on track.')+'</div></div>'}
   else if(pl.per)planHtml='<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div>Save <b>'+money(pl.per)+'</b> per '+pl.perLabel+' ('+(FREQ[g.payFreq||'biweekly'].name.toLowerCase())+', '+plural(pl.periods,pl.perLabel==='month'?'month':'payday')+' left) to finish by <b>'+niceDate(g.targetDate,true)+'</b>.</div></div>';
   else if(g.targetDate&&pl.daysLeft<=0&&pl.left>0)planHtml='<div class="plan flame"><span aria-hidden="true">⏰</span><div>Your target date has passed. Pick a new date in Edit to get a fresh per-paycheck plan.</div></div>';
   else if(!g.targetDate)planHtml='<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div>Add a target date in Edit and Goal Crusher will tell you how much to set aside each payday.</div></div>';
   var est=pl.pace?(pl.pace.getFullYear()===new Date().getFullYear()?pl.pace.toLocaleDateString('en-US',{month:'short',day:'numeric'}):pl.pace.toLocaleDateString('en-US',{month:'short',year:'numeric'})):(g.completedAt?'Done':'Too early');
   var days=g.completedAt?'—':(pl.daysLeft===null?'No date':pl.daysLeft>0?plural(pl.daysLeft,'day'):pl.daysLeft===0?'Today':'Passed');
   var boxes='',fill=g.mode==='even'?evenFill(g):null,popOrder=lastPopped.slice().sort(function(a,b){return a-b}),popStep=Math.min(140,1600/Math.max(1,lastPopped.length));
+  var L=shapeOf(g);
   for(var i=0;i<n;i++){
-    var pk=popOrder.indexOf(i),o=isOn(g,i),cls='box'+(o?' on':'')+(pk>-1?(animOn()?' crush':' pop'):''),style='';
-    var fx='';if(pk>-1&&animOn()){style=' style="--d:'+Math.round(pk*popStep)+'ms"';fx='<span class="fx-ring" aria-hidden="true"></span><span class="fx-amt" aria-hidden="true">+'+moneyShort(g.boxes[i])+'</span>'}
-    if(fill&&!o&&i===fill.filled&&fill.leftover>0){cls+=' partial';style=' style="--fill:'+Math.round(fill.leftover/g.boxes[i]*100)+'%"'}
+    var pk=popOrder.indexOf(i),o=isOn(g,i),cls='box'+(o?' on':'')+(pk>-1?(animOn()?' crush':' pop'):''),st=[];
+    if(L)st.push('grid-row:'+(L.cells[i].r+1),'grid-column:'+(L.cells[i].c+1));
+    var fx='';if(pk>-1&&animOn()){st.push('--d:'+Math.round(pk*popStep)+'ms');fx='<span class="fx-ring" aria-hidden="true"></span><span class="fx-amt" aria-hidden="true">+'+moneyShort(g.boxes[i])+'</span>'}
+    if(fill&&!o&&i===fill.filled&&fill.leftover>0){cls+=' partial';st.push('--fill:'+Math.round(fill.leftover/g.boxes[i]*100)+'%')}
+    var style=st.length?' style="'+st.join(';')+'"':'';
     var label=g.mode==='countup'&&g.step===100?String(g.boxes[i]/100):moneyShort(g.boxes[i]);
     boxes+='<button class="'+cls+'"'+style+' data-box="'+i+'" aria-pressed="'+o+'" aria-label="Box '+(i+1)+', '+money(g.boxes[i])+(o?', crushed':'')+'"><span class="amt">'+label+'</span>'+fx+'</button>';
   }
@@ -664,17 +869,17 @@ function renderDetail(){
   var hist=deps.length?deps.map(function(d){return '<div class="hist-row"><div class="d">'+niceDate(d.date)+'</div><div class="n">'+(d.note?esc(d.note):(d.box!=null?'Box '+(d.box+1):'Savings'))+'</div><div class="a num">'+money(d.amount)+'</div><button class="x" data-del-dep="'+d.id+'" aria-label="Delete '+money(d.amount)+' deposit from '+niceDate(d.date)+'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button></div>'}).join(''):'<p style="color:var(--muted);font-size:14px">No savings yet. Your first box is waiting.</p>';
   $('#view-detail').innerHTML=
     '<button class="back" data-act="home"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>All goals</button>'+
-    '<div class="card">'+
+    '<div class="card">'+coverHtml(g)+
       '<div class="hero"><div class="ring">'+ring(p)+'<div class="pct num">'+esc(pctLabel(p))+'<small>'+on+' of '+n+' boxes</small></div></div>'+
       '<div><div style="font-size:28px;line-height:1" aria-hidden="true">'+esc(g.icon)+'</div><h2>'+esc(g.name)+'</h2><div class="amt num"><b>'+money(s)+'</b> of '+money(g.target)+'</div></div></div>'+
       '<div class="stats"><div class="stat"><div class="v num">'+money(pl.left)+'</div><div class="k">to go</div></div><div class="stat"><div class="v num">'+days+'</div><div class="k">until target</div></div><div class="stat"><div class="v num">'+est+'</div><div class="k">est. finish</div></div></div>'+
-      planHtml+
+      planHtml+rewardPill(g)+
       (g.completedAt?'':'<div class="actions one"><button class="btn btn-ghost" data-act="print" data-goal="'+g.id+'">Print grid</button></div>')+
     '</div>'+
-    '<div class="card grid-card"><div class="grid-head"><h3>Your grid</h3><span class="eyebrow">'+({even:'Even boxes',mixed:'Mixed amounts',countup:'Count up'}[g.mode])+'</span></div>'+
+    '<div class="card grid-card"><div class="grid-head"><h3>Your grid</h3><span class="eyebrow">'+(L?SHAPES[g.shape].name+' picture':g.countdown?'Countdown':({even:'Even boxes',mixed:'Mixed amounts',countup:'Count up'}[g.mode]))+'</span></div>'+
       (g.completedAt?'':'<p class="grid-hint">'+hint+'</p>')+quick+
       (extra>0?'<div class="extra-pill"><span aria-hidden="true">💵</span><span><b class="num">'+money(extra)+'</b> extra savings ready for a box</span></div>':'')+
-      '<div class="boxes'+(n>120?' compact':'')+(popOrder.length&&animOn()?' rumble':'')+'" id="boxes"'+(popOrder.length&&animOn()?' style="--rt:'+Math.round((popOrder.length-1)*popStep+700)+'ms"':'')+'>'+boxes+'</div></div>'+
+      '<div class="boxes'+(L?' shape'+(L.cols>11?' tiny':''):(n>120?' compact':''))+(popOrder.length&&animOn()?' rumble':'')+'" id="boxes" style="'+(L?'grid-template-columns:repeat('+L.cols+',1fr);max-width:'+(L.cols*52)+'px;':'')+(popOrder.length&&animOn()?'--rt:'+Math.round((popOrder.length-1)*popStep+700)+'ms':'')+'">'+boxes+'</div></div>'+
     '<div class="card hist"><div class="grid-head"><h3>Savings history</h3><span class="eyebrow num">'+plural(deps.length,'entry')+'</span></div>'+hist+'</div>'+
     '<div class="row2" style="margin-top:14px"><button class="btn btn-ghost" data-act="edit" data-goal="'+g.id+'">Edit goal</button><button class="btn btn-ghost" data-act="more" data-goal="'+g.id+'">More…</button></div>';
   if(popFirst!==null&&animOn()){try{if(navigator.vibrate){var pat=[];for(var v=0;v<Math.min(popOrder.length,12);v++){pat.push(v?Math.max(10,Math.round(popStep)-25):360,25)}navigator.vibrate(pat)}}catch(e){}var fb=$('#view-detail [data-box="'+popFirst+'"]');if(fb){var r=fb.getBoundingClientRect();if(r.top<70||r.bottom>window.innerHeight-110)fb.scrollIntoView({block:'center',behavior:'smooth'})}}
@@ -725,30 +930,43 @@ var STARTERS=[
   {k:'week52',e:'📅',t:'52-Week Challenge',s:'$1,378 · $1 more each week',g:{name:'52-Week Challenge',icon:'💰',mode:'countup',count:52,step:1}},
   {k:'holiday',e:'🎄',t:'Holiday gifts',s:'$600 · 30 mixed boxes',g:{name:'Holiday gifts',icon:'🎄',mode:'mixed',target:600,count:30}},
   {k:'vacation',e:'🏝️',t:'Vacation',s:'$2,000 · 50 mixed boxes',g:{name:'Vacation',icon:'🏝️',mode:'mixed',target:2000,count:50}},
-  {k:'car',e:'🚗',t:'Car repair fund',s:'$1,500 · 60 boxes of $25',g:{name:'Car repair fund',icon:'🚗',mode:'even',target:1500,box:25}}
+  {k:'car',e:'🚗',t:'Car repair fund',s:'$1,500 · 60 boxes of $25',g:{name:'Car repair fund',icon:'🚗',mode:'even',target:1500,box:25}},
+  {k:'xmas',e:'🎄',t:'Christmas countdown',s:'',make:function(){return {name:'Christmas countdown',icon:'🎄',mode:'countdown',target:500,targetDate:nextDate(12,24,5),shape:'tree'}}},
+  {k:'tax',e:'🧾',t:'Tax refund fast track',s:'14 steps to file early and get your refund sooner',tasks:true}
 ];
+function starterSub(s){if(s.k==='xmas'){var d=nextDate(12,24,5);return '$500 · one box a day for '+daysBetween(parseDay(todayStr()),parseDay(d))+' days'}return s.s}
 function openNew(){
   openSheet('<h2 id="sheet-title">What are you saving for?</h2><p class="lede">Start from a popular challenge or build your own. You can change the details next.</p>'+
-    '<div class="starters">'+STARTERS.map(function(s){return '<button class="starter" data-starter="'+s.k+'"><div class="e" aria-hidden="true">'+s.e+'</div><div class="t">'+s.t+'</div><div class="s">'+s.s+'</div></button>'}).join('')+
+    '<div class="starters">'+STARTERS.map(function(s){return '<button class="starter" data-starter="'+s.k+'"><div class="e" aria-hidden="true">'+s.e+'</div><div class="t">'+s.t+'</div><div class="s">'+starterSub(s)+'</div></button>'}).join('')+
     '<button class="starter custom" data-starter="custom"><div class="e" aria-hidden="true">✏️</div><div><div class="t">My own goal</div><div class="s">Any name, any amount</div></div></button></div>');
 }
 function openGoalForm(preset,editing){
   var g=preset||{name:'',icon:'💰',mode:'even',target:'',box:10,count:30,step:1};
-  var f={name:g.name,icon:g.icon,mode:g.mode,target:g.target,box:g.box||10,count:g.count||(g.mode==='countup'?52:30),step:g.step||1,targetDate:g.targetDate||'',payFreq:g.payFreq||'biweekly'};
-  var locked=editing&&(editing.mode!=='even'&&Object.keys(editing.crushed).length>0);
+  var f={name:g.name,icon:g.icon,mode:g.mode,target:g.target,box:g.box||10,count:g.count||(g.mode==='countup'?52:30),step:g.step||1,targetDate:g.targetDate||'',payFreq:g.payFreq||'biweekly',shape:g.shape||'',photo:safePhoto(g.photo),rewards:g.rewards||{}};
+  var taskEdit=editing&&isTask(editing);
+  var locked=taskEdit||(editing&&(editing.mode!=='even'&&Object.keys(editing.crushed).length>0));
+  var R=f.rewards,hasR=[25,50,75,100].some(function(m){return R[m]});
+  var lookHtml=taskEdit?'':'<div class="field"><span class="label">Grid look</span><div class="look-grid" role="group" aria-label="Grid look">'+[''].concat(SHAPE_KEYS).map(function(k){return '<button type="button" class="look" data-look="'+k+'" aria-pressed="'+(k===f.shape)+'">'+lookSvg(k)+(k?SHAPES[k].name:'Squares')+'</button>'}).join('')+'</div><div class="help" id="f-look-help">Pictures fill from the bottom up. They look best with 30 or more boxes.</div></div>';
+  var photoHtml='<div class="field"><span class="label">Goal photo <span style="font-weight:400">(optional)</span></span><div class="photo-pick"><div class="ph-prev" id="f-ph-prev" aria-hidden="true"></div><label class="btn btn-ghost btn-sm" for="f-photo" style="cursor:pointer">Choose photo</label><input type="file" id="f-photo" accept="image/*" hidden><button type="button" class="link-btn" id="f-ph-rm">Remove</button></div><div class="help">A picture of what you are saving for keeps it real. It stays on this device.</div></div>';
+  var rwHtml='<details class="rewards"'+(hasR?' open':'')+'><summary><span>Milestone rewards <span style="font-weight:400">(optional)</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><p class="help">Pick a small treat for each milestone. Goal Crusher cheers you on when you earn it.</p><div class="row2">'+
+    [[25,'Fancy coffee'],[50,'Movie night'],[75,'New book'],[100,'Dinner out']].map(function(x){return '<div class="field"><label for="f-rw'+x[0]+'">At '+x[0]+'%</label><input class="input" id="f-rw'+x[0]+'" maxlength="60" value="'+esc(R[x[0]]||'')+'" placeholder="'+x[1]+'"></div>'}).join('')+'</div></details>';
   var title=editing?'Edit goal':'Set up your goal';
   openSheet('<h2 id="sheet-title">'+title+'</h2><p class="lede">'+(editing?'Update the details for this goal.':'Name it, size it, and choose how the boxes look.')+'</p>'+
     '<form id="goal-form" novalidate>'+
     '<div class="field"><label for="f-name">Goal name</label><input class="input" id="f-name" maxlength="40" required value="'+esc(f.name)+'" placeholder="e.g. Beach trip"'+(f.name?'':' autofocus')+'></div>'+
     '<div class="field"><span class="label">Icon</span><div class="icons" role="group" aria-label="Goal icon">'+ICONS.map(function(i){return '<button type="button" data-icon="'+i+'" aria-pressed="'+(i===f.icon)+'" aria-label="'+i+'">'+i+'</button>'}).join('')+'</div></div>'+
-    (locked?'<div class="preview-line">This grid already has crushed boxes, so its size and style stay as they are. You can still change the name, icon, date, and pay schedule.</div>':
+    photoHtml+
+    (taskEdit?'':locked?'<div class="preview-line">This grid already has crushed boxes, so its size and style stay as they are. You can still change the name, icon, look, photo, date, and pay schedule.</div>':
     '<div class="field"><span class="label">Grid style</span><div class="choices" role="group" aria-label="Grid style">'+
       '<button type="button" class="choice" data-mode="even" aria-pressed="'+(f.mode==='even')+'">Even<small>Same each box</small></button>'+
       '<button type="button" class="choice" data-mode="mixed" aria-pressed="'+(f.mode==='mixed')+'">Mixed<small>Big and small</small></button>'+
-      '<button type="button" class="choice" data-mode="countup" aria-pressed="'+(f.mode==='countup')+'">Count up<small>$1, $2, $3…</small></button></div></div>'+
+      '<button type="button" class="choice" data-mode="countup" aria-pressed="'+(f.mode==='countup')+'">Count up<small>$1, $2, $3…</small></button>'+
+      '<button type="button" class="choice" data-mode="countdown" aria-pressed="'+(f.mode==='countdown')+'">Countdown<small>One box a day</small></button></div></div>'+
     '<div id="mode-fields"></div><div class="preview-line" id="f-preview"></div>')+
-    '<div class="row2"><div class="field"><label for="f-date">Target date <span style="font-weight:400">(optional)</span></label><input class="input" type="date" id="f-date" value="'+esc(f.targetDate)+'" min="'+todayStr()+'"></div>'+
-    '<div class="field"><label for="f-freq">I get paid</label><select class="input" id="f-freq">'+Object.keys(FREQ).map(function(k){return '<option value="'+k+'"'+(k===f.payFreq?' selected':'')+'>'+FREQ[k].name+'</option>'}).join('')+'</select></div></div>'+
+    lookHtml+
+    '<div class="row2"'+(taskEdit?' style="grid-template-columns:1fr"':'')+'><div class="field"><label for="f-date" id="f-date-l">'+(taskEdit?'Deadline':'Target date')+' <span style="font-weight:400">'+(f.mode==='countdown'?'(required)':'(optional)')+'</span></label><input class="input" type="date" id="f-date" value="'+esc(f.targetDate)+'" min="'+todayStr()+'"></div>'+
+    (taskEdit?'<input type="hidden" id="f-freq" value="'+esc(f.payFreq)+'">':'<div class="field"><label for="f-freq">I get paid</label><select class="input" id="f-freq">'+Object.keys(FREQ).map(function(k){return '<option value="'+k+'"'+(k===f.payFreq?' selected':'')+'>'+FREQ[k].name+'</option>'}).join('')+'</select></div>')+'</div>'+
+    rwHtml+
     '<p class="err" id="f-err" role="alert"></p>'+
     '<button class="btn btn-primary btn-block" type="submit">'+(editing?'Save changes':'Create my grid')+'</button></form>',
   function(root){
@@ -757,6 +975,7 @@ function openGoalForm(preset,editing){
     function modeFields(){
       var el=$('#mode-fields',root);if(!el)return;
       if(f.mode==='even')el.innerHTML='<div class="row2"><div class="field"><label for="f-target">Goal amount</label><div class="money"><input class="input num" id="f-target" inputmode="decimal" value="'+(f.target||'')+'" placeholder="1000"></div></div><div class="field"><label for="f-box">Each box</label><div class="money"><input class="input num" id="f-box" inputmode="decimal" value="'+(f.box||'')+'" placeholder="10"></div></div></div>';
+      else if(f.mode==='countdown')el.innerHTML='<div class="field"><label for="f-target">Goal amount</label><div class="money"><input class="input num" id="f-target" inputmode="decimal" value="'+(f.target||'')+'" placeholder="500"></div><div class="help">You get one box for each day until your target date. Pick the date below.</div></div>';
       else if(f.mode==='mixed')el.innerHTML='<div class="row2"><div class="field"><label for="f-target">Goal amount</label><div class="money"><input class="input num" id="f-target" inputmode="decimal" value="'+(f.target||'')+'" placeholder="2000"></div></div><div class="field"><label for="f-count">Number of boxes</label><input class="input num" id="f-count" inputmode="numeric" value="'+(f.count||'')+'" placeholder="50"></div></div>';
       else el.innerHTML='<div class="row2"><div class="field"><label for="f-count">Number of boxes</label><input class="input num" id="f-count" inputmode="numeric" value="'+(f.count||'')+'" placeholder="100"></div><div class="field"><label for="f-step">Step size</label><div class="money"><input class="input num" id="f-step" inputmode="decimal" value="'+(f.step||'')+'" placeholder="1"></div><div class="help">Box 1 is this amount, box 2 is double…</div></div></div>';
       $$('#mode-fields input',root).forEach(function(i){i.addEventListener('input',function(){f.target=val('#f-target',f.target);f.box=val('#f-box',f.box);f.count=val('#f-count',f.count);f.step=val('#f-step',f.step);mixedCache=null;preview()})});
@@ -767,6 +986,9 @@ function openGoalForm(preset,editing){
       var tC,boxes=null,err='';
       if(f.mode==='even'){tC=cents(f.target);var bC=cents(f.box);if(!(tC>0))err='Enter a goal amount.';else if(!(bC>0))err='Enter an amount for each box.';else if(bC>tC)err='Each box should be smaller than the goal.';else{var n=Math.ceil(tC/bC);if(n>MAX_BOXES)err='That makes '+n+' boxes. Try a bigger box amount (366 boxes max).';else if(n<MIN_BOXES)err='That makes only '+n+' boxes. Try a smaller box amount.';else boxes=buildEven(tC,bC)}}
       else if(f.mode==='mixed'){tC=cents(f.target);var c=Math.round(+f.count);if(!(tC>0))err='Enter a goal amount.';else if(!(c>=MIN_BOXES&&c<=MAX_BOXES))err='Choose between 5 and 366 boxes.';else if(tC/c<100)err='Boxes would be under $1 each. Try fewer boxes.';else{boxes=mixedCache&&mixedCache.length===c&&mixedCache.t===tC?mixedCache:buildMixed(tC,c);boxes.t=tC;mixedCache=boxes}}
+      else if(f.mode==='countdown'){tC=cents(f.target);var dv=$('#f-date',root).value,dd=dv?daysBetween(parseDay(todayStr()),parseDay(dv)):0;
+        if(!(tC>0))err='Enter a goal amount.';else if(!dv)err='Pick a target date. Each day until then gets a box.';else if(dd<MIN_BOXES)err='Pick a date at least 5 days away.';else if(dd>MAX_BOXES)err='Pick a date within a year (366 boxes max).';else if(tC<dd*100)err='That is under $1 a day. Try a bigger amount or a closer date.';
+        else if(editing&&editing.countdown&&dv===editing.targetDate&&tC===editing.target)boxes=editing.boxes.slice();else boxes=splitDays(tC,dd)}
       else{var c2=Math.round(+f.count),sC=cents(f.step);if(!(c2>=MIN_BOXES&&c2<=MAX_BOXES))err='Choose between 5 and 366 boxes.';else if(!(sC>0))err='Enter a step size.';else{boxes=buildCountUp(c2,sC);tC=boxes.reduce(function(s,v){return s+v},0)}}
       return {err:err,boxes:boxes,targetC:tC};
     }
@@ -774,11 +996,19 @@ function openGoalForm(preset,editing){
       var p=$('#f-preview',root);if(!p)return;var r=compute();
       if(r.err){p.innerHTML=r.err;return}
       var b=r.boxes,mn=Math.min.apply(null,b),mx=Math.max.apply(null,b);
-      p.innerHTML='<b>'+b.length+' boxes</b> · '+(f.mode==='even'?money(b[0])+' each':money(mn)+' to '+money(mx))+' · total <b>'+money(r.targetC)+'</b>'+(f.mode==='mixed'?' <button type="button" class="link-btn" id="reshuffle">Shuffle</button>':'');
+      p.innerHTML='<b>'+b.length+' boxes</b> · '+(f.mode==='even'||mn===mx?money(b[0])+' each':f.mode==='countdown'?money(mx)+' or '+money(mn)+' a day':money(mn)+' to '+money(mx))+' · total <b>'+money(r.targetC)+'</b>'+(f.mode==='mixed'?' <button type="button" class="link-btn" id="reshuffle">Shuffle</button>':'');
       var rs=$('#reshuffle',root);if(rs)rs.onclick=function(){mixedCache=null;preview()};
+      var lh=$('#f-look-help',root);if(lh)lh.textContent=f.shape&&b.length<30?'Pictures need at least 30 boxes. This grid has '+b.length+', so it will show as squares.':'Pictures fill from the bottom up. They look best with 30 or more boxes.';
     }
+    function phShow(){var pv=$('#f-ph-prev',root);pv.style.backgroundImage=f.photo?'url('+f.photo+')':'';pv.classList.toggle('has',!!f.photo);$('#f-ph-rm',root).hidden=!f.photo}
+    phShow();
+    $('#f-photo',root).addEventListener('change',function(e){var fl=e.target.files&&e.target.files[0];if(!fl)return;readPhoto(fl,function(u){if(!u){toast('That photo could not be opened. Try a JPG or PNG.');return}f.photo=u;phShow()});e.target.value=''});
+    $('#f-ph-rm',root).onclick=function(){f.photo=null;phShow()};
+    $$('.look',root).forEach(function(b){b.onclick=function(){f.shape=b.dataset.look;$$('.look',root).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});preview()}});
+    $('#f-date',root).addEventListener('input',function(){if(f.mode==='countdown')preview()});
+    function rewardsVal(){var o={};[25,50,75,100].forEach(function(m){var v=$('#f-rw'+m,root).value.trim();if(v)o[m]=v});return o}
     $$('.icons button',root).forEach(function(b){b.onclick=function(){f.icon=b.dataset.icon;$$('.icons button',root).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))})}});
-    $$('.choice',root).forEach(function(b){b.onclick=function(){f.mode=b.dataset.mode;$$('.choice',root).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});if(f.mode==='countup'&&!(+f.count))f.count=52;modeFields()}});
+    $$('.choice',root).forEach(function(b){b.onclick=function(){f.mode=b.dataset.mode;$$('.choice',root).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});if(f.mode==='countup'&&!(+f.count))f.count=52;var dl=$('#f-date-l span',root);if(dl)dl.textContent=f.mode==='countdown'?'(required)':'(optional)';modeFields()}});
     modeFields();
     $('#goal-form',root).addEventListener('submit',function(e){
       e.preventDefault();
@@ -786,25 +1016,28 @@ function openGoalForm(preset,editing){
       if(!name){err.textContent='Give your goal a name.';$('#f-name',root).focus();return}
       var date=$('#f-date',root).value,freq=$('#f-freq',root).value;
       if(editing){
-        editing.name=name;editing.icon=f.icon;editing.targetDate=date||null;editing.payFreq=freq;
         if(!locked){var r=compute();if(r.err){err.textContent=r.err;return}
-          var changed=r.targetC!==editing.target||f.mode!==editing.mode||r.boxes.join()!==editing.boxes.join();
-          if(changed){editing.mode=f.mode;editing.boxes=r.boxes.slice();editing.target=r.targetC;editing.step=f.mode==='countup'?cents(f.step):null;editing.crushed={};editing.deposits.forEach(function(d){delete d.box})}}
+          var newMode=f.mode==='countdown'?'even':f.mode;
+          var changed=r.targetC!==editing.target||newMode!==editing.mode||r.boxes.join()!==editing.boxes.join();
+          editing.countdown=f.mode==='countdown';
+          if(changed){editing.mode=newMode;editing.boxes=r.boxes.slice();editing.target=r.targetC;editing.step=f.mode==='countup'?cents(f.step):null;editing.crushed={};editing.deposits.forEach(function(d){delete d.box})}}
+        editing.name=name;editing.icon=f.icon;editing.targetDate=date||null;editing.payFreq=freq;editing.photo=f.photo||null;editing.rewards=rewardsVal();if(!taskEdit)editing.shape=f.shape||null;
         if(editing.completedAt&&totalSaved(editing)<editing.target)editing.completedAt=null;
         save();closeSheet();render();toast('Goal updated');checkDone(editing);return;
       }
       var r2=compute();if(r2.err){err.textContent=r2.err;return}
-      var goal={id:uid(),name:name,icon:f.icon,mode:f.mode,boxes:r2.boxes.slice(),target:r2.targetC,step:f.mode==='countup'?cents(f.step):null,crushed:{},deposits:[],targetDate:date||null,payFreq:freq,createdAt:Date.now(),completedAt:null,milestones:{}};
-      state.goals.push(goal);save();closeSheet();show('detail',goal.id);toast('Grid ready. Tap a box when you save!');
+      var goal={id:uid(),name:name,icon:f.icon,mode:f.mode==='countdown'?'even':f.mode,countdown:f.mode==='countdown',boxes:r2.boxes.slice(),target:r2.targetC,step:f.mode==='countup'?cents(f.step):null,crushed:{},deposits:[],targetDate:date||null,payFreq:freq,createdAt:Date.now(),completedAt:null,milestones:{},shape:f.shape||null,photo:f.photo||null,rewards:rewardsVal()};
+      state.goals.push(goal);if(!save()){state.goals.pop();err.textContent='This device is out of storage space. Try a smaller photo or remove it.';return}closeSheet();show('detail',goal.id);toast('Grid ready. Tap a box when you save!');
     });
   });
 }
 
 /* ---------- add savings ---------- */
 function openAdd(goalId){
-  var act=activeGoals();
+  var act=activeGoals().filter(function(g){return !isTask(g)});
   if(!act.length){openNew();return}
-  var gid=goalId||(current.view==='detail'&&getGoal(current.goalId)&&!getGoal(current.goalId).completedAt?current.goalId:act[0].id);
+  var cg=current.view==='detail'&&getGoal(current.goalId);
+  var gid=goalId||(cg&&!cg.completedAt&&!isTask(cg)?current.goalId:act[0].id);
   openSheet('<h2 id="sheet-title">Add savings</h2><p class="lede">Record money you set aside. Every dollar counts toward your goal.</p>'+
     '<form id="add-form" novalidate>'+
     (act.length>1?'<div class="field"><label for="a-goal">Goal</label><select class="input" id="a-goal">'+act.map(function(g){return '<option value="'+g.id+'"'+(g.id===gid?' selected':'')+'>'+esc(g.icon+'  '+g.name)+'</option>'}).join('')+'</select></div>':'<input type="hidden" id="a-goal" value="'+gid+'">')+
@@ -833,7 +1066,11 @@ function openAdd(goalId){
 
 /* ---------- box taps ---------- */
 function tapBox(g,i){
-  if(g.completedAt){toast('This goal is already crushed.');return}
+  if(g.completedAt){toast(isTask(g)?'This checklist is done. Use More to reopen it.':'This goal is already crushed.');return}
+  if(isTask(g)){
+    if(g.crushed[i]){delete g.crushed[i];lastPopped=[];save();render();return}
+    g.crushed[i]={via:'task',at:Date.now()};lastPopped=[i];save();render();toast('Step '+(i+1)+' done');buzz();checkDone(g);return;
+  }
   var amt=g.boxes[i];
   if(g.mode==='even'){
     var fill=evenFill(g);
@@ -897,10 +1134,18 @@ function checkDone(g){
   var p=pctOf(g);g.milestones=g.milestones||{};
   if(p>=100&&!g.completedAt&&!g.keepOpen){
     g.completedAt=Date.now();g.milestones[100]=true;save();render();$('#toast').classList.remove('show');clearTimeout(toastT);confetti(true);
-    setTimeout(function(){openSheet('<div class="celebrate"><div class="burst" aria-hidden="true">🏆</div><h2 id="sheet-title">Goal crushed!</h2><p class="lede" style="margin-top:6px">You saved <b>'+money(totalSaved(g))+'</b> for '+esc(g.name)+'. That took real follow-through.</p><div class="opt-list"><button class="btn btn-primary btn-block" data-act="new">Start the next goal</button><button class="btn btn-ghost btn-block" data-act="home">Back to my goals</button></div></div>')},500);
+    var rw100=rewardFor(g,100);
+    var body=isTask(g)?'<h2 id="sheet-title">Checklist crushed!</h2><p class="lede" style="margin-top:6px">Every step is done. When a refund lands, give it a job right away.</p>':'<h2 id="sheet-title">Goal crushed!</h2><p class="lede" style="margin-top:6px">You saved <b>'+money(totalSaved(g))+'</b> for '+esc(g.name)+'. That took real follow-through.</p>';
+    setTimeout(function(){openSheet('<div class="celebrate"><div class="burst" aria-hidden="true">🏆</div>'+body+(rw100?'<div class="reward-pill" style="text-align:left"><span aria-hidden="true">🎁</span><div>You earned your reward: <b>'+esc(rw100)+'</b></div></div>':'')+'<div class="opt-list"><button class="btn btn-primary btn-block" data-act="new">'+(isTask(g)?'Start a goal for my refund':'Start the next goal')+'</button><button class="btn btn-ghost btn-block" data-act="home">Back to my goals</button></div></div>')},500);
     return;
   }
-  [25,50,75].forEach(function(m){if(p>=m&&!g.milestones[m]){g.milestones[m]=true;save();confetti(false);setTimeout(function(){toast(m+'% of '+g.name+' crushed. Keep it rolling!')},450)}});
+  var hit=[25,50,75].filter(function(m){return p>=m&&!g.milestones[m]});
+  if(!hit.length)return;
+  hit.forEach(function(m){g.milestones[m]=true});save();confetti(false);
+  var earned=hit.filter(function(m){return rewardFor(g,m)}),top=hit[hit.length-1];
+  if(earned.length){
+    setTimeout(function(){$('#toast').classList.remove('show');clearTimeout(toastT);openSheet('<div class="celebrate"><div class="burst" aria-hidden="true">🎁</div><h2 id="sheet-title">'+top+'% crushed!</h2><p class="lede" style="margin-top:6px">'+esc(g.name)+' is '+(top===50?'halfway there':top+'% done')+'. You earned '+(earned.length>1?'some rewards':'a reward')+'.</p><div class="reward-list">'+earned.map(function(m){return '<div class="reward-pill" style="margin:0"><span class="num" style="font-weight:700;color:var(--sage-ink)">'+m+'%</span><div><b>'+esc(rewardFor(g,m))+'</b></div></div>'}).join('')+'</div><div class="opt-list"><button class="btn btn-primary btn-block" data-act="close">Enjoy it</button></div></div>')},650);
+  } else setTimeout(function(){toast(top+'% of '+g.name+' crushed. Keep it rolling!')},450);
 }
 function confetti(big){
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
@@ -913,11 +1158,19 @@ function confetti(big){
 
 /* ---------- print ---------- */
 function printGoal(g){
-  var s=totalSaved(g),cols=g.boxes.length>200?15:g.boxes.length>120?12:10;
+  var v=verseToday(),vh='<div class="p-verse">“'+v[0]+'” <span>'+v[1]+' (NIV)</span><small>Scripture quotations taken from The Holy Bible, New International Version® NIV® Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.™ Used by permission. All rights reserved worldwide.</small></div>';
+  var foot='<div class="p-foot">Printed '+new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' · Goal Crusher by CleartrackApps</div>';
+  if(isTask(g)){
+    $('#print-area').innerHTML='<div class="p-head"><div><p>GOAL CRUSHER</p><h1>'+esc(g.icon)+' '+esc(g.name)+'</h1></div><p>Check off each step as you finish it.</p></div>'+
+      '<div class="p-stats"><div>Steps<b>'+boxesCrushed(g)+' / '+g.boxes.length+'</b></div>'+(g.targetDate?'<div>Deadline<b>'+niceDate(g.targetDate,true)+'</b></div>':'')+'</div>'+
+      '<div class="p-tasks">'+g.tasks.map(function(t,i){return '<div class="p-task"><i class="'+(isOn(g,i)?'on':'')+'"></i><div><b>'+(i+1)+'. '+esc(t[0])+'</b><small>'+esc(t[1])+'</small></div></div>'}).join('')+'</div>'+vh+foot;
+    window.print();return;
+  }
+  var s=totalSaved(g),cols=g.boxes.length>200?15:g.boxes.length>120?12:10,L=shapeOf(g);if(L)cols=L.cols;
   var html='<div class="p-head"><div><p>GOAL CRUSHER</p><h1>'+esc(g.icon)+' '+esc(g.name)+'</h1></div><p>Color in a box each time you save.</p></div>'+
     '<div class="p-stats"><div>Goal<b>'+money(g.target)+'</b></div><div>Saved<b>'+money(s)+'</b></div><div>Boxes<b>'+boxesCrushed(g)+' / '+g.boxes.length+'</b></div>'+(g.targetDate?'<div>Target date<b>'+niceDate(g.targetDate,true)+'</b></div>':'')+'</div>'+
-    '<div class="p-grid" style="grid-template-columns:repeat('+cols+',1fr)">'+g.boxes.map(function(a,i){return '<div class="p-box'+(isOn(g,i)?' on':'')+'">'+(g.mode==='countup'&&g.step===100?a/100:moneyShort(a))+'</div>'}).join('')+'</div>'+
-    '<div class="p-verse">“Whoever gathers money little by little makes it grow.” <span>Proverbs 13:11b (NIV)</span></div><div class="p-foot">Printed '+new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' · Goal Crusher by CleartrackApps</div>';
+    '<div class="p-grid" style="grid-template-columns:repeat('+cols+',1fr)'+(L?';max-width:'+Math.min(100,cols*9)+'%;margin:0 auto':'')+'">'+g.boxes.map(function(a,i){return '<div class="p-box'+(isOn(g,i)?' on':'')+'"'+(L?' style="grid-row:'+(L.cells[i].r+1)+';grid-column:'+(L.cells[i].c+1)+(L.cols>14?';font-size:7px':'')+'"':'')+'>'+(g.mode==='countup'&&g.step===100?a/100:moneyShort(a))+'</div>'}).join('')+'</div>'+
+    vh+foot;
   $('#print-area').innerHTML=html;window.print();
 }
 
@@ -943,7 +1196,7 @@ function restore(file){
     var ok=d.goals.every(function(g){return g&&g.id&&Array.isArray(g.boxes)&&Array.isArray(g.deposits)&&typeof g.target==='number'});
     if(!ok){toast('This backup looks damaged, so nothing was changed.');return}
     openSheet('<h2 id="sheet-title">Restore this backup?</h2><p class="lede">It has '+plural(d.goals.length,'goal')+' from '+(d.exportedAt?new Date(d.exportedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'an earlier date')+'. It will replace the '+plural(state.goals.length,'goal')+' on this device.</p><div class="opt-list"><button class="btn btn-primary btn-block" id="do-restore">Replace with backup</button><button class="btn btn-ghost btn-block" data-act="close">Cancel</button></div>',
-    function(root){$('#do-restore',root).onclick=function(){state.goals=d.goals.map(function(g){g.crushed=g.crushed||{};g.milestones=g.milestones||{};return g});if(d.settings)state.settings=d.settings;save();applyTheme();closeSheet();show('goals');toast('Backup restored')}});
+    function(root){$('#do-restore',root).onclick=function(){state.goals=d.goals.map(function(g){g.crushed=g.crushed||{};g.milestones=g.milestones||{};if(g.photo&&!safePhoto(g.photo))g.photo=null;if(g.kind==='tasks'&&!Array.isArray(g.tasks))g.kind=null;return g});if(d.settings)state.settings=d.settings;save();applyTheme();closeSheet();show('goals');toast('Backup restored')}});
   };
   rd.readAsText(file);
 }
@@ -955,7 +1208,10 @@ document.addEventListener('click',function(e){
   if(t.dataset.view){if(t.dataset.view==='new')openNew();else show(t.dataset.view);return}
   if(t.dataset.box!==undefined){var g=getGoal(current.goalId);if(g)tapBox(g,+t.dataset.box);return}
   if(t.dataset.delDep){var g2=getGoal(current.goalId);if(g2)deleteDeposit(g2,t.dataset.delDep);return}
-  if(t.dataset.starter){var s=STARTERS.find(function(x){return x.k===t.dataset.starter});openGoalForm(s?JSON.parse(JSON.stringify(s.g)):null);return}
+  if(t.dataset.starter){var s=STARTERS.find(function(x){return x.k===t.dataset.starter});
+    if(s&&s.tasks){var tg=makeTaxGoal();state.goals.push(tg);save();closeSheet();show('detail',tg.id);toast('Checklist ready. Tap each step as you finish it.');return}
+    openGoalForm(s?(s.make?s.make():JSON.parse(JSON.stringify(s.g))):null);return}
+  if(t.dataset.verseSet){state.settings.verse=t.dataset.verseSet==='on';save();applyTheme();renderVerse();return}
   if(t.dataset.themeSet){state.settings.theme=t.dataset.themeSet;save();applyTheme();return}
   if(t.dataset.animSet){state.settings.crushAnim=t.dataset.animSet==='on';save();applyTheme();toast(animOn()?'Crush animation on':'Crush animation off');return}
   var a=t.dataset.act;if(!a)return;
@@ -964,10 +1220,12 @@ document.addEventListener('click',function(e){
   else if(a==='home'){closeSheet();show('goals')}
   else if(a==='add')openAdd(t.dataset.goal);
   else if(a==='print'){var g3=getGoal(t.dataset.goal);if(g3)printGoal(g3)}
-  else if(a==='edit'){var g4=getGoal(t.dataset.goal);if(g4)openGoalForm({name:g4.name,icon:g4.icon,mode:g4.mode,target:g4.target/100,box:g4.mode==='even'?g4.boxes[0]/100:10,count:g4.boxes.length,step:g4.step?g4.step/100:1,targetDate:g4.targetDate,payFreq:g4.payFreq},g4)}
+  else if(a==='edit'){var g4=getGoal(t.dataset.goal);if(g4)openGoalForm({name:g4.name,icon:g4.icon,mode:g4.countdown?'countdown':g4.mode,shape:g4.shape,photo:g4.photo,rewards:g4.rewards,target:g4.target/100,box:g4.mode==='even'?g4.boxes[0]/100:10,count:g4.boxes.length,step:g4.step?g4.step/100:1,targetDate:g4.targetDate,payFreq:g4.payFreq},g4)}
   else if(a==='more'){var g5=getGoal(t.dataset.goal);if(g5)openMore(g5)}
 });
 $('#fab').addEventListener('click',function(){openAdd()});
+$('#verse').addEventListener('click',function(){verseShift++;renderVerse(true)});
+$('#verse').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();verseShift++;renderVerse(true)}});
 document.addEventListener('input',function(e){if(e.target&&e.target.id==='q-amt'){var f=e.target.closest('#quick-add'),g=f&&getGoal(f.dataset.goal),p=$('#q-prev');if(g&&p)p.innerHTML=previewText(g,cents(String(e.target.value).replace(/[$,\s]/g,'')))}});
 document.addEventListener('submit',function(e){
   if(!e.target||e.target.id!=='quick-add')return;
@@ -1010,27 +1268,31 @@ function showUpdate(v){
 function demoState(){
   var st=blank();function ago(n){var d=new Date();d.setDate(d.getDate()-n);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
   function ahead(n){return ago(-n)}
-  var ef={id:'demo1',name:'Emergency fund',icon:'🛟',mode:'even',boxes:buildEven(100000,1000),target:100000,crushed:{},deposits:[],targetDate:ahead(150),payFreq:'biweekly',createdAt:Date.now()-86400000*70,completedAt:null,milestones:{25:true}};
+  var ef={id:'demo1',name:'Emergency fund',icon:'🛟',mode:'even',boxes:buildEven(100000,1000),target:100000,crushed:{},deposits:[],targetDate:ahead(150),payFreq:'biweekly',createdAt:Date.now()-86400000*70,completedAt:null,milestones:{25:true},rewards:{25:'Fancy coffee',50:'Movie night',75:'New paperback',100:'Dinner out'}};
   [[60,5000,'Paycheck'],[46,5000,'Paycheck'],[39,2000,'Sold old stroller'],[32,5000,'Paycheck'],[18,5000,'Paycheck'],[11,3500,'Skipped takeout'],[4,5000,'Paycheck']].forEach(function(x,i){ef.deposits.push({id:'e'+i,amount:x[1],date:ago(x[0]),note:x[2],at:i})});
   var bt=[5000,2500,1500,4000,1000,3000,6000,2000,3500,1500,5000,2500,4500,1000,2000,7500,3000,1500,4000,2500,1000,5500,2000,3000,1500,6500,2500,4000,1000,3500,2000,5000,1500,3000,2500,4500,1000,2000,6000,3500,1500,2500,5000,3000,2000,4000,1000,7000,2500,4400];
   (function(){var sum=bt.reduce(function(s,v){return s+v},0);for(var i=0;i<bt.length;i++)bt[i]=Math.max(500,Math.round(bt[i]*200000/sum/500)*500);var d=200000-bt.reduce(function(s,v){return s+v},0);bt[bt.indexOf(Math.max.apply(null,bt))]+=d})();
-  var vac={id:'demo2',name:'Beach trip',icon:'🏝️',mode:'mixed',boxes:bt,target:bt.reduce(function(s,v){return s+v},0),crushed:{},deposits:[],targetDate:ahead(240),payFreq:'biweekly',createdAt:Date.now()-86400000*50,completedAt:null,milestones:{}};
+  var vac={id:'demo2',name:'Beach trip',icon:'🏝️',mode:'mixed',boxes:bt,target:bt.reduce(function(s,v){return s+v},0),crushed:{},deposits:[],targetDate:ahead(240),payFreq:'biweekly',createdAt:Date.now()-86400000*50,completedAt:null,milestones:{},shape:'heart'};
   [1,4,6,9,13,17,20,24,28,33,36,42].forEach(function(b,i){var id='v'+i;vac.deposits.push({id:id,amount:bt[b],date:ago(48-i*4),note:'',box:b,at:i});vac.crushed[b]={via:'deposit',dep:id,at:i}});
   vac.deposits.push({id:'vx',amount:1800,date:ago(2),note:'Birthday cash',at:99});
   var env={id:'demo3',name:'100 Envelope Challenge',icon:'💰',mode:'countup',boxes:buildCountUp(100,100),target:505000,step:100,crushed:{},deposits:[],targetDate:null,payFreq:'weekly',createdAt:Date.now()-86400000*30,completedAt:null,milestones:{}};
   [3,7,12,15,22,30,41,5,9,18,26,50,64,1,2].forEach(function(b,i){var id='n'+i;env.deposits.push({id:id,amount:(b+1)*100,date:ago(29-i*2),note:'',box:b,at:i});env.crushed[b]={via:'deposit',dep:id,at:i}});
   var tires={id:'demo4',name:'New tires',icon:'🚗',mode:'even',boxes:buildEven(60000,2500),target:60000,crushed:{},deposits:[{id:'t1',amount:20000,date:ago(120),note:'Paycheck',at:1},{id:'t2',amount:20000,date:ago(105),note:'Paycheck',at:2},{id:'t3',amount:20000,date:ago(90),note:'Tax refund',at:3}],targetDate:null,payFreq:'biweekly',createdAt:Date.now()-86400000*130,completedAt:Date.now()-86400000*90,milestones:{25:true,50:true,75:true,100:true}};
-  st.goals=[ef,vac,env,tires];return st;
+  var xd=nextDate(12,24,5),xdays=daysBetween(parseDay(todayStr()),parseDay(xd))+8,xb=splitDays(50000,xdays);
+  var xm={id:'demo5',name:'Christmas countdown',icon:'🎄',mode:'even',countdown:true,boxes:xb,target:50000,crushed:{},deposits:[],targetDate:xd,payFreq:'biweekly',createdAt:Date.now()-86400000*8,completedAt:null,milestones:{},shape:'tree',rewards:{50:'Hot cocoa night',100:'Ugly sweater party'}};
+  for(var xi=0;xi<8;xi++)xm.deposits.push({id:'x'+xi,amount:xb[xi],date:ago(8-xi),note:'',at:xi});
+  var tax=makeTaxGoal();tax.id='demo6';tax.createdAt=Date.now()-86400000*5;[0,1,5,6].forEach(function(i,k){tax.crushed[i]={via:'task',at:k}});tax.milestones={25:true};
+  st.goals=[xm,ef,vac,tax,env,tires];return st;
 }
 
 /* ---------- boot ---------- */
 load();applyTheme();
 if(DEMO){$('#demo-bar').hidden=false;if(window.GC_DEMO_CTA)$('#demo-cta').href=window.GC_DEMO_CTA}
-renderTips();show('goals');
+renderTips();renderVerse();show('goals');
 requestAnimationFrame(function(){$('#boot').classList.add('gone');setTimeout(function(){$('#boot').remove()},400)});
 if(!DEMO&&navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){});
 if('serviceWorker'in navigator&&location.protocol==='https:'){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});setTimeout(checkUpdate,4000)}
-window.__gc={state:function(){return state},version:APP_VERSION};
+window.__gc={state:function(){return state},version:APP_VERSION,shape:shapeLayout};
 })();
 </script>
 </body>
