@@ -1,5 +1,5 @@
 // Goal Crusher service worker. Bump CACHE_VERSION with every release (matches version.json).
-const CACHE_VERSION = 'goal-crusher-1.3.1';
+const CACHE_VERSION = 'goal-crusher-1.3.2';
 const SHELL = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', (e) => {
