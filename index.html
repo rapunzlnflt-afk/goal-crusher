@@ -160,6 +160,12 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
 .grid-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
 .grid-head h3{font-family:var(--font-display);font-size:18px}
 .grid-hint{font-size:13px;color:var(--muted);margin:-4px 0 12px}
+.quick{display:grid;grid-template-columns:1fr auto;gap:8px;margin:0 0 6px}
+.quick .btn{min-height:48px}
+.quick-prev{font-size:13px;color:var(--muted);min-height:18px;margin:0 0 12px}
+.quick-prev b{color:var(--text)}
+.chk{display:flex;align-items:center;gap:10px;font-size:14px;margin:4px 0 10px;cursor:pointer}
+.chk input{width:20px;height:20px;accent-color:var(--sage,#5e7c73)}
 .extra-pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;background:var(--flame-soft);color:var(--text);border-radius:999px;padding:5px 10px;margin:-2px 0 12px}
 .boxes{display:grid;grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:6px}
 .box{position:relative;aspect-ratio:1;border-radius:10px;background:var(--surface-2);border:1.5px dashed var(--border-strong);display:grid;place-items:center;font-size:12.5px;font-weight:600;color:var(--muted);transition:transform .15s,background .2s;padding:2px;line-height:1.1;text-align:center}
@@ -170,6 +176,13 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
 .box.partial{border-style:solid;border-color:var(--sage);background:linear-gradient(to top,var(--sage-soft) var(--fill,0%),var(--surface-2) var(--fill,0%))}
 .box.pop{animation:pop .45s var(--ease)}
 @keyframes pop{0%{transform:scale(.8)}55%{transform:scale(1.12)}100%{transform:scale(1)}}
+/* crush animation: squash, burst, stamp the check */
+.box.crush{animation:crush .6s var(--ease) var(--d,0ms) backwards;z-index:1}
+.box.crush::after{animation:stamp .45s var(--ease) calc(var(--d,0ms) + .18s) backwards}
+.box.crush::before{content:'';position:absolute;inset:-2px;border-radius:inherit;border:2px solid var(--flame);opacity:0;pointer-events:none;animation:burst .6s ease-out calc(var(--d,0ms) + .15s)}
+@keyframes crush{0%{transform:scale(1);opacity:.35;filter:saturate(0)}30%{transform:scale(1.18,.6);opacity:1;filter:saturate(1)}55%{transform:scale(.92,1.12)}75%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes stamp{0%{transform:scale(2.2);opacity:0}60%{transform:scale(.9);opacity:1}100%{transform:scale(1)}}
+@keyframes burst{0%{opacity:.9;transform:scale(.9)}100%{opacity:0;transform:scale(1.6)}}
 .boxes.compact{grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:5px}
 .boxes.compact .box{font-size:11px;border-radius:8px}
 
@@ -355,6 +368,8 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
       <div class="card">
         <div class="set-row"><div><div class="t">Appearance</div><div class="s">Light, dark, or match your phone</div></div>
           <div class="seg" role="group" aria-label="Appearance" id="theme-seg"><button data-theme-set="light">Light</button><button data-theme-set="dark">Dark</button><button data-theme-set="auto">Auto</button></div></div>
+        <div class="set-row"><div><div class="t">Crush animation</div><div class="s">Boxes squash and stamp when you crush them</div></div>
+          <div class="seg" role="group" aria-label="Crush animation" id="anim-seg"><button data-anim-set="on">On</button><button data-anim-set="off">Off</button></div></div>
       </div>
       <div class="section-h"><h2>Backup</h2></div>
       <div class="card">
@@ -401,7 +416,7 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
 <script>
 (function(){
 'use strict';
-var APP_VERSION='1.0.0';
+var APP_VERSION='1.1.0';
 var DEMO=!!window.GC_DEMO;
 var KEY='goalCrusher_v1';
 var BACKUP_NAME='goal-crusher-backup.json';
@@ -468,6 +483,55 @@ function rebalanceExtra(g){
   var keys=Object.keys(g.crushed).filter(function(k){return g.crushed[k].via==='extra'}).sort(function(a,b){return (g.crushed[b].at||0)-(g.crushed[a].at||0)});
   while(extraAvail(g)<0&&keys.length){delete g.crushed[keys.shift()]}
 }
+/* choose open boxes that use as much of the available money as possible */
+function pickBoxes(g,avail){
+  var idx=[];for(var i=0;i<g.boxes.length;i++)if(!g.crushed[i]&&g.boxes[i]<=avail)idx.push(i);
+  if(!idx.length)return [];
+  var tot=idx.reduce(function(a,i){return a+g.boxes[i]},0);if(tot<=avail)return idx;
+  idx.sort(function(a,b){return g.boxes[b]-g.boxes[a]||a-b});
+  function gcd(a,b){while(b){var t=b;b=a%b;a=t}return a}
+  var u=idx.reduce(function(a,i){return gcd(a,g.boxes[i])},0),cap=Math.floor(avail/u);
+  if(cap*idx.length>6e6){var left=avail,out=[];idx.forEach(function(i){if(g.boxes[i]<=left){out.push(i);left-=g.boxes[i]}});return out}
+  var from=new Int32Array(cap+1).fill(-1);from[0]=-2;
+  for(var k=0;k<idx.length;k++){var w=g.boxes[idx[k]]/u;for(var x=cap;x>=w;x--)if(from[x]===-1&&from[x-w]!==-1)from[x]=k}
+  var best=cap;while(best>0&&from[best]===-1)best--;
+  var res=[];while(best>0){var kk=from[best];res.push(idx[kk]);best-=g.boxes[idx[kk]]/u}
+  return res;
+}
+function autoFillOn(){return state.settings.autoFill!==false}
+function animOn(){return state.settings.crushAnim!==false}
+/* what a deposit of amt would do, without saving */
+function previewSavings(g,amt){
+  if(g.mode==='even'){var t=totalSaved(g)+amt,run=0,f=0;for(var i=0;i<g.boxes.length;i++){if(run+g.boxes[i]<=t){run+=g.boxes[i];f++}else break}return {count:f-boxesCrushed(g),used:0,extra:0}}
+  var avail=extraAvail(g)+amt;
+  if(!autoFillOn())return {count:0,used:0,extra:avail,manual:true};
+  var picks=pickBoxes(g,avail),used=picks.reduce(function(a,i){return a+g.boxes[i]},0);
+  return {count:picks.length,used:used,extra:avail-used};
+}
+/* record a deposit and fill boxes */
+function applySavings(g,amt,date,note){
+  var before=boxesCrushed(g);
+  g.deposits.push({id:uid(),amount:amt,date:date||todayStr(),note:note||'',at:Date.now()});
+  lastPopped=[];
+  if(g.mode==='even'){var after=boxesCrushed(g);for(var i=before;i<after;i++)lastPopped.push(i)}
+  else if(autoFillOn()){var now=Date.now();pickBoxes(g,extraAvail(g)).forEach(function(i){g.crushed[i]={via:'extra',at:now};lastPopped.push(i)})}
+  save();
+  return lastPopped.length;
+}
+function savingsMsg(g,amt,n){
+  var ex=extraAvail(g);
+  if(n>0)return 'Crushed '+plural(n,'box')+'!'+(ex>0?' '+money(ex)+' saved toward the next one.':'');
+  if(g.mode==='even'||autoFillOn())return money(amt)+' added. Keep going!';
+  return money(amt)+' added. Tap a box to spend it.';
+}
+function previewText(g,amt){
+  if(!(amt>0))return g.mode==='even'?'Boxes fill in on their own.':(autoFillOn()?'Goal Crusher picks boxes that use up your amount.':'Your amount goes to extra savings for you to spend on boxes.');
+  var r=previewSavings(g,amt);
+  if(r.manual)return money(amt)+' goes to extra savings. Tap the boxes you want to crush.';
+  if(g.mode==='even')return r.count>0?'This crushes <b>'+plural(r.count,'box')+'</b>.':'This goes toward the next box.';
+  if(r.count>0)return 'This crushes <b>'+plural(r.count,'box')+'</b> ('+money(r.used)+')'+(r.extra>0?' and keeps '+money(r.extra)+' as extra.':'.');
+  return money(r.extra)+' goes to extra savings until it covers a box.';
+}
 
 /* plan: per paycheck + pace */
 var FREQ={weekly:{d:7,l:'paycheck',name:'Weekly'},biweekly:{d:14,l:'paycheck',name:'Every 2 weeks'},semimonthly:{d:365/24,l:'paycheck',name:'Twice a month'},monthly:{d:365/12,l:'month',name:'Monthly'}};
@@ -501,6 +565,7 @@ function applyTheme(){
   var dark=t==='dark'||(t==='auto'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.setAttribute('data-theme',dark?'dark':'light');
   $$('#theme-seg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.themeSet===t))});
+  $$('#anim-seg button').forEach(function(b){b.setAttribute('aria-pressed',String((b.dataset.animSet==='on')===animOn()))});
 }
 
 /* ---------- views ---------- */
@@ -570,16 +635,18 @@ function renderDetail(){
   else if(!g.targetDate)planHtml='<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div>Add a target date in Edit and Goal Crusher will tell you how much to set aside each payday.</div></div>';
   var est=pl.pace?(pl.pace.getFullYear()===new Date().getFullYear()?pl.pace.toLocaleDateString('en-US',{month:'short',day:'numeric'}):pl.pace.toLocaleDateString('en-US',{month:'short',year:'numeric'})):(g.completedAt?'Done':'Too early');
   var days=g.completedAt?'—':(pl.daysLeft===null?'No date':pl.daysLeft>0?plural(pl.daysLeft,'day'):pl.daysLeft===0?'Today':'Passed');
-  var boxes='',fill=g.mode==='even'?evenFill(g):null;
+  var boxes='',fill=g.mode==='even'?evenFill(g):null,popOrder=lastPopped.slice().sort(function(a,b){return a-b});
   for(var i=0;i<n;i++){
-    var o=isOn(g,i),cls='box'+(o?' on':'')+(lastPopped.indexOf(i)>-1?' pop':'');var style='';
+    var pk=popOrder.indexOf(i),o=isOn(g,i),cls='box'+(o?' on':'')+(pk>-1?(animOn()?' crush':' pop'):''),style='';
+    if(pk>-1&&animOn())style=' style="--d:'+Math.round(pk*Math.min(90,1400/lastPopped.length))+'ms"';
     if(fill&&!o&&i===fill.filled&&fill.leftover>0){cls+=' partial';style=' style="--fill:'+Math.round(fill.leftover/g.boxes[i]*100)+'%"'}
     var label=g.mode==='countup'&&g.step===100?String(g.boxes[i]/100):moneyShort(g.boxes[i]);
     boxes+='<button class="'+cls+'"'+style+' data-box="'+i+'" aria-pressed="'+o+'" aria-label="Box '+(i+1)+', '+money(g.boxes[i])+(o?', crushed':'')+'"><span class="amt">'+label+'</span></button>';
   }
-  lastPopped=[];
+  var popFirst=popOrder.length?popOrder[0]:null;lastPopped=[];
   var extra=extraAvail(g);
-  var hint=g.mode==='even'?'Tap the next box when you set aside '+money(g.boxes[0])+', or use Add savings for any amount — boxes fill in on their own.':'Tap any box when you set aside that amount. Saved a different amount? Use Add savings, then spend it on a box.';
+  var hint=g.mode==='even'?'Enter what you saved and the boxes fill in for you. You can also tap a box to crush it.':(autoFillOn()?'Enter what you saved and Goal Crusher picks the boxes. You can also tap any box to crush it.':'Enter what you saved, then tap the boxes you want to crush.');
+  var quick=g.completedAt?'':'<form class="quick" id="quick-add" data-goal="'+g.id+'" novalidate><div class="money"><input class="input num" id="q-amt" inputmode="decimal" placeholder="Amount" aria-label="Amount saved"></div><button class="btn btn-primary" type="submit">Fill boxes</button></form><p class="quick-prev" id="q-prev" aria-live="polite">'+previewText(g,0)+'</p>';
   var deps=g.deposits.slice().sort(function(a,b){return a.date===b.date?(b.at||0)-(a.at||0):(a.date<b.date?1:-1)});
   var hist=deps.length?deps.map(function(d){return '<div class="hist-row"><div class="d">'+niceDate(d.date)+'</div><div class="n">'+(d.note?esc(d.note):(d.box!=null?'Box '+(d.box+1):'Savings'))+'</div><div class="a num">'+money(d.amount)+'</div><button class="x" data-del-dep="'+d.id+'" aria-label="Delete '+money(d.amount)+' deposit from '+niceDate(d.date)+'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button></div>'}).join(''):'<p style="color:var(--muted);font-size:14px">No savings yet. Your first box is waiting.</p>';
   $('#view-detail').innerHTML=
@@ -592,11 +659,12 @@ function renderDetail(){
       (g.completedAt?'':'<div class="actions"><button class="btn btn-primary" data-act="add" data-goal="'+g.id+'">Add savings</button><button class="btn btn-ghost" data-act="print" data-goal="'+g.id+'">Print grid</button></div>')+
     '</div>'+
     '<div class="card grid-card"><div class="grid-head"><h3>Your grid</h3><span class="eyebrow">'+({even:'Even boxes',mixed:'Mixed amounts',countup:'Count up'}[g.mode])+'</span></div>'+
-      (g.completedAt?'':'<p class="grid-hint">'+hint+'</p>')+
+      (g.completedAt?'':'<p class="grid-hint">'+hint+'</p>')+quick+
       (extra>0?'<div class="extra-pill"><span aria-hidden="true">💵</span><span><b class="num">'+money(extra)+'</b> extra savings ready for a box</span></div>':'')+
       '<div class="boxes'+(n>120?' compact':'')+'" id="boxes">'+boxes+'</div></div>'+
     '<div class="card hist"><div class="grid-head"><h3>Savings history</h3><span class="eyebrow num">'+plural(deps.length,'entry')+'</span></div>'+hist+'</div>'+
     '<div class="row2" style="margin-top:14px"><button class="btn btn-ghost" data-act="edit" data-goal="'+g.id+'">Edit goal</button><button class="btn btn-ghost" data-act="more" data-goal="'+g.id+'">More…</button></div>';
+  if(popFirst!==null&&animOn()){var fb=$('#view-detail [data-box="'+popFirst+'"]');if(fb){var r=fb.getBoundingClientRect();if(r.top<70||r.bottom>window.innerHeight-110)fb.scrollIntoView({block:'center',behavior:'smooth'})}}
 }
 
 var TIPS=[
@@ -727,21 +795,24 @@ function openAdd(goalId){
   openSheet('<h2 id="sheet-title">Add savings</h2><p class="lede">Record money you set aside. Every dollar counts toward your goal.</p>'+
     '<form id="add-form" novalidate>'+
     (act.length>1?'<div class="field"><label for="a-goal">Goal</label><select class="input" id="a-goal">'+act.map(function(g){return '<option value="'+g.id+'"'+(g.id===gid?' selected':'')+'>'+esc(g.icon+'  '+g.name)+'</option>'}).join('')+'</select></div>':'<input type="hidden" id="a-goal" value="'+gid+'">')+
-    '<div class="field"><label for="a-amt">Amount</label><div class="money bigm"><input class="input big num" id="a-amt" inputmode="decimal" placeholder="0" autofocus></div></div>'+
+    '<div class="field"><label for="a-amt">Amount</label><div class="money bigm"><input class="input big num" id="a-amt" inputmode="decimal" placeholder="0" autofocus></div><p class="quick-prev" id="a-prev" aria-live="polite" style="margin:6px 0 0"></p></div>'+
+    '<label class="chk" id="a-auto-wrap"><input type="checkbox" id="a-auto"'+(autoFillOn()?' checked':'')+'> Fill boxes for me</label>'+
     '<div class="row2"><div class="field"><label for="a-date">Date</label><input class="input" type="date" id="a-date" value="'+todayStr()+'" max="'+todayStr()+'"></div><div class="field"><label for="a-note">Note <span style="font-weight:400">(optional)</span></label><input class="input" id="a-note" maxlength="60" placeholder="Paycheck"></div></div>'+
     '<p class="err" id="a-err" role="alert"></p><button class="btn btn-primary btn-block" type="submit">Add to goal</button></form>',
   function(root){
+    function amtVal(){return cents(String($('#a-amt',root).value).replace(/[$,\s]/g,''))}
+    function upd(){var g=getGoal($('#a-goal',root).value);if(!g)return;$('#a-auto-wrap',root).hidden=g.mode==='even';$('#a-prev',root).innerHTML=previewText(g,amtVal())}
+    $('#a-amt',root).addEventListener('input',upd);$('#a-goal',root).addEventListener('change',upd);
+    $('#a-auto',root).addEventListener('change',function(){state.settings.autoFill=this.checked;save();upd()});
+    upd();
     $('#add-form',root).addEventListener('submit',function(e){
       e.preventDefault();
-      var g=getGoal($('#a-goal',root).value),amt=cents(String($('#a-amt',root).value).replace(/[$,\s]/g,''));
+      var g=getGoal($('#a-goal',root).value),amt=amtVal();
       if(!(amt>0)){$('#a-err',root).textContent='Enter an amount above $0.';return}
-      var before=boxesCrushed(g);
-      g.deposits.push({id:uid(),amount:amt,date:$('#a-date',root).value||todayStr(),note:$('#a-note',root).value.trim(),at:Date.now()});
-      if(g.mode==='even'){var after=boxesCrushed(g);lastPopped=[];for(var i=before;i<after;i++)lastPopped.push(i)}
-      save();closeSheet();
+      var n=applySavings(g,amt,$('#a-date',root).value,$('#a-note',root).value.trim());
+      closeSheet();
       if(current.view!=='detail'||current.goalId!==g.id)show('detail',g.id);else render();
-      var nc=boxesCrushed(g)-before;
-      toast(g.mode==='even'?(nc>0?'Crushed '+plural(nc,'box')+'!':money(amt)+' added. Keep going!'):money(amt)+' added. Tap a box to spend it.');
+      toast(savingsMsg(g,amt,n));if(n)buzz();
       checkDone(g);
     });
   });
@@ -873,6 +944,7 @@ document.addEventListener('click',function(e){
   if(t.dataset.delDep){var g2=getGoal(current.goalId);if(g2)deleteDeposit(g2,t.dataset.delDep);return}
   if(t.dataset.starter){var s=STARTERS.find(function(x){return x.k===t.dataset.starter});openGoalForm(s?JSON.parse(JSON.stringify(s.g)):null);return}
   if(t.dataset.themeSet){state.settings.theme=t.dataset.themeSet;save();applyTheme();return}
+  if(t.dataset.animSet){state.settings.crushAnim=t.dataset.animSet==='on';save();applyTheme();toast(animOn()?'Crush animation on':'Crush animation off');return}
   var a=t.dataset.act;if(!a)return;
   if(a==='close')closeSheet();
   else if(a==='new'){openNew()}
@@ -883,6 +955,16 @@ document.addEventListener('click',function(e){
   else if(a==='more'){var g5=getGoal(t.dataset.goal);if(g5)openMore(g5)}
 });
 $('#fab').addEventListener('click',function(){openAdd()});
+document.addEventListener('input',function(e){if(e.target&&e.target.id==='q-amt'){var f=e.target.closest('#quick-add'),g=f&&getGoal(f.dataset.goal),p=$('#q-prev');if(g&&p)p.innerHTML=previewText(g,cents(String(e.target.value).replace(/[$,\s]/g,'')))}});
+document.addEventListener('submit',function(e){
+  if(!e.target||e.target.id!=='quick-add')return;
+  e.preventDefault();
+  var g=getGoal(e.target.dataset.goal),inp=$('#q-amt'),amt=cents(String(inp.value).replace(/[$,\s]/g,''));
+  if(!g)return;
+  if(!(amt>0)){$('#q-prev').textContent='Enter an amount above $0.';inp.focus();return}
+  var n=applySavings(g,amt,todayStr(),'');
+  render();toast(savingsMsg(g,amt,n));if(n)buzz();checkDone(g);
+});
 $('#theme-quick').addEventListener('click',function(){var dark=document.documentElement.getAttribute('data-theme')==='dark';state.settings.theme=dark?'light':'dark';save();applyTheme()});
 $('#backup-btn').addEventListener('click',backup);
 $('#restore-btn').addEventListener('click',function(){if(DEMO){toast('Restore is turned off in the demo.');return}$('#restore-file').click()});
