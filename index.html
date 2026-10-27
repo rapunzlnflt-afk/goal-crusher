@@ -157,12 +157,12 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 .actions.one{grid-template-columns:1fr}
 .verse{text-align:center;margin:28px auto 8px;max-width:340px;padding-top:18px;border-top:1px solid var(--border)}
-.verse p{font-family:var(--font-display);font-size:16px;line-height:1.4;color:var(--text);font-style:italic}
-.verse cite{display:block;margin-top:4px;font-size:12px;font-style:normal;letter-spacing:.04em;color:var(--muted)}
+.verse p{font-family:var(--font-display);font-size:14px;line-height:1.45;color:var(--text);font-style:italic}
+.verse cite{display:block;margin-top:4px;font-size:11px;font-style:normal;letter-spacing:.04em;color:var(--muted)}
 .verse{cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
 .verse.swap p,.verse.swap cite{animation:vfade .45s ease}
 @keyframes vfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.verse .vhint{display:block;margin-top:6px;font-size:11px;color:var(--faint)}
+.verse .vhint{display:block;margin-top:6px;font-size:10px;color:var(--faint)}
 .niv-note{font-size:11.5px;color:var(--faint);line-height:1.45;margin-top:4px}
 
 .grid-card{margin-top:14px}
@@ -236,6 +236,13 @@ details.rewards .help{font-size:12.5px;color:var(--faint);margin:-4px 0 10px}
 .task .th{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.4}
 .task.done .tt{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--sage);text-decoration-thickness:2px}
 .task .fx-amt{display:none}
+.beat{margin-top:12px;border:1px solid var(--border);background:var(--surface-2);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--text)}
+.beat .bh{display:flex;gap:10px;align-items:flex-start}
+.beat .bh>span{font-size:20px;line-height:1.1}
+.beat .bs{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.beat .bact{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px}
+.beat.win{background:var(--sage-soft);border-color:transparent;color:var(--sage-ink)}
+.beat.win .bs{color:var(--sage-ink);opacity:.85}
 .note{margin-top:12px;font-size:13px;line-height:1.5;color:var(--muted);background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
 .note b{color:var(--text)}
 
@@ -481,7 +488,7 @@ details.rewards .help{font-size:12.5px;color:var(--faint);margin:-4px 0 10px}
 <script>
 (function(){
 'use strict';
-var APP_VERSION='1.3.0';
+var APP_VERSION='1.3.1';
 var DEMO=!!window.GC_DEMO;
 var KEY='goalCrusher_v1';
 var BACKUP_NAME='goal-crusher-backup.json';
@@ -713,8 +720,56 @@ var TAX_STEPS=[
   ['Refund received','Check your bank account. You got it done early.'],
   ['Make a plan for your refund','Crush a goal with it, build your emergency fund, or pay down a bill.']
 ];
+function validDay(v){return typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&!isNaN(parseDay(v))?v:null}
+function dayStrOf(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function taxSeasonYear(g){return +(validDay(g&&g.targetDate)||nextDate(4,15,0)).slice(0,4)}
+/* last year's filing date moved into this filing season */
+function lastYearThisSeason(g){var l=validDay(g.lastFiled);if(!l)return null;var d=parseDay(l);return dayStrOf(new Date(taxSeasonYear(g),d.getMonth(),d.getDate()))}
+function suggestFileBy(g){var t=lastYearThisSeason(g);if(!t)return '';var y=taxSeasonYear(g),d=parseDay(t);d.setDate(d.getDate()-14);
+  var lo=new Date(y,1,1),td=parseDay(todayStr());if(d<lo)d=lo;if(d<td)d=td;var dl=validDay(g.targetDate);if(dl&&d>parseDay(dl))d=parseDay(dl);return dayStrOf(d)}
+function efileIndex(g){for(var i=0;i<g.tasks.length;i++)if(/^E-file/.test(g.tasks[i][0]))return i;return -1}
+function filedOn(g){var i=efileIndex(g),c=i>-1&&g.crushed[i];if(!(c&&c.at>1e11))return null;var d=new Date(c.at);return d.getFullYear()>=taxSeasonYear(g)?dayStrOf(d):null}
+function daysWord(n){n=Math.abs(n);return n%7===0&&n>=14?plural(n/7,'week'):plural(n,'day')}
+function beatHtml(g){
+  var fb=validDay(g.fileBy),lt=lastYearThisSeason(g),fo=filedOn(g),ly=validDay(g.lastFiled);
+  if(fo){var msg,sub='';
+    if(lt){var d1=daysBetween(parseDay(fo),parseDay(lt));msg=d1>0?'You filed <b>'+daysWord(d1)+' earlier</b> than last year.':d1===0?'You filed on the same date as last year.':'You filed. Every step you finished counts.'}
+    else msg='You e-filed on <b>'+niceDate(fo,true)+'</b>.';
+    if(fb){var d2=daysBetween(parseDay(fo),parseDay(fb));sub=d2>=0?(d2>0?daysWord(d2)+' ahead of your file-by date.':'Right on your file-by date.'):'A little after your file-by date, and it still counts.'}
+    return '<div class="beat win"><div class="bh"><span aria-hidden="true">🏁</span><div>'+msg+(sub?'<span class="bs">'+sub+'</span>':'')+'</div></div></div>'}
+  if(!fb&&!ly)return '<div class="beat"><div class="bh"><span aria-hidden="true">🏁</span><div><b>Beat last year</b><span class="bs">Filing earlier this year gets your refund sooner. Enter the date you filed last year, or pick a file-by date.</span><div class="bact"><button class="link-btn" data-act="beat" data-goal="'+g.id+'">I filed last year on…</button><button class="link-btn" data-act="beat" data-goal="'+g.id+'">Set a file-by date</button></div></div></div></div>';
+  var top,sub2='';
+  if(fb){var dl=daysBetween(parseDay(todayStr()),parseDay(fb));top='File by <b>'+niceDate(fb,true)+'</b>'+(dl>0?' · '+plural(dl,'day')+' left':dl===0?' · that’s today':' · that date passed');
+    if(lt){var ah=daysBetween(parseDay(fb),parseDay(lt));sub2=ah>0?'That beats last year ('+niceDate(ly,true)+') by '+daysWord(ah)+'.':ah===0?'That matches last year ('+niceDate(ly,true)+'). Can you shave off a week?':'That is later than last year ('+niceDate(ly,true)+'). Try an earlier date to get your refund sooner.'}
+    else sub2='Finish the e-file step by then.'}
+  else{top='Last year you filed on <b>'+niceDate(ly,true)+'</b>';sub2='Beat it this year. Pick a file-by date to aim for.'}
+  return '<div class="beat"><div class="bh"><span aria-hidden="true">🏁</span><div>'+top+'<span class="bs">'+sub2+'</span><div class="bact"><button class="link-btn" data-act="beat" data-goal="'+g.id+'">Change</button></div></div></div></div>';
+}
+function openBeat(g){
+  clearTimeout(toastT);$('#toast').classList.remove('show');
+  var ly=validDay(g.lastFiled)||'',fb=validDay(g.fileBy)||'',auto=!fb;
+  openSheet('<h2 id="sheet-title">Beat last year</h2><p class="lede">The earlier you file, the sooner your refund can land. Fill in one or both.</p>'+
+    '<div class="field"><label for="b-last">I filed last year on <span style="font-weight:400">(optional)</span></label><input class="input" type="date" id="b-last" value="'+esc(ly)+'" max="'+todayStr()+'"><div class="help">Not sure? Your tax software or last year’s acceptance email shows the date.</div></div>'+
+    '<div class="field"><label for="b-by">I want to file by <span style="font-weight:400">(optional)</span></label><input class="input" type="date" id="b-by" value="'+esc(fb)+'" min="'+todayStr()+'"'+(validDay(g.targetDate)?' max="'+g.targetDate+'"':'')+'><div class="help" id="b-help">'+(ly?'':'Enter last year’s date and we’ll suggest one about two weeks earlier.')+'</div></div>'+
+    '<p class="err" id="b-err" role="alert"></p>'+
+    '<div class="opt-list"><button class="btn btn-primary btn-block" id="b-save">Save</button>'+(ly||fb?'<button class="btn btn-ghost btn-block" id="b-clear">Clear dates</button>':'')+'</div>',
+  function(root){
+    var li=$('#b-last',root),bi=$('#b-by',root),hp=$('#b-help',root);
+    bi.addEventListener('input',function(){auto=false});
+    li.addEventListener('input',function(){var v=validDay(li.value);if(!v){if(auto)bi.value='';return}var sug=suggestFileBy({lastFiled:v,targetDate:g.targetDate});
+      if(auto&&sug){bi.value=sug;hp.textContent='Suggested: about two weeks earlier than last year. Change it if you like.'}});
+    $('#b-save',root).onclick=function(){var l=li.value?validDay(li.value):null,b=bi.value?validDay(bi.value):null,er=$('#b-err',root);
+      if(li.value&&!l){er.textContent='That date doesn’t look right.';return}
+      if(l&&l>todayStr()){er.textContent='Last year’s filing date should be in the past.';return}
+      if(bi.value&&!b){er.textContent='That date doesn’t look right.';return}
+      if(b&&validDay(g.targetDate)&&b>g.targetDate){er.textContent='Pick a date on or before your '+niceDate(g.targetDate,true)+' deadline.';return}
+      if(!l&&!b){er.textContent='Enter at least one date.';return}
+      g.lastFiled=l;g.fileBy=b;save();closeSheet();render();toast(b?'File-by date set. You’ve got this.':'Saved. Now pick a date to beat it.')};
+    var cl=$('#b-clear',root);if(cl)cl.onclick=function(){g.lastFiled=null;g.fileBy=null;save();closeSheet();render()};
+  });
+}
 function makeTaxGoal(){
-  return {id:uid(),kind:'tasks',name:'Tax refund fast track',icon:'🧾',mode:'tasks',tasks:TAX_STEPS.map(function(t){return t.slice()}),boxes:TAX_STEPS.map(function(){return 0}),target:0,step:null,crushed:{},deposits:[],targetDate:nextDate(4,15,0),payFreq:'biweekly',createdAt:Date.now(),completedAt:null,milestones:{},rewards:{}};
+  return {id:uid(),kind:'tasks',name:'Tax refund fast track',icon:'🧾',mode:'tasks',tasks:TAX_STEPS.map(function(t){return t.slice()}),boxes:TAX_STEPS.map(function(){return 0}),target:0,step:null,crushed:{},deposits:[],targetDate:nextDate(4,15,0),payFreq:'biweekly',createdAt:Date.now(),completedAt:null,milestones:{},rewards:{},lastFiled:null,fileBy:null};
 }
 
 /* plan: per paycheck + pace */
@@ -794,6 +849,7 @@ function renderGoals(){
 function goalCard(g){
   var s=totalSaved(g),p=pctOf(g),pl=planFor(g),line,task=isTask(g);
   if(g.completedAt)line='Crushed '+new Date(g.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  else if(task&&validDay(g.fileBy)&&!filedOn(g)&&daysBetween(parseDay(todayStr()),parseDay(g.fileBy))>=0)line=(g.boxes.length-boxesCrushed(g))+' steps left · file by <b>'+niceDate(g.fileBy,true)+'</b>'+(lastYearThisSeason(g)&&daysBetween(parseDay(g.fileBy),parseDay(lastYearThisSeason(g)))>0?' to beat last year':'');
   else if(task)line=(g.boxes.length-boxesCrushed(g))+' steps left'+(pl.daysLeft>0?' · <b>'+plural(pl.daysLeft,'day')+'</b> until '+niceDate(g.targetDate,true):'');
   else if(g.countdown&&pl.daysLeft>0&&pl.left>0)line='<b>'+plural(pl.daysLeft,'day')+'</b> to go · crush one box a day';
   else if(g.completedAt)line='Crushed '+new Date(g.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
@@ -829,7 +885,7 @@ function renderTaskDetail(g){
       '<div><div style="font-size:28px;line-height:1" aria-hidden="true">'+esc(g.icon)+'</div><h2>'+esc(g.name)+'</h2><div class="amt">'+(g.targetDate?'Filing deadline <b>'+niceDate(g.targetDate,true)+'</b>':'Check off each step as you go')+'</div></div></div>'+
       '<div class="stats"><div class="stat"><div class="v num">'+(n-on)+'</div><div class="k">steps left</div></div><div class="stat"><div class="v num">'+days+'</div><div class="k">until deadline</div></div><div class="stat"><div class="v num">&lt; 21 days</div><div class="k">typical e-file refund</div></div></div>'+
       (g.completedAt?'<div class="plan flame"><span aria-hidden="true">🏆</span><div><b>Checklist crushed.</b> Every step is done.</div></div>':'<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><div><b>Fastest refund:</b> file electronically and choose direct deposit. Filing early, as soon as your forms arrive, gets you in line sooner.</div></div>')+
-      rewardPill(g)+
+      beatHtml(g)+rewardPill(g)+
     '</div>'+
     '<div class="card grid-card"><div class="grid-head"><h3>Your steps</h3><span class="eyebrow">Checklist</span></div>'+
       (g.completedAt?'':'<p class="grid-hint">Tap a step when it is done. Tap again to undo.</p>')+
@@ -1069,7 +1125,7 @@ function tapBox(g,i){
   if(g.completedAt){toast(isTask(g)?'This checklist is done. Use More to reopen it.':'This goal is already crushed.');return}
   if(isTask(g)){
     if(g.crushed[i]){delete g.crushed[i];lastPopped=[];save();render();return}
-    g.crushed[i]={via:'task',at:Date.now()};lastPopped=[i];save();render();toast('Step '+(i+1)+' done');buzz();checkDone(g);return;
+    g.crushed[i]={via:'task',at:Date.now()};lastPopped=[i];save();render();var lt0=lastYearThisSeason(g),dd0=lt0&&filedOn(g)?daysBetween(parseDay(todayStr()),parseDay(lt0)):0;toast(i===efileIndex(g)&&dd0>0?'Filed '+daysWord(dd0)+' earlier than last year':'Step '+(i+1)+' done');buzz();checkDone(g);return;
   }
   var amt=g.boxes[i];
   if(g.mode==='even'){
@@ -1196,7 +1252,7 @@ function restore(file){
     var ok=d.goals.every(function(g){return g&&g.id&&Array.isArray(g.boxes)&&Array.isArray(g.deposits)&&typeof g.target==='number'});
     if(!ok){toast('This backup looks damaged, so nothing was changed.');return}
     openSheet('<h2 id="sheet-title">Restore this backup?</h2><p class="lede">It has '+plural(d.goals.length,'goal')+' from '+(d.exportedAt?new Date(d.exportedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'an earlier date')+'. It will replace the '+plural(state.goals.length,'goal')+' on this device.</p><div class="opt-list"><button class="btn btn-primary btn-block" id="do-restore">Replace with backup</button><button class="btn btn-ghost btn-block" data-act="close">Cancel</button></div>',
-    function(root){$('#do-restore',root).onclick=function(){state.goals=d.goals.map(function(g){g.crushed=g.crushed||{};g.milestones=g.milestones||{};if(g.photo&&!safePhoto(g.photo))g.photo=null;if(g.kind==='tasks'&&!Array.isArray(g.tasks))g.kind=null;return g});if(d.settings)state.settings=d.settings;save();applyTheme();closeSheet();show('goals');toast('Backup restored')}});
+    function(root){$('#do-restore',root).onclick=function(){state.goals=d.goals.map(function(g){g.crushed=g.crushed||{};g.milestones=g.milestones||{};if(g.photo&&!safePhoto(g.photo))g.photo=null;if(g.kind==='tasks'&&!Array.isArray(g.tasks))g.kind=null;g.lastFiled=validDay(g.lastFiled);g.fileBy=validDay(g.fileBy);return g});if(d.settings)state.settings=d.settings;save();applyTheme();closeSheet();show('goals');toast('Backup restored')}});
   };
   rd.readAsText(file);
 }
@@ -1221,6 +1277,7 @@ document.addEventListener('click',function(e){
   else if(a==='add')openAdd(t.dataset.goal);
   else if(a==='print'){var g3=getGoal(t.dataset.goal);if(g3)printGoal(g3)}
   else if(a==='edit'){var g4=getGoal(t.dataset.goal);if(g4)openGoalForm({name:g4.name,icon:g4.icon,mode:g4.countdown?'countdown':g4.mode,shape:g4.shape,photo:g4.photo,rewards:g4.rewards,target:g4.target/100,box:g4.mode==='even'?g4.boxes[0]/100:10,count:g4.boxes.length,step:g4.step?g4.step/100:1,targetDate:g4.targetDate,payFreq:g4.payFreq},g4)}
+  else if(a==='beat'){var gb=getGoal(t.dataset.goal);if(gb)openBeat(gb)}
   else if(a==='more'){var g5=getGoal(t.dataset.goal);if(g5)openMore(g5)}
 });
 $('#fab').addEventListener('click',function(){openAdd()});
@@ -1281,7 +1338,7 @@ function demoState(){
   var xd=nextDate(12,24,5),xdays=daysBetween(parseDay(todayStr()),parseDay(xd))+8,xb=splitDays(50000,xdays);
   var xm={id:'demo5',name:'Christmas countdown',icon:'🎄',mode:'even',countdown:true,boxes:xb,target:50000,crushed:{},deposits:[],targetDate:xd,payFreq:'biweekly',createdAt:Date.now()-86400000*8,completedAt:null,milestones:{},shape:'tree',rewards:{50:'Hot cocoa night',100:'Ugly sweater party'}};
   for(var xi=0;xi<8;xi++)xm.deposits.push({id:'x'+xi,amount:xb[xi],date:ago(8-xi),note:'',at:xi});
-  var tax=makeTaxGoal();tax.id='demo6';tax.createdAt=Date.now()-86400000*5;[0,1,5,6].forEach(function(i,k){tax.crushed[i]={via:'task',at:k}});tax.milestones={25:true};
+  var tax=makeTaxGoal();tax.id='demo6';tax.createdAt=Date.now()-86400000*5;[0,1,5,6].forEach(function(i,k){tax.crushed[i]={via:'task',at:k}});tax.milestones={25:true};tax.lastFiled=(taxSeasonYear(tax)-1)+'-03-18';tax.fileBy=taxSeasonYear(tax)+'-02-12';
   st.goals=[xm,ef,vac,tax,env,tires];return st;
 }
 
