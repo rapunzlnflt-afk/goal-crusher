@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Goal Crusher</title>
+<title>Bootstraps</title>
 <!--ROBOTS--><meta name="robots" content="noindex">
-<meta name="description" content="Goal Crusher turns any savings goal into a tap-to-crush grid. Pick a goal, fill the boxes, and watch it disappear.">
+<meta name="description" content="Bootstraps turns any savings goal into a tap-to-stomp grid. Pick a goal, fill the boxes, and watch it disappear.">
 <meta name="theme-color" content="#f5f6f8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1c1f22" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Goal Crusher">
+<meta name="apple-mobile-web-app-title" content="Bootstraps">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -187,7 +187,7 @@ details.fold[open]>summary .chev{transform:rotate(180deg)}
 .box.partial{border-style:solid;border-color:var(--sage);background:linear-gradient(to top,var(--sage-soft) var(--fill,0%),var(--surface-2) var(--fill,0%))}
 .box.pop{animation:pop .45s var(--ease)}
 @keyframes pop{0%{transform:scale(.8)}55%{transform:scale(1.12)}100%{transform:scale(1)}}
-/* crush animation: wind up, slam, shatter, stamp */
+/* stomp animation: wind up, slam, shatter, stamp */
 .box.crush{animation:crush .9s cubic-bezier(.3,1.4,.5,1) var(--d,0ms) backwards;z-index:2}
 .box.crush::after{animation:stamp .5s cubic-bezier(.2,1.6,.4,1) calc(var(--d,0ms) + .36s) backwards}
 .box.crush::before{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:2px;background:transparent;pointer-events:none;opacity:0;animation:shards .75s cubic-bezier(.1,.8,.3,1) calc(var(--d,0ms) + .3s)}
@@ -391,14 +391,14 @@ details.rewards .help{font-size:12.5px;color:var(--faint);margin:-4px 0 10px}
 
 <div id="demo-bar" class="demo-bar" hidden>
   <span><strong>DEMO VERSION</strong> — features are fully interactive but data resets on refresh</span>
-  <a id="demo-cta" href="https://cleartrackapps.com/">Get Goal Crusher</a>
+  <a id="demo-cta" href="https://cleartrackapps.com/">Get Bootstraps</a>
 </div>
 
 <div class="app">
   <header class="topbar">
     <div class="brand">
       <svg width="34" height="34" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="4" width="18" height="18" rx="5" fill="var(--sage)"/><rect x="26" y="4" width="18" height="18" rx="5" fill="var(--sage)"/><rect x="4" y="26" width="18" height="18" rx="5" fill="var(--sage)"/><rect x="26" y="26" width="18" height="18" rx="5" fill="none" stroke="var(--flame)" stroke-width="2.5" stroke-dasharray="4 3"/><path d="M10 13.5l2.6 2.6 5-5.6M32 13.5l2.6 2.6 5-5.6M10 35.5l2.6 2.6 5-5.6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div><h1>Goal Crusher</h1><small>by CleartrackApps</small></div>
+      <div><h1>Bootstraps</h1><small>by CleartrackApps</small></div>
     </div>
     <button class="icon-btn" id="theme-quick" aria-label="Switch light or dark mode">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -413,7 +413,7 @@ details.rewards .help{font-size:12.5px;color:var(--faint);margin:-4px 0 10px}
       <div class="section-h"><h2>Your goals</h2><span id="goal-count"></span></div>
       <div class="goal-list" id="goal-list"></div>
       <details class="fold" id="crushed-fold" hidden>
-        <summary><span id="crushed-label">Crushed goals</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <summary><span id="crushed-label">Kicked goals</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
         <div class="goal-list" id="crushed-list"></div>
       </details>
     </section>
@@ -426,7 +426,7 @@ details.rewards .help{font-size:12.5px;color:var(--faint);margin:-4px 0 10px}
       <div class="section-h" style="margin-top:6px"><h2>Pick your grid style</h2></div>
       <div class="tips">
         <div class="card style-card"><h3>Even boxes</h3><p>Every box is the same amount, like 100 boxes of $10 for $1,000. Add any amount and boxes fill in on their own.</p><div class="demo-boxes"><span class="on">$10</span><span class="on">$10</span><span class="on">$10</span><span>$10</span><span>$10</span></div></div>
-        <div class="card style-card"><h3>Mixed amounts</h3><p>A shuffled grid of small and big boxes. Have $7 left after groceries? Tap a small one. Got a bonus? Crush a big one.</p><div class="demo-boxes"><span class="on">$5</span><span>$40</span><span class="on">$15</span><span>$25</span><span>$10</span></div></div>
+        <div class="card style-card"><h3>Mixed amounts</h3><p>A shuffled grid of small and big boxes. Have $7 left after groceries? Tap a small one. Got a bonus? Stomp a big one.</p><div class="demo-boxes"><span class="on">$5</span><span>$40</span><span class="on">$15</span><span>$25</span><span>$10</span></div></div>
         <div class="card style-card"><h3>Count up</h3><p>Classic challenges where boxes go $1, $2, $3 and up. 100 boxes adds up to $5,050; 52 weeks adds up to $1,378.</p><div class="demo-boxes"><span class="on">1</span><span>2</span><span class="on">3</span><span>4</span><span>5</span></div></div>
       </div>
       <div class="section-h"><h2>Ways to find the money</h2></div>
@@ -439,8 +439,8 @@ details.rewards .help{font-size:12.5px;color:var(--faint);margin:-4px 0 10px}
       <div class="card">
         <div class="set-row"><div><div class="t">Appearance</div><div class="s">Light, dark, or match your phone</div></div>
           <div class="seg" role="group" aria-label="Appearance" id="theme-seg"><button data-theme-set="light">Light</button><button data-theme-set="dark">Dark</button><button data-theme-set="auto">Auto</button></div></div>
-        <div class="set-row"><div><div class="t">Crush animation</div><div class="s">Boxes slam, shatter, and stamp when you crush them</div></div>
-          <div class="seg" role="group" aria-label="Crush animation" id="anim-seg"><button data-anim-set="on">On</button><button data-anim-set="off">Off</button></div></div>
+        <div class="set-row"><div><div class="t">Stomp animation</div><div class="s">Boxes slam, shatter, and stamp when you stomp them</div></div>
+          <div class="seg" role="group" aria-label="Stomp animation" id="anim-seg"><button data-anim-set="on">On</button><button data-anim-set="off">Off</button></div></div>
         <div class="set-row"><div><div class="t">Daily verse</div><div class="s">A new verse about saving and stewardship each day. Tap it for another.</div></div>
           <div class="seg" role="group" aria-label="Daily verse" id="verse-seg"><button data-verse-set="on">On</button><button data-verse-set="off">Off</button></div></div>
       </div>
@@ -491,10 +491,10 @@ details.rewards .help{font-size:12.5px;color:var(--faint);margin:-4px 0 10px}
 <script>
 (function(){
 'use strict';
-var APP_VERSION='1.3.2';
+var APP_VERSION='1.4.0';
 var DEMO=!!window.GC_DEMO;
-var KEY='goalCrusher_v1';
-var BACKUP_NAME='goal-crusher-backup.json';
+var KEY='bootstraps_v1';
+var BACKUP_NAME='bootstraps-backup.json';
 var MAX_BOXES=366, MIN_BOXES=5;
 
 /* ---------- helpers ---------- */
@@ -516,10 +516,10 @@ function plural(n,w){if(n===1)return n+' '+w;var p={box:'boxes',entry:'entries',
 
 /* ---------- storage ---------- */
 var state;
-function blank(){return {app:'goal-crusher',schema:1,goals:[],settings:{theme:'auto'},lastBackup:null}}
+function blank(){return {app:'bootstraps',schema:1,goals:[],settings:{theme:'auto'},lastBackup:null}}
 function load(){
   if(DEMO){state=demoState();return}
-  try{var raw=localStorage.getItem(KEY);state=raw?JSON.parse(raw):blank()}catch(e){state=blank()}
+  try{var raw=localStorage.getItem(KEY)||localStorage.getItem('goalCrusher_v1');state=raw?JSON.parse(raw):blank()}catch(e){state=blank()}
   if(!state||!Array.isArray(state.goals))state=blank();
   state.settings=state.settings||{theme:'auto'};
 }
@@ -554,7 +554,7 @@ function extraAvail(g){return g.mode==='even'?0:totalSaved(g)-crushedValue(g)}
 function pctLabel(p){return p>0&&p<1?'<1%':Math.floor(p)+'%'}
 function pctOf(g){if(isTask(g))return g.boxes.length?boxesCrushed(g)/g.boxes.length*100:0;return g.target>0?Math.min(100,totalSaved(g)/g.target*100):0}
 function rebalanceExtra(g){
-  // if freeform money dropped below what "extra"-crushed boxes need, un-crush the newest extra boxes
+  // if freeform money dropped below what "extra"-stomped boxes need, un-stomp the newest extra boxes
   if(g.mode==='even')return;
   var keys=Object.keys(g.crushed).filter(function(k){return g.crushed[k].via==='extra'}).sort(function(a,b){return (g.crushed[b].at||0)-(g.crushed[a].at||0)});
   while(extraAvail(g)<0&&keys.length){delete g.crushed[keys.shift()]}
@@ -596,16 +596,16 @@ function applySavings(g,amt,date,note){
 }
 function savingsMsg(g,amt,n){
   var ex=extraAvail(g);
-  if(n>0)return 'Crushed '+plural(n,'box')+'!'+(ex>0?' '+money(ex)+' saved toward the next one.':'');
+  if(n>0)return 'Stomped '+plural(n,'box')+'!'+(ex>0?' '+money(ex)+' saved toward the next one.':'');
   if(g.mode==='even'||autoFillOn())return money(amt)+' added. Keep going!';
   return money(amt)+' added. Tap a box to spend it.';
 }
 function previewText(g,amt){
-  if(!(amt>0))return g.mode==='even'?'Boxes fill in on their own.':(autoFillOn()?'Goal Crusher picks boxes that use up your amount.':'Your amount goes to extra savings for you to spend on boxes.');
+  if(!(amt>0))return g.mode==='even'?'Boxes fill in on their own.':(autoFillOn()?'Bootstraps picks boxes that use up your amount.':'Your amount goes to extra savings for you to spend on boxes.');
   var r=previewSavings(g,amt);
-  if(r.manual)return money(amt)+' goes to extra savings. Tap the boxes you want to crush.';
-  if(g.mode==='even')return r.count>0?'This crushes <b>'+plural(r.count,'box')+'</b>.':'This goes toward the next box.';
-  if(r.count>0)return 'This crushes <b>'+plural(r.count,'box')+'</b> ('+money(r.used)+')'+(r.extra>0?' and keeps '+money(r.extra)+' as extra.':'.');
+  if(r.manual)return money(amt)+' goes to extra savings. Tap the boxes you want to stomp.';
+  if(g.mode==='even')return r.count>0?'This stomps <b>'+plural(r.count,'box')+'</b>.':'This goes toward the next box.';
+  if(r.count>0)return 'This stomps <b>'+plural(r.count,'box')+'</b> ('+money(r.used)+')'+(r.extra>0?' and keeps '+money(r.extra)+' as extra.':'.');
   return money(r.extra)+' goes to extra savings until it covers a box.';
 }
 
@@ -721,7 +721,7 @@ var TAX_STEPS=[
   ['Get the acceptance notice','Your software or preparer lets you know once the IRS accepts your return.'],
   ['Track it with Where’s My Refund?','Status shows up about 24 hours after you e‑file, at IRS.gov/refunds.'],
   ['Refund received','Check your bank account. You got it done early.'],
-  ['Make a plan for your refund','Crush a goal with it, build your emergency fund, or pay down a bill.']
+  ['Make a plan for your refund','Kick off a goal with it, build your emergency fund, or pay down a bill.']
 ];
 function validDay(v){return typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&!isNaN(parseDay(v))?v:null}
 function dayStrOf(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
@@ -837,25 +837,25 @@ function renderGoals(){
   $('#summary').innerHTML=
     '<div class="card"><div class="eyebrow">Saved so far</div><div class="big num">'+money(saved)+'</div><div class="lbl">across '+plural(money_act.length,'savings goal')+'</div></div>'+
     '<div class="card"><div class="eyebrow">Streak</div><div class="mid num flame">'+st+'</div><div class="lbl">'+(st===1?'week':'weeks')+' in a row</div></div>'+
-    '<div class="card"><div class="eyebrow">Crushed</div><div class="mid num">'+done.length+'</div><div class="lbl">'+(done.length===1?'goal':'goals')+' done</div></div>';
+    '<div class="card"><div class="eyebrow">Kicked</div><div class="mid num">'+done.length+'</div><div class="lbl">'+(done.length===1?'goal':'goals')+' done</div></div>';
   $('#goal-count').textContent=act.length?plural(act.length,'goal'):'';
   if(!act.length){
     $('#goal-list').innerHTML='<div class="card empty"><svg width="72" height="72" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="4" width="18" height="18" rx="5" fill="var(--sage-soft)" stroke="var(--sage)" stroke-width="1.5" stroke-dasharray="3 3"/><rect x="26" y="4" width="18" height="18" rx="5" fill="var(--sage-soft)" stroke="var(--sage)" stroke-width="1.5" stroke-dasharray="3 3"/><rect x="4" y="26" width="18" height="18" rx="5" fill="var(--sage-soft)" stroke="var(--sage)" stroke-width="1.5" stroke-dasharray="3 3"/><rect x="26" y="26" width="18" height="18" rx="5" fill="var(--sage)"/><path d="M31 35l3 3 6-6.5" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
-      '<h3>'+(done.length?'Ready for the next one?':'Pick a goal to crush')+'</h3><p>Choose what you are saving for. Goal Crusher turns it into a grid of boxes you fill one at a time.</p><button class="btn btn-primary" data-act="new">Start a goal</button></div>';
+      '<h3>'+(done.length?'Ready for the next one?':'Pick a goal to kick')+'</h3><p>Choose what you are saving for. Bootstraps turns it into a grid of boxes you fill one at a time.</p><button class="btn btn-primary" data-act="new">Start a goal</button></div>';
   } else {
     $('#goal-list').innerHTML=act.map(goalCard).join('');
   }
   var fold=$('#crushed-fold');fold.hidden=!done.length;
-  $('#crushed-label').textContent='Crushed goals ('+done.length+')';
+  $('#crushed-label').textContent='Kicked goals ('+done.length+')';
   $('#crushed-list').innerHTML=done.map(goalCard).join('');
 }
 function goalCard(g){
   var s=totalSaved(g),p=pctOf(g),pl=planFor(g),line,task=isTask(g);
-  if(g.completedAt)line='Crushed '+new Date(g.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  if(g.completedAt)line='Kicked '+new Date(g.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   else if(task&&validDay(g.fileBy)&&!filedOn(g)&&daysBetween(parseDay(todayStr()),parseDay(g.fileBy))>=0)line=(g.boxes.length-boxesCrushed(g))+' steps left · file by <b>'+niceDate(g.fileBy,true)+'</b>'+(lastYearThisSeason(g)&&daysBetween(parseDay(g.fileBy),parseDay(lastYearThisSeason(g)))>0?' to beat last year':'');
   else if(task)line=(g.boxes.length-boxesCrushed(g))+' steps left'+(pl.daysLeft>0?' · <b>'+plural(pl.daysLeft,'day')+'</b> until '+niceDate(g.targetDate,true):'');
-  else if(g.countdown&&pl.daysLeft>0&&pl.left>0)line='<b>'+plural(pl.daysLeft,'day')+'</b> to go · crush one box a day';
-  else if(g.completedAt)line='Crushed '+new Date(g.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  else if(g.countdown&&pl.daysLeft>0&&pl.left>0)line='<b>'+plural(pl.daysLeft,'day')+'</b> to go · stomp one box a day';
+  else if(g.completedAt)line='Kicked '+new Date(g.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   else if(pl.per)line='Save <b>'+money(pl.per)+'</b> per '+pl.perLabel+' to finish by '+niceDate(g.targetDate);
   else if(pl.daysLeft!==null&&pl.daysLeft<=0&&pl.left>0)line='Target date passed · <b>'+money(pl.left)+'</b> to go';
   else if(pl.pace)line='On pace to finish around <b>'+pl.pace.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+'</b>';
@@ -887,7 +887,7 @@ function renderTaskDetail(g){
       '<div class="hero"><div class="ring">'+ring(p)+'<div class="pct num">'+esc(pctLabel(p))+'<small>'+on+' of '+n+' steps</small></div></div>'+
       '<div><h2 class="htitle"><span class="hicon" aria-hidden="true">'+esc(g.icon)+'</span>'+esc(g.name)+'</h2><div class="amt">'+(g.targetDate?'Filing deadline <b>'+niceDate(g.targetDate,true)+'</b>':'Check off each step as you go')+'</div></div></div>'+
       '<div class="stats"><div class="stat"><div class="v num">'+(n-on)+'</div><div class="k">steps left</div></div><div class="stat"><div class="v num">'+days+'</div><div class="k">until deadline</div></div><div class="stat"><div class="v num">&lt; 21 days</div><div class="k">typical e-file refund</div></div></div>'+
-      (g.completedAt?'<div class="plan flame"><span aria-hidden="true">🏆</span><div><b>Checklist crushed.</b> Every step is done.</div></div>':'<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><div><b>Fastest refund:</b> file electronically and choose direct deposit. Filing early, as soon as your forms arrive, gets you in line sooner.</div></div>')+
+      (g.completedAt?'<div class="plan flame"><span aria-hidden="true">🏆</span><div><b>Checklist kicked.</b> Every step is done.</div></div>':'<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><div><b>Fastest refund:</b> file electronically and choose direct deposit. Filing early, as soon as your forms arrive, gets you in line sooner.</div></div>')+
       beatHtml(g)+rewardPill(g)+
     '</div>'+
     '<div class="card grid-card"><div class="grid-head"><h3>Your steps</h3><span class="eyebrow">Checklist</span></div>'+
@@ -902,11 +902,11 @@ function renderDetail(){
   if(isTask(g)){renderTaskDetail(g);return}
   var s=totalSaved(g),p=pctOf(g),pl=planFor(g),n=g.boxes.length,on=boxesCrushed(g);
   var planHtml='';
-  if(g.completedAt)planHtml='<div class="plan flame"><span aria-hidden="true">🏆</span><div><b>Goal crushed.</b> You saved '+money(s)+' for '+esc(g.name)+'.</div></div>';
-  else if(g.countdown&&pl.daysLeft>0){var bl=n-on,behind=bl-pl.daysLeft;planHtml='<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div>Crush one box a day. <b>'+plural(bl,'box')+'</b> left and <b>'+plural(pl.daysLeft,'day')+'</b> until '+niceDate(g.targetDate,true)+'.'+(behind>0?' Crush '+plural(behind+1,'box')+' today to catch up.':behind<0?' You are '+plural(-behind,'day')+' ahead.':' You are right on track.')+'</div></div>'}
+  if(g.completedAt)planHtml='<div class="plan flame"><span aria-hidden="true">🏆</span><div><b>Goal kicked.</b> You saved '+money(s)+' for '+esc(g.name)+'.</div></div>';
+  else if(g.countdown&&pl.daysLeft>0){var bl=n-on,behind=bl-pl.daysLeft;planHtml='<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div>Stomp one box a day. <b>'+plural(bl,'box')+'</b> left and <b>'+plural(pl.daysLeft,'day')+'</b> until '+niceDate(g.targetDate,true)+'.'+(behind>0?' Stomp '+plural(behind+1,'box')+' today to catch up.':behind<0?' You are '+plural(-behind,'day')+' ahead.':' You are right on track.')+'</div></div>'}
   else if(pl.per)planHtml='<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div>Save <b>'+money(pl.per)+'</b> per '+pl.perLabel+' ('+(FREQ[g.payFreq||'biweekly'].name.toLowerCase())+', '+plural(pl.periods,pl.perLabel==='month'?'month':'payday')+' left) to finish by <b>'+niceDate(g.targetDate,true)+'</b>.</div></div>';
   else if(g.targetDate&&pl.daysLeft<=0&&pl.left>0)planHtml='<div class="plan flame"><span aria-hidden="true">⏰</span><div>Your target date has passed. Pick a new date in Edit to get a fresh per-paycheck plan.</div></div>';
-  else if(!g.targetDate)planHtml='<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div>Add a target date in Edit and Goal Crusher will tell you how much to set aside each payday.</div></div>';
+  else if(!g.targetDate)planHtml='<div class="plan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div>Add a target date in Edit and Bootstraps will tell you how much to set aside each payday.</div></div>';
   var est=pl.pace?(pl.pace.getFullYear()===new Date().getFullYear()?pl.pace.toLocaleDateString('en-US',{month:'short',day:'numeric'}):pl.pace.toLocaleDateString('en-US',{month:'short',year:'numeric'})):(g.completedAt?'Done':'Too early');
   var days=g.completedAt?'—':(pl.daysLeft===null?'No date':pl.daysLeft>0?plural(pl.daysLeft,'day'):pl.daysLeft===0?'Today':'Passed');
   var boxes='',fill=g.mode==='even'?evenFill(g):null,popOrder=lastPopped.slice().sort(function(a,b){return a-b}),popStep=Math.min(140,1600/Math.max(1,lastPopped.length));
@@ -918,11 +918,11 @@ function renderDetail(){
     if(fill&&!o&&i===fill.filled&&fill.leftover>0){cls+=' partial';st.push('--fill:'+Math.round(fill.leftover/g.boxes[i]*100)+'%')}
     var style=st.length?' style="'+st.join(';')+'"':'';
     var label=g.mode==='countup'&&g.step===100?String(g.boxes[i]/100):moneyShort(g.boxes[i]);
-    boxes+='<button class="'+cls+'"'+style+' data-box="'+i+'" aria-pressed="'+o+'" aria-label="Box '+(i+1)+', '+money(g.boxes[i])+(o?', crushed':'')+'"><span class="amt">'+label+'</span>'+fx+'</button>';
+    boxes+='<button class="'+cls+'"'+style+' data-box="'+i+'" aria-pressed="'+o+'" aria-label="Box '+(i+1)+', '+money(g.boxes[i])+(o?', stomped':'')+'"><span class="amt">'+label+'</span>'+fx+'</button>';
   }
   var popFirst=popOrder.length?popOrder[0]:null;lastPopped=[];
   var extra=extraAvail(g);
-  var hint=g.mode==='even'?'Enter what you saved and the boxes fill in for you. You can also tap a box to crush it.':(autoFillOn()?'Enter what you saved and Goal Crusher picks the boxes. You can also tap any box to crush it.':'Enter what you saved, then tap the boxes you want to crush.');
+  var hint=g.mode==='even'?'Enter what you saved and the boxes fill in for you. You can also tap a box to stomp it.':(autoFillOn()?'Enter what you saved and Bootstraps picks the boxes. You can also tap any box to stomp it.':'Enter what you saved, then tap the boxes you want to stomp.');
   var quick=g.completedAt?'':'<form class="quick" id="quick-add" data-goal="'+g.id+'" novalidate><div class="money"><input class="input num" id="q-amt" inputmode="decimal" placeholder="Amount" aria-label="Amount saved"></div><button class="btn btn-primary" type="submit">Fill boxes</button></form><p class="quick-prev" id="q-prev" aria-live="polite">'+previewText(g,0)+'</p>';
   var deps=g.deposits.slice().sort(function(a,b){return a.date===b.date?(b.at||0)-(a.at||0):(a.date<b.date?1:-1)});
   var hist=deps.length?deps.map(function(d){return '<div class="hist-row"><div class="d">'+niceDate(d.date)+'</div><div class="n">'+(d.note?esc(d.note):(d.box!=null?'Box '+(d.box+1):'Savings'))+'</div><div class="a num">'+money(d.amount)+'</div><button class="x" data-del-dep="'+d.id+'" aria-label="Delete '+money(d.amount)+' deposit from '+niceDate(d.date)+'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button></div>'}).join(''):'<p style="color:var(--muted);font-size:14px">No savings yet. Your first box is waiting.</p>';
@@ -947,7 +947,7 @@ function renderDetail(){
 var TIPS=[
   ['Pay yourself first','Move the per-paycheck amount on payday, before bills and spending get a turn.','M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'],
   ['Automate it','Set up an automatic transfer to a separate savings account so it happens without willpower.','M21 12a9 9 0 1 1-3-6.7M21 4v5h-5'],
-  ['No-spend day','Skip takeout or a coffee run, then crush a box with what you would have spent.','M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3'],
+  ['No-spend day','Skip takeout or a coffee run, then stomp a box with what you would have spent.','M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3'],
   ['Round up','Round each purchase up to the next dollar and move the change over at the end of the week.','M12 19V5M5 12l7-7 7 7'],
   ['Cut one bill','Cancel one subscription you forgot about and send that amount to your goal every month.','M18 6L6 18M6 6l12 12'],
   ['Sell one thing','List something you no longer use. The money goes straight into a big box.','M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8zM7 7h.01'],
@@ -959,7 +959,7 @@ function renderTips(){
 }
 function renderSettings(){
   applyTheme();
-  $('#ver').textContent='Goal Crusher '+APP_VERSION+(DEMO?' (demo)':'');
+  $('#ver').textContent='Bootstraps '+APP_VERSION+(DEMO?' (demo)':'');
   var lb=state.lastBackup;
   $('#last-backup').innerHTML=lb?'Last backup: <b>'+new Date(lb).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+'</b>':'<span style="color:var(--flame);font-weight:600">No backup saved yet.</span>';
 }
@@ -1007,7 +1007,7 @@ function openGoalForm(preset,editing){
   var R=f.rewards,hasR=[25,50,75,100].some(function(m){return R[m]});
   var lookHtml=taskEdit?'':'<div class="field"><span class="label">Grid look</span><div class="look-grid" role="group" aria-label="Grid look">'+[''].concat(SHAPE_KEYS).map(function(k){return '<button type="button" class="look" data-look="'+k+'" aria-pressed="'+(k===f.shape)+'">'+lookSvg(k)+(k?SHAPES[k].name:'Squares')+'</button>'}).join('')+'</div><div class="help" id="f-look-help">Pictures fill from the bottom up. They look best with 30 or more boxes.</div></div>';
   var photoHtml='<div class="field"><span class="label">Goal photo <span style="font-weight:400">(optional)</span></span><div class="photo-pick"><div class="ph-prev" id="f-ph-prev" aria-hidden="true"></div><label class="btn btn-ghost btn-sm" for="f-photo" style="cursor:pointer">Choose photo</label><input type="file" id="f-photo" accept="image/*" hidden><button type="button" class="link-btn" id="f-ph-rm">Remove</button></div><div class="help">A picture of what you are saving for keeps it real. It stays on this device.</div></div>';
-  var rwHtml='<details class="rewards"'+(hasR?' open':'')+'><summary><span>Milestone rewards <span style="font-weight:400">(optional)</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><p class="help">Pick a small treat for each milestone. Goal Crusher cheers you on when you earn it.</p><div class="row2">'+
+  var rwHtml='<details class="rewards"'+(hasR?' open':'')+'><summary><span>Milestone rewards <span style="font-weight:400">(optional)</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><p class="help">Pick a small treat for each milestone. Bootstraps cheers you on when you earn it.</p><div class="row2">'+
     [[25,'Fancy coffee'],[50,'Movie night'],[75,'New book'],[100,'Dinner out']].map(function(x){return '<div class="field"><label for="f-rw'+x[0]+'">At '+x[0]+'%</label><input class="input" id="f-rw'+x[0]+'" maxlength="60" value="'+esc(R[x[0]]||'')+'" placeholder="'+x[1]+'"></div>'}).join('')+'</div></details>';
   var title=editing?'Edit goal':'Set up your goal';
   openSheet('<h2 id="sheet-title">'+title+'</h2><p class="lede">'+(editing?'Update the details for this goal.':'Name it, size it, and choose how the boxes look.')+'</p>'+
@@ -1015,7 +1015,7 @@ function openGoalForm(preset,editing){
     '<div class="field"><label for="f-name">Goal name</label><input class="input" id="f-name" maxlength="40" required value="'+esc(f.name)+'" placeholder="e.g. Beach trip"'+(f.name?'':' autofocus')+'></div>'+
     '<div class="field"><span class="label">Icon</span><div class="icons" role="group" aria-label="Goal icon">'+ICONS.map(function(i){return '<button type="button" data-icon="'+i+'" aria-pressed="'+(i===f.icon)+'" aria-label="'+i+'">'+i+'</button>'}).join('')+'</div></div>'+
     photoHtml+
-    (taskEdit?'':locked?'<div class="preview-line">This grid already has crushed boxes, so its size and style stay as they are. You can still change the name, icon, look, photo, date, and pay schedule.</div>':
+    (taskEdit?'':locked?'<div class="preview-line">This grid already has stomped boxes, so its size and style stay as they are. You can still change the name, icon, look, photo, date, and pay schedule.</div>':
     '<div class="field"><span class="label">Grid style</span><div class="choices" role="group" aria-label="Grid style">'+
       '<button type="button" class="choice" data-mode="even" aria-pressed="'+(f.mode==='even')+'">Even<small>Same each box</small></button>'+
       '<button type="button" class="choice" data-mode="mixed" aria-pressed="'+(f.mode==='mixed')+'">Mixed<small>Big and small</small></button>'+
@@ -1125,7 +1125,7 @@ function openAdd(goalId){
 
 /* ---------- box taps ---------- */
 function tapBox(g,i){
-  if(g.completedAt){toast(isTask(g)?'This checklist is done. Use More to reopen it.':'This goal is already crushed.');return}
+  if(g.completedAt){toast(isTask(g)?'This checklist is done. Use More to reopen it.':'You already kicked this goal.');return}
   if(isTask(g)){
     if(g.crushed[i]){delete g.crushed[i];lastPopped=[];save();render();return}
     g.crushed[i]={via:'task',at:Date.now()};lastPopped=[i];save();render();var lt0=lastYearThisSeason(g),dd0=lt0&&filedOn(g)?daysBetween(parseDay(todayStr()),parseDay(lt0)):0;toast(i===efileIndex(g)&&dd0>0?'Filed '+daysWord(dd0)+' earlier than last year':'Step '+(i+1)+' done');buzz();checkDone(g);return;
@@ -1133,30 +1133,30 @@ function tapBox(g,i){
   var amt=g.boxes[i];
   if(g.mode==='even'){
     var fill=evenFill(g);
-    if(i<fill.filled){toast('Already crushed. To undo, delete an entry in Savings history.');return}
+    if(i<fill.filled){toast('Already stomped. To undo, delete an entry in Savings history.');return}
     var need=0;for(var k=0;k<=i;k++)need+=g.boxes[k];need-=totalSaved(g);
     var count=i-fill.filled+1;
-    openSheet('<h2 id="sheet-title">Crush '+(count>1?plural(count,'box'):'this box')+'?</h2><p class="lede">'+(count>1?'Boxes fill in order. This will record ':'Record ')+'<b>'+money(need)+'</b>'+(fill.leftover>0&&count===1?' (you already had '+money(fill.leftover)+' toward it)':'')+' as saved today.</p>'+
+    openSheet('<h2 id="sheet-title">Stomp '+(count>1?plural(count,'box'):'this box')+'?</h2><p class="lede">'+(count>1?'Boxes fill in order. This will record ':'Record ')+'<b>'+money(need)+'</b>'+(fill.leftover>0&&count===1?' (you already had '+money(fill.leftover)+' toward it)':'')+' as saved today.</p>'+
       '<div class="opt-list"><button class="btn btn-primary btn-block" id="do-crush">I saved '+money(need)+'</button><button class="btn btn-ghost btn-block" data-act="close">Not yet</button></div>',
     function(root){$('#do-crush',root).onclick=function(){
       g.deposits.push({id:uid(),amount:need,date:todayStr(),note:count>1?'Boxes '+(fill.filled+1)+'–'+(i+1):'',box:count>1?undefined:i,at:Date.now()});
-      lastPopped=[];for(var j=fill.filled;j<=i;j++)lastPopped.push(j);save();closeSheet();render();toast(count>1?'Crushed '+count+' boxes!':'Box crushed!');buzz();checkDone(g)}});
+      lastPopped=[];for(var j=fill.filled;j<=i;j++)lastPopped.push(j);save();closeSheet();render();toast(count>1?'Stomped '+count+' boxes!':'Box stomped!');buzz();checkDone(g)}});
     return;
   }
   if(g.crushed[i]){
     var c=g.crushed[i];
-    openSheet('<h2 id="sheet-title">Un-crush this '+money(amt)+' box?</h2><p class="lede">'+(c.via==='deposit'?'This removes the '+money(amt)+' entry from your savings history.':'The '+money(amt)+' goes back to your extra savings.')+'</p><div class="opt-list"><button class="btn btn-danger btn-block" id="do-un">Un-crush box</button><button class="btn btn-ghost btn-block" data-act="close">Keep it crushed</button></div>',
+    openSheet('<h2 id="sheet-title">Un-stomp this '+money(amt)+' box?</h2><p class="lede">'+(c.via==='deposit'?'This removes the '+money(amt)+' entry from your savings history.':'The '+money(amt)+' goes back to your extra savings.')+'</p><div class="opt-list"><button class="btn btn-danger btn-block" id="do-un">Un-stomp box</button><button class="btn btn-ghost btn-block" data-act="close">Keep it stomped</button></div>',
     function(root){$('#do-un',root).onclick=function(){if(c.via==='deposit')g.deposits=g.deposits.filter(function(d){return d.id!==c.dep});delete g.crushed[i];if(g.completedAt&&totalSaved(g)<g.target)g.completedAt=null;save();closeSheet();render()}});
     return;
   }
   var extra=extraAvail(g);
-  openSheet('<h2 id="sheet-title">Crush the '+money(amt)+' box</h2><p class="lede">How did you save it?</p><div class="opt-list">'+
+  openSheet('<h2 id="sheet-title">Stomp the '+money(amt)+' box</h2><p class="lede">How did you save it?</p><div class="opt-list">'+
     '<button class="opt" id="via-dep"><span class="oi" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span><span class="ot">I just saved '+money(amt)+'</span><br><span class="os">Adds '+money(amt)+' to your savings today</span></span></button>'+
     (extra>=amt?'<button class="opt" id="via-extra"><span class="oi" aria-hidden="true">💵</span><span><span class="ot">Use my extra savings</span><br><span class="os">'+money(extra)+' available · no new entry</span></span></button>':'')+
     '</div>',
   function(root){
-    $('#via-dep',root).onclick=function(){var d={id:uid(),amount:amt,date:todayStr(),note:'',box:i,at:Date.now()};g.deposits.push(d);g.crushed[i]={via:'deposit',dep:d.id,at:Date.now()};lastPopped=[i];save();closeSheet();render();toast('Box crushed!');buzz();checkDone(g)};
-    var ve=$('#via-extra',root);if(ve)ve.onclick=function(){g.crushed[i]={via:'extra',at:Date.now()};lastPopped=[i];save();closeSheet();render();toast('Box crushed with extra savings!');buzz();checkDone(g)};
+    $('#via-dep',root).onclick=function(){var d={id:uid(),amount:amt,date:todayStr(),note:'',box:i,at:Date.now()};g.deposits.push(d);g.crushed[i]={via:'deposit',dep:d.id,at:Date.now()};lastPopped=[i];save();closeSheet();render();toast('Box stomped!');buzz();checkDone(g)};
+    var ve=$('#via-extra',root);if(ve)ve.onclick=function(){g.crushed[i]={via:'extra',at:Date.now()};lastPopped=[i];save();closeSheet();render();toast('Box stomped with extra savings!');buzz();checkDone(g)};
   });
 }
 function buzz(){try{if(navigator.vibrate)navigator.vibrate(18)}catch(e){}}
@@ -1194,7 +1194,7 @@ function checkDone(g){
   if(p>=100&&!g.completedAt&&!g.keepOpen){
     g.completedAt=Date.now();g.milestones[100]=true;save();render();$('#toast').classList.remove('show');clearTimeout(toastT);confetti(true);
     var rw100=rewardFor(g,100);
-    var body=isTask(g)?'<h2 id="sheet-title">Checklist crushed!</h2><p class="lede" style="margin-top:6px">Every step is done. When a refund lands, give it a job right away.</p>':'<h2 id="sheet-title">Goal crushed!</h2><p class="lede" style="margin-top:6px">You saved <b>'+money(totalSaved(g))+'</b> for '+esc(g.name)+'. That took real follow-through.</p>';
+    var body=isTask(g)?'<h2 id="sheet-title">Checklist kicked!</h2><p class="lede" style="margin-top:6px">Every step is done. When a refund lands, give it a job right away.</p>':'<h2 id="sheet-title">Goal kicked!</h2><p class="lede" style="margin-top:6px">You saved <b>'+money(totalSaved(g))+'</b> for '+esc(g.name)+'. That took real follow-through.</p>';
     setTimeout(function(){openSheet('<div class="celebrate"><div class="burst" aria-hidden="true">🏆</div>'+body+(rw100?'<div class="reward-pill" style="text-align:left"><span aria-hidden="true">🎁</span><div>You earned your reward: <b>'+esc(rw100)+'</b></div></div>':'')+'<div class="opt-list"><button class="btn btn-primary btn-block" data-act="new">'+(isTask(g)?'Start a goal for my refund':'Start the next goal')+'</button><button class="btn btn-ghost btn-block" data-act="home">Back to my goals</button></div></div>')},500);
     return;
   }
@@ -1203,8 +1203,8 @@ function checkDone(g){
   hit.forEach(function(m){g.milestones[m]=true});save();confetti(false);
   var earned=hit.filter(function(m){return rewardFor(g,m)}),top=hit[hit.length-1];
   if(earned.length){
-    setTimeout(function(){$('#toast').classList.remove('show');clearTimeout(toastT);openSheet('<div class="celebrate"><div class="burst" aria-hidden="true">🎁</div><h2 id="sheet-title">'+top+'% crushed!</h2><p class="lede" style="margin-top:6px">'+esc(g.name)+' is '+(top===50?'halfway there':top+'% done')+'. You earned '+(earned.length>1?'some rewards':'a reward')+'.</p><div class="reward-list">'+earned.map(function(m){return '<div class="reward-pill" style="margin:0"><span class="num" style="font-weight:700;color:var(--sage-ink)">'+m+'%</span><div><b>'+esc(rewardFor(g,m))+'</b></div></div>'}).join('')+'</div><div class="opt-list"><button class="btn btn-primary btn-block" data-act="close">Enjoy it</button></div></div>')},650);
-  } else setTimeout(function(){toast(top+'% of '+g.name+' crushed. Keep it rolling!')},450);
+    setTimeout(function(){$('#toast').classList.remove('show');clearTimeout(toastT);openSheet('<div class="celebrate"><div class="burst" aria-hidden="true">🎁</div><h2 id="sheet-title">'+top+'% stomped!</h2><p class="lede" style="margin-top:6px">'+esc(g.name)+' is '+(top===50?'halfway there':top+'% done')+'. You earned '+(earned.length>1?'some rewards':'a reward')+'.</p><div class="reward-list">'+earned.map(function(m){return '<div class="reward-pill" style="margin:0"><span class="num" style="font-weight:700;color:var(--sage-ink)">'+m+'%</span><div><b>'+esc(rewardFor(g,m))+'</b></div></div>'}).join('')+'</div><div class="opt-list"><button class="btn btn-primary btn-block" data-act="close">Enjoy it</button></div></div>')},650);
+  } else setTimeout(function(){toast(top+'% of '+g.name+' stomped. Keep it rolling!')},450);
 }
 function confetti(big){
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
@@ -1218,15 +1218,15 @@ function confetti(big){
 /* ---------- print ---------- */
 function printGoal(g){
   var v=verseToday(),vh='<div class="p-verse">“'+v[0]+'” <span>'+v[1]+' (NIV)</span><small>Scripture quotations taken from The Holy Bible, New International Version® NIV® Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.™ Used by permission. All rights reserved worldwide.</small></div>';
-  var foot='<div class="p-foot">Printed '+new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' · Goal Crusher by CleartrackApps</div>';
+  var foot='<div class="p-foot">Printed '+new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' · Bootstraps by CleartrackApps</div>';
   if(isTask(g)){
-    $('#print-area').innerHTML='<div class="p-head"><div><p>GOAL CRUSHER</p><h1>'+esc(g.icon)+' '+esc(g.name)+'</h1></div><p>Check off each step as you finish it.</p></div>'+
+    $('#print-area').innerHTML='<div class="p-head"><div><p>BOOTSTRAPS</p><h1>'+esc(g.icon)+' '+esc(g.name)+'</h1></div><p>Check off each step as you finish it.</p></div>'+
       '<div class="p-stats"><div>Steps<b>'+boxesCrushed(g)+' / '+g.boxes.length+'</b></div>'+(g.targetDate?'<div>Deadline<b>'+niceDate(g.targetDate,true)+'</b></div>':'')+'</div>'+
       '<div class="p-tasks">'+g.tasks.map(function(t,i){return '<div class="p-task"><i class="'+(isOn(g,i)?'on':'')+'"></i><div><b>'+(i+1)+'. '+esc(t[0])+'</b><small>'+esc(t[1])+'</small></div></div>'}).join('')+'</div>'+vh+foot;
     window.print();return;
   }
   var s=totalSaved(g),cols=g.boxes.length>200?15:g.boxes.length>120?12:10,L=shapeOf(g);if(L)cols=L.cols;
-  var html='<div class="p-head"><div><p>GOAL CRUSHER</p><h1>'+esc(g.icon)+' '+esc(g.name)+'</h1></div><p>Color in a box each time you save.</p></div>'+
+  var html='<div class="p-head"><div><p>BOOTSTRAPS</p><h1>'+esc(g.icon)+' '+esc(g.name)+'</h1></div><p>Color in a box each time you save.</p></div>'+
     '<div class="p-stats"><div>Goal<b>'+money(g.target)+'</b></div><div>Saved<b>'+money(s)+'</b></div><div>Boxes<b>'+boxesCrushed(g)+' / '+g.boxes.length+'</b></div>'+(g.targetDate?'<div>Target date<b>'+niceDate(g.targetDate,true)+'</b></div>':'')+'</div>'+
     '<div class="p-grid" style="grid-template-columns:repeat('+cols+',1fr)'+(L?';max-width:'+Math.min(100,cols*9)+'%;margin:0 auto':'')+'">'+g.boxes.map(function(a,i){return '<div class="p-box'+(isOn(g,i)?' on':'')+'"'+(L?' style="grid-row:'+(L.cells[i].r+1)+';grid-column:'+(L.cells[i].c+1)+(L.cols>14?';font-size:7px':'')+'"':'')+'>'+(g.mode==='countup'&&g.step===100?a/100:moneyShort(a))+'</div>'}).join('')+'</div>'+
     vh+foot;
@@ -1236,13 +1236,13 @@ function printGoal(g){
 /* ---------- backup ---------- */
 function backup(){
   if(DEMO){toast('Backups are turned off in the demo.');return}
-  var data=JSON.stringify({app:'goal-crusher',schema:1,exportedAt:new Date().toISOString(),version:APP_VERSION,goals:state.goals,settings:state.settings},null,2);
+  var data=JSON.stringify({app:'bootstraps',schema:1,exportedAt:new Date().toISOString(),version:APP_VERSION,goals:state.goals,settings:state.settings},null,2);
   var blob=new Blob([data],{type:'application/json'});
   var done=function(){state.lastBackup=Date.now();save();renderSettings();toast('Backup saved as '+BACKUP_NAME)};
   try{
     var file=new File([blob],BACKUP_NAME,{type:'application/json'});
     var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-    if(ios&&navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],title:'Goal Crusher backup'}).then(done).catch(function(e){if(e&&e.name!=='AbortError')download(blob,done)});return}
+    if(ios&&navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],title:'Bootstraps backup'}).then(done).catch(function(e){if(e&&e.name!=='AbortError')download(blob,done)});return}
   }catch(e){}
   download(blob,done);
 }
@@ -1250,8 +1250,8 @@ function download(blob,done){var a=document.createElement('a');a.href=URL.create
 function restore(file){
   var rd=new FileReader();
   rd.onload=function(){
-    var d;try{d=JSON.parse(rd.result)}catch(e){toast('That file is not a Goal Crusher backup.');return}
-    if(!d||d.app!=='goal-crusher'||!Array.isArray(d.goals)){toast('That file is not a Goal Crusher backup.');return}
+    var d;try{d=JSON.parse(rd.result)}catch(e){toast('That file is not a Bootstraps backup.');return}
+    if(!d||(d.app!=='bootstraps'&&d.app!=='goal-crusher')||!Array.isArray(d.goals)){toast('That file is not a Bootstraps backup.');return}
     var ok=d.goals.every(function(g){return g&&g.id&&Array.isArray(g.boxes)&&Array.isArray(g.deposits)&&typeof g.target==='number'});
     if(!ok){toast('This backup looks damaged, so nothing was changed.');return}
     openSheet('<h2 id="sheet-title">Restore this backup?</h2><p class="lede">It has '+plural(d.goals.length,'goal')+' from '+(d.exportedAt?new Date(d.exportedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'an earlier date')+'. It will replace the '+plural(state.goals.length,'goal')+' on this device.</p><div class="opt-list"><button class="btn btn-primary btn-block" id="do-restore">Replace with backup</button><button class="btn btn-ghost btn-block" data-act="close">Cancel</button></div>',
@@ -1272,7 +1272,7 @@ document.addEventListener('click',function(e){
     openGoalForm(s?(s.make?s.make():JSON.parse(JSON.stringify(s.g))):null);return}
   if(t.dataset.verseSet){state.settings.verse=t.dataset.verseSet==='on';save();applyTheme();renderVerse();return}
   if(t.dataset.themeSet){state.settings.theme=t.dataset.themeSet;save();applyTheme();return}
-  if(t.dataset.animSet){state.settings.crushAnim=t.dataset.animSet==='on';save();applyTheme();toast(animOn()?'Crush animation on':'Crush animation off');return}
+  if(t.dataset.animSet){state.settings.crushAnim=t.dataset.animSet==='on';save();applyTheme();toast(animOn()?'Stomp animation on':'Stomp animation off');return}
   var a=t.dataset.act;if(!a)return;
   if(a==='close')closeSheet();
   else if(a==='new'){openNew()}

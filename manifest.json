@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Goal Crusher",
-  "short_name": "Goal Crusher",
-  "description": "Turn any savings goal into a tap-to-crush grid.",
+  "name": "Bootstraps",
+  "short_name": "Bootstraps",
+  "description": "Turn any savings goal into a tap-to-stomp grid.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
